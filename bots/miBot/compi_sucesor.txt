@@ -1,0 +1,10 @@
+ruben:alberto
+alberto:maria
+maria:antonio
+antonio:andres
+andres:juan
+juan:daniel
+daniel:francisco
+francisco:nani
+nani:pedro
+pedro:pablo

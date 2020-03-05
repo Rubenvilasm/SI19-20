@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 1 -->
+	<category>
+		<!-- En los patrones no se puede poner tildes, en los templates si -->
+		<!-- Tambien importan los espacios, asi que "como estas" no es lo mismo que "como   estas" -->
+		<pattern>Hola *</pattern> <!-- Este patron coge las cadenas como hola,hola?,hola??????,hola!,HOLA!,HoLA!. Pero no lo detecta si es ¡HOLA, porque ¡ tiene significado en ingles-->
+		<template>Hola,¿Qué tal?</template>
+	</category>
+
+	<category>
+		<pattern>* que tal tu</pattern>
+		<template>Estoy genial!!!</template>
+	</category>
+	
+	<category>
+		<pattern>Como te llamas</pattern>
+		<template>Mi nombre es OLIfonso</template>
+	</category>
+
+	<category>
+		<pattern>$Hola</pattern>
+		<template>Hola</template>
+	</category>
+
+	<category>
+		<pattern>* que tal tu</pattern>
+		<template>Estoy genial!!!!</template>
+	</category>
+
+	<category>
+		<pattern>Fenomeno me llamo *</pattern>
+		<template>Que casualidad <star/>, yo también tengo nombre, me llamo Rubén Vilas</template>
+	</category>
+
+
+</aiml>

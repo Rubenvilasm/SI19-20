@@ -1,0 +1,11 @@
+ruben:marrones
+alberto:marrones
+maria:verdes
+antonio:azules
+andres:verdes
+juan:miel
+daniel:azules
+francisco:grisaceos
+nani:marrones
+pedro:azules
+pablo:verdes

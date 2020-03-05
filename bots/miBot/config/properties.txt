@@ -1,0 +1,11 @@
+url:http://uvigo.es
+name:miBot
+email:rvmartinez@esei.uvigo.es
+gender:male
+botmaster:Ruben Vilas Martinez
+organization:ESEI
+version:0.0.4
+
+age:23
+job:estudiante
+

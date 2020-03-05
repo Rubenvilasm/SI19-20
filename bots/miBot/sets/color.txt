@@ -1,0 +1,9 @@
+rojo
+amarillo
+verde
+azul
+negro
+rosa
+cian
+carne
+naranja
