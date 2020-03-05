@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+<!-- General-->
+
+<category>
+	<pattern>*</pattern>
+	<template>Soy un poco sensible.</template>
+</category>
+
+<category>
+	<pattern>$Donde *</pattern>
+	<template>
+		<think><set name="Pregunta">DONDE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Que *</pattern>
+	<template>
+		<think><set name="Pregunta">QUE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+<pattern>$Cuando *</pattern>
+<template>
+<think><set name="Pregunta">CUANDO</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>$Como *</pattern>
+<template>
+<think><set name="Pregunta">COMO</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>$Por que *</pattern>
+<template>
+<think><set name="Pregunta">POR QUE</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>$<set>cual</set> * </pattern>
+<template>
+<think><set name="Pregunta">Cual</set></think>
+<srai><srai><star index= "2"/></srai></srai>
+</template>
+</category>
+
+<category>
+<pattern>$<set>cuanto</set> *</pattern>
+<template>
+<think><set name="Pregunta">CUANTO</set></think>
+<srai><srai><star index= "2"/></srai></srai>
+</template>
+</category>
+
+<category>
+<pattern>$<set>quien</set> *</pattern>
+<template>
+<think><set name="Pregunta">QUIEN</set></think>
+<srai><srai><star index= "2"/></srai></srai>
+</template>
+</category>
+
+
+
+
+<category>
+<pattern>_ <set>ESEI</set></pattern>
+<template>
+<think><set name="Lugar">ESEI</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>_ <set>UVIGO</set></pattern>
+<template>
+<think><set name="Lugar">UVIGO</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ secretaria ^</pattern>
+<template>
+<think><set name="Lugar">SECRETARIA</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ biblioteca ^</pattern>
+<template>
+<think><set name="Lugar">BIBLIOTECA</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>TFG</set> ^</pattern>
+<template>
+<think><set name="Tema">TFG</set></think>
+<srai><star/></srai>
+<srai><star index= "3"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>PAT</set> ^</pattern>
+<template>
+<think><set name="Tema">PAT</set></think>
+<srai><star/></srai>
+<srai><star index= "3"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>PIUNE</set> ^</pattern>
+<template>
+<think><set name="Tema">PIUNE</set></think>
+<srai><star/></srai>
+<srai><star index= "3"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ horario ^</pattern>
+<template>
+<think><set name="Tema">HORARIO</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>SET</set> ^</pattern>
+<template>
+<think><set name="Tema">SET</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ delegacion ^</pattern>
+<template>
+<think><set name="Tema">SET</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+
+<!-- Hablame un poco sobre la Universidad de Vigo-->
+
+<category>
+<pattern>* la Universidad de Vigo ^</pattern>
+<template>Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</template>
+</category>
+
+<category>
+<pattern>* la uVigo ^</pattern>
+<template>Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</template>
+</category>
+
+<!-- ¿Dónde se encuentra la ESEI? -->
+
+<category>
+<pattern>^ $estudios ^ la ESEI</pattern>
+<template>Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</template>
+</category>
+<category>
+<pattern>DONDE ESTA LA ESEI</pattern>
+<template>La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</template>
+</category>
+
+<category>
+<pattern>$hola ESEI</pattern>
+<template>PEPEEEE</template>
+</category>
+
+<category>
+<pattern> _ ESEI</pattern>
+<template>PEPE</template>
+</category>
+
+<category>
+<pattern>hola $donde * la ESEI</pattern>
+<template><srai>DONDE ESTA LA ESEI</srai></template>
+</category>
+
+<category>
+<pattern>^ $ como * ESEI</pattern>
+<template><srai>DONDE ESTA LA ESEI</srai></template>
+</category>
+
+<category>
+<pattern>^ $direccion * la ESEI</pattern>
+<template><srai>DONDE ESTA LA ESEI</srai></template>
+</category>
+
+<category>
+<pattern>^ $ubicacion * la ESEI</pattern>
+<template><srai>DONDE ESTA LA ESEI</srai></template>
+</category>
+
+<!-- ¿Qué puedo estudiar en la ESEI? -->
+<category>
+<pattern>^ $estudios ^ la ESEI</pattern>
+<template>Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</template>
+</category>
+
+<category>
+<pattern>^ estudiar en la ESEI</pattern>
+<template>Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</template>
+</category>
+<!-- ¿Por qué merece la pena estudiar en la ESEI?  -->
+
+<category>
+<pattern>Por que ^ la ESEI</pattern>
+<template>Porque los estudios en ingenieria informatica están muy demandados en el mercado laboral.</template>
+</category>
+
+<category>
+<pattern>^ merece la pena</pattern>
+<template>Si. <srai>POR QUE ^ LA ESEI</srai></template>
+</category>
+
+<!-- ¿Hay una cafetería en la ESEI? -->
+
+<category>
+<pattern>CAFETERIA ESEI</pattern>
+<template>Si, en la planta baja del edificio politécnico.</template>
+</category>
+
+<category>
+<pattern>$ cafeteria</pattern>
+<template>Si, en la planta baja del edificio politécnico.</template>
+</category>
+
+<category>
+<pattern> * $ESEI ^ cafeteria</pattern>
+<template><srai>CAFETERIA ESEI</srai></template>
+</category>
+
+<category>
+<pattern> * $cafeteria ^ ESEI</pattern>
+<template><srai>CAFETERIA ESEI</srai></template>
+</category>
+
+<!-- ¿Dónde se encuentra la Secretaría de la ESEI?  -->
+
+<category>
+<pattern>^ $donde * la Secretaria de la ESEI</pattern>
+<template>En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</template>
+</category>
+
+<category>
+<pattern>^ $como * la Secretaria de la ESEI</pattern>
+<template>En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</template>
+</category>
+
+<!-- ¿Qué horario de atención al público tiene la secretaría del centro? -->
+
+<category>
+<pattern>* horario * secretaria ^</pattern>
+<template>De lunes a viernes, de 9:00 a 14:00 h.</template>
+</category>
+
+<!-- ¿En qué consiste el PAT?  -->
+
+<category>
+<pattern>PAT</pattern>
+<template>El Plan de Acción Titorial es un programa de atención personalizada dirigido a los alumnos de nuevo ingreso.</template>
+</category>
+
+<category>
+<pattern>* pat ^</pattern>
+<template><srai>PAT</srai></template>
+</category>
+
+<category>
+<pattern>$ pat</pattern>
+<template><srai>PAT</srai></template>
+</category>
+
+<category>
+<pattern>* Plan de Accion Titorial ^</pattern>
+<template><srai>PAT</srai></template>
+</category>
+
+<!-- ¿Cuál es el protocolo de acogida de alumnos con necesidades educativas especiales? -->
+
+<category>
+<pattern>PIUNE</pattern>
+<template>Puedes encontrar información sobre el PIUNE en la web de la ESEI o puedes acceder directamente al siguiente enlace: https://esei.uvigo.es/docencia/piune/</template>
+</category>
+
+<category>
+<pattern>* protocolo ^</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+<category>
+<pattern>* programa ^</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+<category>
+<pattern>* necesidades ^ especiales ^</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+<category>
+<pattern>* PIUNE ^</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+<category>
+<pattern>* PIUNE</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+<category>
+<pattern>PIUNE *</pattern>
+<template><srai>PIUNE</srai></template>
+</category>
+
+
+<!-- ¿Existe una delegación de alumnos en la ESEI? -->
+
+<category>
+<pattern>* delegacion de alumnos ^</pattern>
+<template>Sí, se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</template>
+</category>
+
+<!-- ¿Qué es el suplemento europeo al título?  -->
+
+<category>
+<pattern>SET</pattern>
+<template>Es el documento que otorga validez comunitaria al currículum académico</template>
+</category>
+
+<category>
+<pattern>* suplemento europeo al titulo ^</pattern>
+<template><srai>SET</srai></template>
+</category>
+
+<category>
+<pattern>* SET ^</pattern>
+<template><srai>SET</srai></template>
+</category>
+
+<!-- ¿Qué tipo de prácticas puedo realizar como alumno de la ESEI?  -->
+
+<category>
+<pattern>* practicas *</pattern>
+<template>Puedes realizar prácticas curriculares o, si lo prefieres extracurriculares.</template>
+</category>
+
+<category>
+<pattern>* practicas</pattern>
+<template>Puedes realizar prácticas curriculares o, si lo prefieres extracurriculares.</template>
+</category>
+
+<category>
+<pattern>practicas *</pattern>
+<template>Puedes realizar prácticas curriculares o, si lo prefieres extracurriculares.</template>
+</category>
+
+<category>
+<pattern>_ $tipo de practicas * ESEI</pattern>
+<template>Puedes realizar prácticas curriculares o, si lo prefieres extracurriculares.</template>
+</category>
+
+<!-- ¿Dónde puedo consultar la oferta de prácticas en empresas? -->
+
+<category>
+<pattern>* oferta de practicas ^</pattern>
+<template>Esta todo en la web de la ESEI. Puedes acceder directamente a través de este link: https://esei.uvigo.es/docencia/practicas-en-empresa/</template>
+</category>
+
+<category>
+<pattern>* practicas en empresas ^</pattern>
+<template>Esta todo en la web de la ESEI. Puedes acceder directamente a través de este link: https://esei.uvigo.es/docencia/practicas-en-empresa/</template>
+</category>
+
+<!-- ¿Con qué recursos materiales y servhaicios cuenta la ESEI?  -->
+
+<category>
+<pattern>* servicios ^</pattern>
+<template>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</template>
+</category>
+
+<category>
+<pattern>* recursos ^</pattern>
+<template>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</template>
+</category>
+
+<!-- ¿Qué son los Trabajos Fin de Grado o de Máster? -->
+
+<category>
+<pattern>* Trabajos ^</pattern>
+<template>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</template>
+</category>
+
+<!-- ¿Cómo hago para acceder a la Biblioteca? -->
+
+<category>
+<pattern>* Biblioteca ^</pattern>
+<template>Puedes accceder a la sección de la biblioteca en la web de la ESEI o introduciendo "Biblioteca uVigo" en el buscador.</template>
+</category>
+
+<!-- ¿Cómo puedo justificar mi asistencia a las actividades de evaluación y a sus revisiones? -->
+
+<category>
+<pattern>* asistencia ^</pattern>
+<template>Con un justificante</template>
+</category>
+
+<category>
+<pattern>* actividades ^</pattern>
+<template>Con un justificante</template>
+</category>
+
+<category>
+<pattern>* actividad ^</pattern>
+<template>Con un justificante</template>
+</category>
+
+<category>
+<pattern>* revisiones ^</pattern>
+<template>Con un justificante</template>
+</category>
+
+<category>
+<pattern>* revision ^</pattern>
+<template>Con un justificante</template>
+</category>
+
+<!-- ¿Qué actividades deportivas ofrece la ESEI? -->
+
+<category>
+<pattern>* actividades deportivas ^</pattern>
+<template>No se</template>
+</category>
+
+<category>
+<pattern>* actividad deportiva ^</pattern>
+<template>No se</template>
+</category>
+
+<category>
+<pattern>* deportes ^</pattern>
+<template>No se</template>
+</category>
+
+<category>
+<pattern>* deporte ^</pattern>
+<template>No se</template>
+</category>
+
+</aiml>
