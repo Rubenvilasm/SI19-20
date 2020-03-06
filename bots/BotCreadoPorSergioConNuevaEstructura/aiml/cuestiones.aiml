@@ -429,49 +429,49 @@
 
 <category>
 <pattern>* asistencia ^</pattern>
-<template>Con un justificante</template>
+<template>Deberás entregarle al profesor que corresponda el formulario que encuentras en la pagina https://esei.uvigo.es/a-esei/formularios/formularios-xerais/ </template>
 </category>
 
 <category>
 <pattern>* actividades ^</pattern>
-<template>Con un justificante</template>
+<template><srai>* ASISTENCIA ^</srai></template>
 </category>
 
 <category>
 <pattern>* actividad ^</pattern>
-<template>Con un justificante</template>
+<template><srai>* ASISTENCIA ^</srai></template>
 </category>
 
 <category>
 <pattern>* revisiones ^</pattern>
-<template>Con un justificante</template>
+<template><srai>* ASISTENCIA ^</srai></template>
 </category>
 
 <category>
 <pattern>* revision ^</pattern>
-<template>Con un justificante</template>
+<template><srai>* ASISTENCIA ^</srai></template>
 </category>
 
 <!-- ¿Qué actividades deportivas ofrece la ESEI? -->
 
 <category>
 <pattern>* actividades deportivas ^</pattern>
-<template>No se</template>
+<template>Hay un monton de actividades deportivas a las que te puedes apuntar: Voleyball, baloncesto, futbol... Puedes encontrar mas informacion en campusactivo.uvigo.gal .</template>
 </category>
 
 <category>
 <pattern>* actividad deportiva ^</pattern>
-<template>No se</template>
+<template><srai>* ACTIVIDADES DEPORTIVAS ^</srai></template>
 </category>
 
 <category>
 <pattern>* deportes ^</pattern>
-<template>No se</template>
+<template><srai>* ACTIVIDADES DEPORTIVAS ^</srai></template>
 </category>
 
 <category>
 <pattern>* deporte ^</pattern>
-<template>No se</template>
+<template><srai>* ACTIVIDADES DEPORTIVAS ^</srai></template>
 </category>
 
 </aiml>

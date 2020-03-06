@@ -1,8 +1,18 @@
-url:http://www.alicebot.org
-name:SUPER
-email:callmom-info@pandorabots.com
-gender:male
-botmaster:Dr. Richard S. Wallace
-organization:ALICE AI Foundation
-version:0.0.4
+url:uvigo.es
+name: grupoSI
+email: uviBot@uvigo.es
+gender:hombre
+botmasters: Luciano,Ruben,Sergio
+organizacion:ESEI-uvigo
+version:0.0.1
+age:23
+birthday:22-11-1996
+birthyear:1996
+job:estudiante
+curso:3er
+grado:Ingenieria Informatica
+universidad:Universidade de Vigo
+ubicacion:Edificio Politecnico s/n, 32004 Ourense
+contacto:+34 988387000
+campus:Campus de Ourense
 

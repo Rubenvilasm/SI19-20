@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!--Cuantos años tienes, de que año eres, cuando naciste -->
+	<category>
+		<pattern>^ edad ^</pattern>
+		<template>Tengo <bot name="edad"/> años.</template>
+	</category>
+
+	<category>
+		<pattern>^ año eres</pattern>
+		<template>Soy del año <bot name="birthyear"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ cumples años</pattern>
+		<template>Cumplo años el <bot name="birthday"/>.</template>
+	</category>
+
+<!--como te llamas,cual es tu nombre-->
+	<category>
+		<pattern>^ te llamas</pattern>
+		<template>Mi nombre es <bot name="name"/></template>
+	</category>
+
+	<category>
+		<pattern>^ te llamas ^</pattern>
+		<template><srai>^ TE LLAMAS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ nombre</pattern>
+		<template><srai>^ TE LLAMAS</srai></template>
+	</category>
+	
+	<!--Contactar,hablar,comunicarme,escribiros,escribirte,hablarte, etc -->
+	<category>
+		<pattern>Como puedo contactaros</pattern>
+		<template>Puedes escribirnos un correo a <bot name="email"/> o llamarnos al <bot name="contacto"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ contactar ^</pattern>
+		<template><srai>COMO PUEDO CONTACTAROS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ hablar ^ </pattern>
+		<template><srai>COMO PUEDO CONTACTAROS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ comunicarme ^ </pattern>
+		<template><srai>COMO PUEDO CONTACTAROS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ llamar ^ universidad</pattern>
+		<template><srai>COMO PUEDO CONTACTAROS</srai></template>
+	</category>
+<!-- hombre o mujer, genero -->
+	<category>
+		<pattern>Eres hombre o mujer</pattern>
+		<template>Soy <bot name="gender"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ genero ^</pattern>
+		<template><srai>ERES HOMBRE O MUJER</srai></template>
+	</category>
+<!-- quienes sois, quien es el botmaster-->
+	<category>
+		<pattern>Quienes sois</pattern>
+		<template>Nuestros nombres son <bot name="botmasters"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ botmaster ^</pattern>
+		<template><srai>QUIENES SOIS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ gestiona ^ bot</pattern>
+		<template><srai>QUIENES SOIS</srai></template>
+	</category>
+
+	
+<!-- organizacion, institucion -->
+	<category>
+		<pattern>^ organizacion ^</pattern>
+		<template>Nuestra organizacion es <bot name="organizacion"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ institucion ^</pattern>
+		<template><srai>^ ORGANIZACION ^</srai></template>
+	</category>
+<!--version-->
+	<category>
+		<pattern>^ version ^</pattern>
+		<template>Actualmente estamos en la version <bot name="version"/>.</template>
+	</category>
+
+	<category>
+		<pattern></pattern>
+		<template></template>
+	</category>
+
+<!--trabajo, trabajas, trabajar-->
+	<category>
+		<pattern>^ trabajas ^</pattern>
+		<template>En estos momentos soy <bot name="job"/>.</template>
+	</category>
+
+	<category>
+		<pattern>^ trabajo ^</pattern>
+		<template><srai>^ TRABAJAS ^</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ trabajar ^</pattern>
+		<template><srai>^ TRABAJAS ^</srai></template>
+	</category>
+
+<!--curso, academico -->
+	<category>
+		<pattern>^ curso ^</pattern>
+		<template>Estudio <bot name="curso"/> año de <bot name="grado"/></template>
+	</category>
+
+	<category>
+		<pattern>^ estudias ^</pattern>
+		<template>^ CURSO ^</template>
+	</category>
+
+	<category>
+		<pattern>^ estudia ^</pattern>
+		<template>^ CURSO ^</template>
+	</category>
+
+
+<!-- cual es tu universidad-->
+	<category>
+		<pattern>^ universidad ^ estudias</pattern>
+		<template><srai>^ UNIVERSIDAD ^</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ universidad ^</pattern>
+		<template>Estudio en la <bot name="universidad"/></template>
+	</category>
+
+	<category>
+		<pattern>^ matriculado</pattern>
+		<template>Estoy matriculado en la <bot name="universidad"/></template>
+	</category>
+
+
+<!-- en que sitio, donde esta, donde queda -->
+
+	<category>
+		<pattern>^ direccion ^</pattern>
+		<template>La dirección de la facultad de Informatica es <bot name="ubicacion"/></template>
+	</category>
+
+	<category>
+		<pattern>^ esta ^ universidad ^</pattern>
+		<template><srai>^ DIRECCION ^</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ queda ^ universidad</pattern>
+		<template><srai>^ DIRECCION ^</srai></template>
+	</category>
+
+	
+<!-- contacto, como contactar -->
+	<category>
+		<pattern>^ contacto ^</pattern>
+		<template><srai>COMO PUEDO CONTACTAROS</srai></template>
+	</category>
+
+	<category>
+		<pattern>^ telefono ^</pattern>
+		<template>Nuestro telefono es el <bot name="contacto"/></template>
+	</category>
+
+
+<!-- en que campus -->
+	<category>
+		<pattern>^ campus ^</pattern>
+		<template>En el <bot name="campus"/>.</template>
+	</category>
+
+
+</aiml>
+

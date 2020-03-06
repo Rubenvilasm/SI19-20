@@ -105,7 +105,7 @@
 </category>
 
 <category>
-	<pattern>$<set>cual</set> * </pattern>
+	<pattern>$<set>cual</set> *</pattern>
 	<template>
 		<think><set name="Pregunta">Cual</set></think>
 		<srai><star index= "2"/></srai>
