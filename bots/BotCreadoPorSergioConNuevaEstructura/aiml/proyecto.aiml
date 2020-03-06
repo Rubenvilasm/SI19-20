@@ -88,6 +88,88 @@
 				</condition>
 			</li>
 			
+			<!--Edad-->
+			<li value="EDAD">
+				<condition name ="Pregunta">
+					<li value="QUE">Tengo <bot name="age"/> años.</li>
+					<li value="CUANTOS">Tengo <bot name="age"/> años.</li>
+					<li value="CUANDO">Cumplo años el <bot name="birthday"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+			<!-- nombre-->
+			<li value="NOMBRE">
+				<condition name ="Pregunta">
+					<li value="COMO">Me llamo <bot name="name"/>, un placer.</li>
+					<li value="CUAL">Me llamo <bot name="name"/>, un placer.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!-- Contactar-->
+			<li value="CONTACTO">
+				<condition name ="Pregunta">
+					<li value="COMO">Puedes escribirnos un correo a <bot name="email"/> o llamarnos al <bot name="contacto"/>.</li>
+					<li value="CUAL">Puedes escribirnos un correo a <bot name="email"/> o llamarnos al <bot name="contacto"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!--Genero-->
+			<li value="GENERO">
+				<condition name ="Pregunta">
+					<li value="ERES">Soy hombre, a pesar de ser un bot.</li>
+					<li value="CUAL">Soy hombre, a pesar de ser un bot.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!--Botmasters-->
+			<li value="BOTMASTER">
+				<condition name ="Pregunta">
+					<li value="QUIEN">Nuestros nombres son <bot name="botmasters"/>.</li>
+					<li value="QUIENES">Nuestros nombres son <bot name="botmasters"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!--Institucion-->
+			<li value="ORGANIZACION">
+				<condition name ="Pregunta">
+					<li value="QUE">Nuestra organizacion es <bot name="organizacion"/>.</li>
+					<li value="CUAL">Nuestra organizacion es <bot name="organizacion"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!--Version-->
+			<li value="VERSION">
+				<condition name ="Pregunta">
+					<li value="QUE">Actualmente estamos en la version <bot name="version"/>.</li>
+					<li value="CUAL">Actualmente estamos en la version <bot name="version"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!-- Trabajo -->
+			<li value="JOB">
+				<condition name ="Pregunta">
+					<li value="QUE">En estos momentos soy <bot name="job"/>.</li>
+					<li value="CUAL">En estos momentos soy <bot name="job"/>.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+
+			<!--Curso academico-->
+			<li value="CURSO">
+				<condition name ="Pregunta">
+					<li value="QUE">Estudio <bot name="curso"/> año de <bot name="grado"/></li>
+					<li value="CUAL">Estudio <bot name="curso"/> año de <bot name="grado"/></li>
+					<li value="COMO">Estudio <bot name="curso"/> año de <bot name="grado"/></li>
+
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
 			<!-- Hablar -->
 		
 			<li value="HABLAR">
@@ -146,7 +228,7 @@
 						
 			<!-- Evalucion -->
 		
-			<li value="EVALUCIAON">Con un justificante</li> 
+			<li value="EVALUCION">Con un justificante</li> 
 			
 						
 			<!-- Deporte -->
@@ -421,12 +503,81 @@
 	</template>                   
 </category>
 
+<!-- BOTMASTER -->
 <category>
-	<pattern>^ <set>evaluacion</set> ^</pattern>
+	<pattern>^ <set>botmaster</set> ^</pattern>
 	<template>
-		<think><set name="Tema">EVALUCION</set></think>
+		<think><set name="Tema">BOTMASTER</set></think>
 		<srai><star/> <star index= "3"/></srai>
-	</template>                   
+	</template>
+</category>
+
+<!-- JOB -->
+<category>
+	<pattern>^ <set>job</set> ^</pattern>
+	<template>
+		<think><set name="Tema">JOB</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- CONTACTO -->
+<category>
+	<pattern>^ <set>contacto</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CONTACTO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- GENERO -->
+<category>
+	<pattern>^ <set>genero</set> ^</pattern>
+	<template>
+		<think><set name="Tema">GENERO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- ORGANIZACION -->
+<category>
+	<pattern>^ <set>organizacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ORGANIZACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+
+<!-- VERSION -->
+<category>
+	<pattern>^ <set>version</set> ^</pattern>
+	<template>
+		<think><set name="Tema">VERSION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- CURSO -->
+<category>
+	<pattern>^ <set>curso</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CURSO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<!-- CURSO -->
+<category>
+	<pattern>^ <set>edad</set> ^</pattern>
+	<template>
+		<think><set name="Tema">EDAD</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
 </category>
 
 </aiml>
