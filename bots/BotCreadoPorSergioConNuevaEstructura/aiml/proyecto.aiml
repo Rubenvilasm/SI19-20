@@ -3,7 +3,7 @@
 
 <category>
 	<pattern>*</pattern>
-	<template><srai>Unknown <star/></srai>
+	<template><srai>UnknownFinal <star/></srai>
 
 	</template>
 </category>
@@ -13,7 +13,7 @@
 	<template>
 		<think>
 			<set var="Fin"><star/></set>
-			<get name="Lugar"/> <get name="Tema"/> <get name="Pregunta"/> <star/> <star index= "2"/>
+			<get name="Lugar"/> <get name="Tema"/> <get name="Pregunta"/> <star/> Soy <star index= "2"/>
 		</think>
 		<condition name ="Tema">
 		
@@ -34,9 +34,130 @@
 					<li><think><set var="Solucion">false</set></think></li>
 				</condition>
 			</li>
-		<!-- Ubicacion-->
-		verbo da el tema
+
+			<!-- Ubicacion-->
 		
+			<li value="UBICACION">
+				<condition name ="Lugar">
+							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
+							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>
+
+			<!-- Estudios-->
+		
+			<li value="ESTUDIOS">
+				<condition name ="Pregunta">
+					<li value="QUE">
+						<condition name ="Lugar">
+							<li value="ESEI">Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+						</condition>					
+					</li>
+					<li value="POR QUE">
+						<condition name ="Lugar">
+							<li value="ESEI">Porque los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+						</condition>
+					</li>
+					<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>
+			
+			<!-- Cafeteria-->
+		
+			<li value="CAFETERIA">
+				<condition name ="Lugar">
+							<li value="ESEI">Si, en la planta baja del edificio politécnico.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>	
+			
+			<!-- PIUNE-->
+		
+			<li value="PIUNE">Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de aogida y detección</li>	
+			
+			
+			<!-- Delegacion -->
+		
+			<li value="DELEGACION">
+				<condition name ="Lugar">
+							<li value="ESEI">Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>
+			
+			<!-- Hablar -->
+		
+			<li value="HABLAR">
+				<condition name ="Lugar">
+							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>                                     
+			
+			<!-- SET -->
+		
+			<li value="SET">
+				<condition name ="Pregunta">
+							<li value="QUE">Es el documento que otorga validez comunitaria al currículum académico.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>
+			
+			<!-- Practicas -->
+		
+			<li value="PRACTICAS">
+				<condition name ="Pregunta">
+							<li value="QUE">Puedes realizar prácticas curriculares o, si lo prefieres, extracurriculares.</li>
+							<li value="DONDE">Esta todo actualizado en la web de la ESEI. Puedes acceder directamente a través de este link: https://esei.uvigo.es/docencia/practicas-en-empresa/</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li>    
+			
+			<!-- Recursos -->
+		
+			<li value="RECURSOS">
+				<condition name ="Lugar">
+							<li value="ESEI">La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li> 
+		
+			<!-- TFG -->
+		
+			<li value="TFG">
+				<condition name ="Pregunta">
+							<li value="QUE">Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li> 
+			
+			<!-- Acceso -->
+		
+			<li value="ACCESO">
+				<condition name ="Lugar">
+							<li value="BIBLIOTECA">Puedes accceder a la sección de la biblioteca en la web de la ESEI o introduciendo "Biblioteca uVigo" en el buscador.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li> 
+			
+						
+			<!-- Evalucion -->
+		
+			<li value="EVALUCIAON">Con un justificante</li> 
+			
+						
+			<!-- Deporte -->
+		
+			<li value="DEPORTE">
+				<condition name ="Lugar">
+							<li value="ESEI">No se</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li> 
+			
 		<!-- Otro-->
 			
 			<li>
@@ -46,8 +167,8 @@
 				
 					<li value="DONDE">
 						<condition name ="Lugar">
-							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
-							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
+							<li value="SECRETARIA">Error?¿::En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
+							<li value="ESEI">wopssss La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 						</condition>
 					</li>
@@ -58,7 +179,7 @@
 						
 							<!-- UVIGO-->
 							
-							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
+							<li value="UVIGO">Estoy en la Uvigo</li>
 							
 							<!-- Otro-->
 							<li><think><set var="Solucion">false</set></think></li>	
@@ -74,7 +195,7 @@
 		<condition var ="Solucion">
 			<li value="false">
 				<condition var ="Fin">
-					<li value="Unknown">Soy un poco sensible.</li>
+					<li value="UnknownFinal">Soy un poco sensible.</li>
 					<li><srai><star index= "2"/></srai></li>
 				</condition>
 			</li>
@@ -89,7 +210,6 @@
 		</think>
 	</template>
 </category>
-
 
 		<!-- Segmentacion-->
 
@@ -142,107 +262,171 @@
 </category>
 
 <category>
-<pattern>$<set>cuanto</set> *</pattern>
-<template>
-<think><set name="Pregunta">CUANTO</set></think>
-<srai><star index= "2"/></srai>
-</template>
+	<pattern>$<set>cuanto</set> *</pattern>
+	<template>
+		<think><set name="Pregunta">CUANTO</set></think>
+		<srai><star index= "2"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>$<set>quien</set> *</pattern>
-<template>
-<think><set name="Pregunta">QUIEN</set></think>
-<srai><star index= "2"/></srai>
-</template>
-</category>
-
-
-
-
-<category>
-<pattern>_ <set>ESEI</set></pattern>
-<template>
-<think><set name="Lugar">ESEI</set></think>
-<srai><star/></srai>
-</template>
+	<pattern>$<set>quien</set> *</pattern>
+	<template>
+		<think><set name="Pregunta">QUIEN</set></think>
+		<srai><star index= "2"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>_ <set>UVIGO</set></pattern>
-<template>
-<think><set name="Lugar">UVIGO</set></think>
-<srai><star/></srai>
-</template>
+	<pattern>_ <set>ESEI</set></pattern>
+	<template>
+		<think><set name="Lugar">ESEI</set></think>
+		<srai><star/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ secretaria ^</pattern>
-<template>
-<think><set name="Lugar">SECRETARIA</set></think>
-<srai><star/><star index= "2"/></srai>
-</template>
+	<pattern>_ <set>UVIGO</set></pattern>
+	<template>
+		<think><set name="Lugar">UVIGO</set></think>
+		<srai><star/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ biblioteca ^</pattern>
-<template>
-<think><set name="Lugar">BIBLIOTECA</set></think>
-<srai><star/></srai>
-<srai><star index= "2"/></srai>
-</template>
+	<pattern>^ secretaria ^</pattern>
+	<template>
+		<think><set name="Lugar">SECRETARIA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ <set>TFG</set> ^</pattern>
-<template>
-<think><set name="Tema">TFG</set></think>
-<srai><star/></srai>
-<srai><star index= "3"/></srai>
-</template>                   
+	<pattern>^ biblioteca ^</pattern>
+	<template>
+		<think><set name="Lugar">BIBLIOTECA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ <set>pat</set> ^</pattern>
-<template>
-<think><set name="Tema">PAT</set></think>
-<srai><star/> <star index= "3"/></srai>
-
-</template>
+	<pattern>^ <set>pat</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PAT</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ <set>PIUNE</set> ^</pattern>
-<template>
-<think><set name="Tema">PIUNE</set></think>
-<srai><star/></srai>
-<srai><star index= "3"/></srai>
-</template>
+	<pattern>^ <set>piune</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PIUNE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ horario ^</pattern>
-<template>
-<think><set name="Tema">HORARIO</set></think>
-<srai><star/><star index= "2"/></srai>
-</template>
+	<pattern>^ horario ^</pattern>
+	<template>
+		<think><set name="Tema">HORARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ <set>set</set> ^</pattern>
-<template>
-<think><set name="Tema">SET</set></think>
-<srai><star/> <star index= "2"/></srai>
-</template>
+	<pattern>^ <set>set</set> ^</pattern>
+	<template>
+		<think><set name="Tema">SET</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
 </category>
 
 <category>
-<pattern>^ delegacion ^</pattern>
-<template>
-<think><set name="Tema">SET</set></think>
-<srai><star/></srai>
-<srai><star index= "2"/></srai>
-</template>
+	<pattern>^ <set>delegacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">DELEGACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>ubicacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">UBICACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>estudiar</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ESTUDIOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ cafeteria ^</pattern>
+	<template>
+		<think><set name="Tema">CAFETERIA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>verboshablar</set> ^</pattern>
+	<template>
+		<think><set name="Tema">HABLAR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ practicas ^</pattern>
+	<template>
+		<think><set name="Tema">PRACTICAS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>recursos</set> ^</pattern>
+	<template>
+		<think><set name="Tema">RECURSOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>TFG</set> ^</pattern>
+	<template>
+		<think><set name="Tema">TFG</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>acceso</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ACCESO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>deporte</set> ^</pattern>
+	<template>
+		<think><set name="Tema">DEPORTE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>evaluacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">EVALUCION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
 </category>
 
 </aiml>
