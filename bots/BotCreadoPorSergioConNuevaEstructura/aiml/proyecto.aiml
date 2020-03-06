@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+	<pattern>*</pattern>
+	<template><srai>Unknown <star/></srai>
+
+	</template>
+</category>
+
+<category>
+	<pattern>* *</pattern>
+	<template>
+		<think>
+			<set var="Fin"><star/></set>
+			<get name="Lugar"/> <get name="Tema"/> <get name="Pregunta"/> <star/> <star index= "2"/>
+		</think>
+		<condition name ="Tema">
+		
+		<!-- PAT-->
+		
+			<li value="PAT">
+				<condition name ="Pregunta">
+					<li value="QUE">El Plan de Acción Titorial es un programa de atención personalizada dirigido a los alumnos de nuevo ingreso.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+			
+		<!-- Horarios-->
+			
+			<li value="HORARIO">
+				<condition name ="Lugar">
+					<li value="SECRETARIA">De lunes a viernes, de 9:00 a 14:00 h.</li>
+					<li><think><set var="Solucion">false</set></think></li>
+				</condition>
+			</li>
+		<!-- Ubicacion-->
+		verbo da el tema
+		
+		<!-- Otro-->
+			
+			<li>
+				<condition name ="Pregunta">
+				
+				<!-- Donde-->
+				
+					<li value="DONDE">
+						<condition name ="Lugar">
+							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
+							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+						</condition>
+					</li>
+					
+				<!-- Otro -->
+					<li>
+						<condition name ="Lugar">
+						
+							<!-- UVIGO-->
+							
+							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
+							
+							<!-- Otro-->
+							<li><think><set var="Solucion">false</set></think></li>	
+						</condition>
+	
+					</li>
+				</condition>
+			</li>
+		</condition>
+		
+		<!-- Shifteo (Se elimina la primera palabra y se vuelve a probar)-->
+		
+		<condition var ="Solucion">
+			<li value="false">
+				<condition var ="Fin">
+					<li value="Unknown">Soy un poco sensible.</li>
+					<li><srai><star index= "2"/></srai></li>
+				</condition>
+			</li>
+			<li></li>
+		</condition>
+		
+		<!-- Reset-->
+		<think>
+			<set name="Lugar">Unknown</set>
+			<set name="Tema">Unknown</set>
+			<set name="Pregunta">Unknown</set>
+		</think>
+	</template>
+</category>
+
+
+		<!-- Segmentacion-->
+
+<category>
+	<pattern>$Donde *</pattern>
+	<template>
+		<think><set name="Pregunta">DONDE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Que *</pattern>
+	<template>
+		<think><set name="Pregunta">QUE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Cuando *</pattern>
+	<template>
+		<think><set name="Pregunta">CUANDO</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Como *</pattern>
+	<template>
+		<think><set name="Pregunta">COMO</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Por que *</pattern>
+	<template>
+		<think><set name="Pregunta">POR QUE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$<set>cual</set> * </pattern>
+	<template>
+		<think><set name="Pregunta">Cual</set></think>
+		<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>$<set>cuanto</set> *</pattern>
+<template>
+<think><set name="Pregunta">CUANTO</set></think>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>$<set>quien</set> *</pattern>
+<template>
+<think><set name="Pregunta">QUIEN</set></think>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+
+
+
+<category>
+<pattern>_ <set>ESEI</set></pattern>
+<template>
+<think><set name="Lugar">ESEI</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>_ <set>UVIGO</set></pattern>
+<template>
+<think><set name="Lugar">UVIGO</set></think>
+<srai><star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ secretaria ^</pattern>
+<template>
+<think><set name="Lugar">SECRETARIA</set></think>
+<srai><star/><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ biblioteca ^</pattern>
+<template>
+<think><set name="Lugar">BIBLIOTECA</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>TFG</set> ^</pattern>
+<template>
+<think><set name="Tema">TFG</set></think>
+<srai><star/></srai>
+<srai><star index= "3"/></srai>
+</template>                   
+</category>
+
+<category>
+<pattern>^ <set>pat</set> ^</pattern>
+<template>
+<think><set name="Tema">PAT</set></think>
+<srai><star/> <star index= "3"/></srai>
+
+</template>
+</category>
+
+<category>
+<pattern>^ <set>PIUNE</set> ^</pattern>
+<template>
+<think><set name="Tema">PIUNE</set></think>
+<srai><star/></srai>
+<srai><star index= "3"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ horario ^</pattern>
+<template>
+<think><set name="Tema">HORARIO</set></think>
+<srai><star/><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>set</set> ^</pattern>
+<template>
+<think><set name="Tema">SET</set></think>
+<srai><star/> <star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ delegacion ^</pattern>
+<template>
+<think><set name="Tema">SET</set></think>
+<srai><star/></srai>
+<srai><star index= "2"/></srai>
+</template>
+</category>
+
+</aiml>
+
