@@ -96,7 +96,7 @@
 					<li value="QUE">Tengo <bot name="age"/> años.</li>
 					<li value="CUAL">Tengo <bot name="age"/> años.</li>
 					<li value="CUANTOS">Tengo <bot name="age"/> años.</li>
-					<li value="CUANDO">Cumplo años el <bot name="birthday"/>.</li>
+					<li value="CUANDO">Nací el <bot name="birthday"/>.</li>
 					<li><think><set var="Solucion">false</set></think></li>
 				</condition>
 			</li>
