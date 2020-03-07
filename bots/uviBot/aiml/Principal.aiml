@@ -283,8 +283,8 @@
 				
 					<li value="DONDE">
 						<condition name ="Lugar">
-							<li value="SECRETARIA">Error?¿::En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
-							<li value="ESEI">wopssss La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
+							<li value="SECRETARIA">Error:Estoy en Secretaria</li>
+							<li value="ESEI">Error: Estoy en ESEI</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 						</condition>
 					</li>
@@ -295,7 +295,7 @@
 						
 							<!-- UVIGO-->
 							
-							<li value="UVIGO">Estoy en la Uvigo</li>
+							<li value="UVIGO">Error: Estoy en la Uvigo</li>
 							
 							<!-- Otro-->
 							<li><think><set var="Solucion">false</set></think></li>	
