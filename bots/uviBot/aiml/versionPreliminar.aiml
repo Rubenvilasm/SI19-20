@@ -84,6 +84,10 @@
 							<li value="ESEI">Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
+				<condition name ="Pregunta">
+							<li value="DONDE">En la primera planta, al lado del péndulo.</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
 			</li>
 			
 			<!--Edad-->
@@ -233,14 +237,14 @@
 						
 			<!-- Evalucion -->
 		
-			<li value="EVALUCION">Con un justificante</li> 
+			<li value="EVALUCION">Deberás entregarle al profesor correspondiente el formulario que encuentras en https://esei.uvigo.es/a-esei/formularios/formularios-xerais/ para que te lo firme. </li>
 			
 						
 			<!-- Deporte -->
 		
 			<li value="DEPORTE">
 				<condition name ="Lugar">
-							<li value="ESEI">No se</li>
+							<li value="ESEI">Hay un monton de actividades deportivas a las que puedes apuntarte: gimnasio, voleyball, futbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
 			</li> 

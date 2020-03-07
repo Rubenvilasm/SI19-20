@@ -1,7 +1,7 @@
-::rmdir C:\Users\Scamin\Desktop\2019-2020\SI\Practica\program-ab-0\bots\miBot\aimlif\
-::mkdir .\bots\miBot\aimlif
+rmdir  .\bots\uviBot\aimlif\ /Q /S
+mkdir .\bots\uviBot\aimlif
 
-java -cp lib/Ab.jar Main bot=botCreadoPorSergioConNuevaEstructura action=chat trace=false
+java -cp lib/Ab.jar Main bot=uviBot action=chat trace=false
 
 
 
