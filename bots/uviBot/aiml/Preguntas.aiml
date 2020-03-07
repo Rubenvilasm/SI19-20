@@ -58,14 +58,6 @@
 </category>
 
 <category>
-	<pattern>^ <set>cafeteria</set> ^</pattern>
-	<template>
-		<think><set name="Tema">CAFETERIA</set></think>
-		<srai><star/> <star index= "3"/></srai>
-	</template>
-</category>
-
-<category>
 	<pattern>^ <set>verboshablar</set> ^</pattern>
 	<template>
 		<think><set name="Tema">HABLAR</set></think>
