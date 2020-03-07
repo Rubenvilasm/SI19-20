@@ -4,5 +4,6 @@ gestiona
 gestionais
 gestionan
 dueño
+creadores
 creador
 copyright

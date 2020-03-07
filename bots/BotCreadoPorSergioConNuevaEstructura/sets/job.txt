@@ -3,6 +3,4 @@ trabajas
 trabajais
 trabajan
 trabajar
-estudias
-estudia
-estudiais
+dedicas

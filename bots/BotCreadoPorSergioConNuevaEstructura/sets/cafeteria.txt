@@ -1,0 +1,4 @@
+cafeteria
+comer
+tomar un cafe
+tomar algo

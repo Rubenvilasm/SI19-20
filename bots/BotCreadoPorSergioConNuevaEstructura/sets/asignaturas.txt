@@ -1,0 +1,10 @@
+MARCAbases de datos II
+MARCAcentros de datos
+MARCAinterfaces de usuario
+MARCAloxica para a computacion
+MARCAredes de computadoras II
+MARCAconcorrencia e distribucion
+MARCAdireccion e xestion de proxectos
+MARCAhardware de aplicacion especifica
+MARCAsistemas intelixentes
+MARCAteoria de automatas e linguaxes formais
