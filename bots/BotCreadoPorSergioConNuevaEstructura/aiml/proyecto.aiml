@@ -8,7 +8,7 @@
 
 <category>
 	<pattern>* *</pattern>
-	<template>Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
+	<template>Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/> 
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 			Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
@@ -70,11 +70,15 @@
 							<li value="ESEI">Si, en la planta baja del edificio politécnico.</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
+				<condition name="Pregunta">
+					<li value="DONDE">En la planta baja del edificio politécnico.</li>
+					<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
 			</li>	
 			
 			<!-- PIUNE-->
 		
-			<li value="PIUNE">Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de aogida y detección</li>	
+			<li value="PIUNE">Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>	
 			
 			
 			<!-- Delegacion -->
@@ -82,6 +86,10 @@
 			<li value="DELEGACION">
 				<condition name ="Lugar">
 							<li value="ESEI">Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+				<condition name ="Pregunta">
+							<li value="DONDE">En la primera planta, al lado del péndulo.</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
 			</li>
@@ -233,14 +241,14 @@
 						
 			<!-- Evalucion -->
 		
-			<li value="EVALUCION">Con un justificante</li> 
+			<li value="EVALUCION">Deberás entregarle al profesor correspondiente el formulario que encuentras en https://esei.uvigo.es/a-esei/formularios/formularios-xerais/ para que te lo firme. </li> 
 			
 						
 			<!-- Deporte -->
 		
 			<li value="DEPORTE">
 				<condition name ="Lugar">
-							<li value="ESEI">No se</li>
+							<li value="ESEI">Hay un monton de actividades deportivas a las que puedes apuntarte: gimnasio, voleyball, futbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
 			</li> 
