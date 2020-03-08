@@ -82,7 +82,7 @@
 </category>
 
 <category>
-	<pattern>^ <set>tfg</set> ^</pattern>
+	<pattern>^ <set>TFG</set> ^</pattern>
 	<template>
 		<think><set name="Tema">TFG</set></think>
 		<srai><star/> <star index= "3"/></srai>

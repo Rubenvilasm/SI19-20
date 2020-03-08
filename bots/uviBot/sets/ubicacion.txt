@@ -9,3 +9,6 @@ ir
 llegar
 se llega
 llego
+alojas
+ubicas
+te encuentras

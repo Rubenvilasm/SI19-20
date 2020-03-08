@@ -39,7 +39,7 @@
 				<condition name ="Lugar">
 							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
 							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
-							<li>Yo me alojo en el <bot name="campus"/> de la <bot name="universidad"/>. Mas concretamente en <bot name="ubicacion"/></li>	
+							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
 			</li>
 
@@ -81,12 +81,11 @@
 		
 			<li value="DELEGACION">
 				<condition name ="Lugar">
-							<li value="ESEI">
-								<condition name ="Pregunta">
-									<li value="DONDE">En la primera planta, al lado del péndulo.</li>
-									<li>Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>	
-								</condition>
-							</li>
+							<li value="ESEI">Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+				<condition name ="Pregunta">
+							<li value="DONDE">En la primera planta, al lado del péndulo.</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 				</condition>
 			</li>
@@ -221,7 +220,7 @@
 		
 			<li value="TFG">
 				<condition name ="TemaEspecifico">
-							<li value="INTERESES">Me encataria hacer el TFG sobre una aplicacion educativa de Redes Neuronales Artificiales.</li>
+							<li value="INTERESES">Me encataria hacer el TFG sobre una aplicacion educativa de Redes Neuronais Artificiais.</li>
 							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>	
 				</condition>
 			</li> 

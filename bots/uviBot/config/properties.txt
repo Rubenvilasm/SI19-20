@@ -1,7 +1,6 @@
 url:uvigo.es
 name: grupoSI
 email: uviBot@uvigo.es
-gender:hombre
 botmasters:Luciano, Ruben y Sergio
 organizacion:ESEI-uvigo
 version:0.0.1
