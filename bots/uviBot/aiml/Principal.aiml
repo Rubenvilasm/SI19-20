@@ -275,6 +275,13 @@
 				</condition>
 			</li>
 			
+			<li value="CREDITOS">
+				<condition name ="Pregunta">
+							<li value="CUANTO">Me faltan 90, realmente ya me queda poco</li>
+							<li><think><set var="Solucion">false</set></think></li>	
+				</condition>
+			</li> 			
+			
 		<!-- Otro-->
 			
 			<li>

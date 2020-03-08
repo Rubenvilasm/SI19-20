@@ -113,6 +113,14 @@
 	</template>                   
 </category>
 
+<category>
+	<pattern>^ creditos ^</pattern>
+	<template>
+		<think><set name="Tema">CREDITOS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>                   
+</category>
+
 <!-- BOTMASTER -->
 <category>
 	<pattern>^ <set>botmaster</set> ^</pattern>
