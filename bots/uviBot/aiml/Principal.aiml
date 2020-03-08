@@ -256,15 +256,15 @@
 							<li value="MATRICULADO">
 								<condition name ="Pregunta">
 									<li value="QUE">
-										<srai>GETLISTA <map name="listar">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
+										<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
 									</li>
 									<li value="CUANTO">
-										<srai>GETLISTA <map name="listar">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
+										<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
 									</li>
 									<li>
 										<think><set var="asignatura"><map name="asignatura"><star/></map></set></think>
 										<condition var ="asignatura">
-											<li value="ASIGNATURA">Si, <map name="asignaturaSinMarca"><star/></map> es una muy buena asignatura.</li>
+											<li value="ASIGNATURA">Si, me encanta <map name="asignaturaSinMarca"><star/></map>.</li>
 											<li><think><set var="Solucion">false</set></think></li>	
 										</condition>
 									</li>	
@@ -348,7 +348,7 @@
 						<li><set name="Lista"><get name="Lista"/>, <get var="PrimerElem"/></set></li>
 					</condition>
 				</think>
-				<srai>GETLISTA <map name="listar"><star/></map></srai>
+				<srai>GETLISTA <map name="listarAsignaturas"><star/></map></srai>
 			</li>
 		</condition>
 	</template>
