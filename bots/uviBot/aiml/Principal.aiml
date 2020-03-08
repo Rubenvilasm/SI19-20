@@ -281,10 +281,9 @@
 				
 				<!-- Donde-->
 				
-					<li value="DONDE">
+					<li value="QUE">
 						<condition name ="Lugar">
-							<li value="SECRETARIA">Error:Estoy en Secretaria</li>
-							<li value="ESEI">Error: Estoy en ESEI</li>
+							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
 							<li><think><set var="Solucion">false</set></think></li>	
 						</condition>
 					</li>
@@ -295,7 +294,7 @@
 						
 							<!-- UVIGO-->
 							
-							<li value="UVIGO">Error: Estoy en la Uvigo</li>
+							<li value="UVIGO">No se que decirte sobre la Uvigo</li>
 							
 							<!-- Otro-->
 							<li><think><set var="Solucion">false</set></think></li>	
@@ -306,12 +305,12 @@
 			</li>
 		</condition>
 		
-		<!-- Shifteo (Se elimina la primera palabra y se vuelve a probar)-->
+		<!-- Shifteo (Se elimina la primera palabra y se vuelven a buscar palabras clave)-->
 		
 		<condition var ="Solucion">
 			<li value="false">
 				<condition var ="Fin">
-					<li value="UnknownFinal">Soy un poco sensible.</li>
+					<li value="UnknownFinal">Mis respuestas son limitadas.</li>
 					<li><srai><star index= "2"/></srai></li>
 				</condition>
 			</li>
