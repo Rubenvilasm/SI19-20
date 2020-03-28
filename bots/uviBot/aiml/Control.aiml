@@ -80,15 +80,9 @@
 				<li value="false">
 					<condition var ="Fin">
 						<li value="UnknownFinal">
-							<srai>PATRONAPRENDIDO <get name="PreguntaActual"/></srai>
-							<condition name ="Patron">
-								<li value="false">
-									<think><set name="Patron">unknown</set></think>
-									<condition name ="PosiblePregunta">
-										<li value="unknown">Mis respuestas son limitadas.</li>
-										<li>quieres saber <get name="PosiblePregunta"/>?</li>
-									</condition>
-								</li>
+							<condition name ="PosiblePregunta">
+								<li value="unknown">Mis respuestas son limitadas.</li>
+								<li>quieres saber <get name="PosiblePregunta"/>?</li>
 								<li></li>
 							</condition>
 							<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
@@ -102,6 +96,7 @@
 		
 			<!-- Reset-->
 			<think>
+				<set name="Solucion">unknown</set>
 				<set name="Lugar">unknown</set>
 				<set name="Tema">unknown</set>
 				<set name="Pregunta">unknown</set>
