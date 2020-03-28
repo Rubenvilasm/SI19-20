@@ -1,5 +1,4 @@
-estudias
-estudia
-estudiais
-estudiando
+semestre
+bimestre
+cuatrimestre
 curso

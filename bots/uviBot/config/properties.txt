@@ -14,4 +14,12 @@ universidad:Universidade de Vigo
 ubicacion:Edificio Politecnico s/n, 32004 Ourense
 contacto:+34 988387000
 campus:Campus de Ourense
+direccion:Telleira 9
+erasmus:No
+necesidadesEspeciales:No
+delegado:No
+ocio:entrenar voleyball o jugar videojuegos
+becado:Si
+cursoEscolar:2019-2020
+actividades:voleibol y tae kwon-do
 

@@ -1,0 +1,4 @@
+nota
+calificacion
+calificado
+notas

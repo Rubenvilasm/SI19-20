@@ -1,7 +1,8 @@
 estudiar
-estudios
 grados
 grado
 ingenieria
 ingenierias
 matricular
+estudias
+estudios

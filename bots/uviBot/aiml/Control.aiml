@@ -13,7 +13,9 @@
 
 <category>
 	<pattern>* *</pattern>
-	<template>		
+	<template>	
+		Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
+			  PosiblePregunta: <get name="PosiblePregunta"/> UltimaPregunta: <get name="UltimaPregunta"/> Afirmacion: <get name="Afirmacion"/> Primera vez: <get name="PrimeraVez"/>
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>

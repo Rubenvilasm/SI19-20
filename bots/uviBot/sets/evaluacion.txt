@@ -4,3 +4,5 @@ revision
 revisiones
 clases
 clase
+evaluacion
+correccion

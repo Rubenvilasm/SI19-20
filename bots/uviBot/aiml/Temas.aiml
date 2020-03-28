@@ -51,6 +51,8 @@
 	</template>
 </category>
 
+
+
 <category>
 	<pattern>^ horario ^</pattern>
 	<template>
@@ -122,7 +124,6 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>                   
 </category>
-
 <category>
 	<pattern>^ <set>acceso</set> ^</pattern>
 	<template>
@@ -280,6 +281,145 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
+
+
+<category>
+	<pattern>^ <set>verboshablar</set> de ti</pattern>
+	<template>
+		Somos tres estudiantes de Ingeniería Informática en la ESEI con muchas ganas de aprender.
+	</template>
+</category>
+
+
+
+<category>
+	<pattern>^ <set>verboshablar</set> de ti</pattern>
+	<template>
+		Somos tres estudiantes de Ingeniería Informática en la ESEI con muchas ganas de aprender.
+	</template>
+</category>
+
+<category>
+	<pattern>^ vives ^ <set>curso</set></pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">VIVIR</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ erasmus ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">ERASMUS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>becado</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">BECADO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Perteneces * delegacion ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">DELEGACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>ocio</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">OCIO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ necesidades educativas especiales ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">NECESIDADESESPECIALES</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ termines ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">TERMINAR</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>retribucion</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">RETRIBUCION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ has ido ^ </pattern>
+	<template>
+		<think><set name="Tema">BIBLIOTECA</set></think>
+		<think><set name="VerboEspecifico">IR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+
+<category>
+	<pattern>^ revisar ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">REVISAR</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>calificacion</set> ^ </pattern>
+	<template>
+		<think><set name="Tema">CALIFICACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>amigos</set> ^ </pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">AMIGOS</set></think>
+
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ horario de ^</pattern>
+	<template>
+		Tengo clase de lunes a jueves de 9:30 a 15:00.
+	</template>
+</category>
+
+<!--
+-->
+
+
 
 </aiml>
 
