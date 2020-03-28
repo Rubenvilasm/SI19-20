@@ -1,6 +1,7 @@
 cuentame
 dime
 hablame
+hablarme
 decir
 hablar
 contar
