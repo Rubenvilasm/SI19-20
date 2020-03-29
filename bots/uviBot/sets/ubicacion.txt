@@ -5,7 +5,6 @@ lugar
 ubicacion
 direccion
 localizacion
-ir
 llegar
 se llega
 llego

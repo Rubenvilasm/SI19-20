@@ -375,16 +375,18 @@
 	<template>
 		<think><set name="Tema">PERSONAL</set></think>
 		<think><set name="VerboEspecifico">AMIGOS</set></think>
-
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
 
 
-
-
-<!--
--->
+<category>
+	<pattern>^ <set>superior</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">SUPERIOR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
 
 
 

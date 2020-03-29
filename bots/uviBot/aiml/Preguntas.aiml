@@ -18,7 +18,7 @@
 </category>
 
 <category>
-	<pattern>$Cuando *</pattern>
+	<pattern>Cuando *</pattern>
 	<template>
 		<think><set name="Pregunta">CUANDO</set></think>
 		<srai><star/></srai>

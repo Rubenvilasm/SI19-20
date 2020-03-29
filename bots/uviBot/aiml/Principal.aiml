@@ -23,7 +23,12 @@
 					<li>
 						<condition name ="Lugar">
 							<li value="SECRETARIA">De lunes a viernes, de 9:00 a 14:00 h.</li>
-							<li><think><set name="PosiblePregunta">Cual es el horario de la secretaria</set><set name="Solucion">false</set></think></li>
+							<li>
+								<condition name="TemaEspecifico">
+									<li value="MATRICULA">La secretaria de la ESEI solo abre de mañana.</li>
+									<li><think><set name="PosiblePregunta">"Cual es el horario de la secretaria?"</set><set name="Solucion">false</set></think></li>
+								</condition>
+							</li>
 						</condition>
 					</li>
 				</condition>
@@ -33,7 +38,12 @@
 		
 			<li value="UBICACION">
 				<condition name ="Lugar">
-							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
+							<li value="SECRETARIA">
+								<condition name="TemaEspecifico">
+									<li value="MATRICULA">No, la secretaría solo abre por la mañana.</li>
+									<li>DADSASDADSDASEn la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
+								</condition>
+							</li>
 							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
 							<li><think><set name="PosiblePregunta">donde se encuentra la ESEI</set><set name="Solucion">false</set></think></li>
 				</condition>
@@ -53,7 +63,12 @@
 						<condition name ="Pregunta">
 							<li value="QUE">
 								<condition name ="Lugar">
-									<li value="ESEI">Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
+									<li value="ESEI">
+										<condition name="TemaEspecifico">
+											<li value="SUPERIOR">La ESEI ofrece un profesorado y unas instalaciones excelentes.</li>
+											<li>Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
+										</condition>
+									</li>
 									<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
 								</condition>					
 							</li>
@@ -66,6 +81,7 @@
 							<li>
 								<condition name ="TemaEspecifico">
 									<li value="BECA"><bot name="becado"/> tengo beca en el curso <bot name="cursoEscolar"/></li>
+									<li value="SUPERIOR">La ESEI ofrece un profesorado y unas instalaciones excelentes.</li>
 									<li><think><set name="PosiblePregunta">me han concedido beca</set><set name="Solucion">false</set></think></li>
 								</condition>
 							</li>	
@@ -94,7 +110,14 @@
 			<li value="PIUNE">
 				<condition name ="Personal">
 					<li value="TRUE"><bot name="necesidadesEspeciales"/> tengo necesidades educativas especiales</li>
-					<li>Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>	
+					<li>
+						<condition name="TemaEspecifico">
+							<li value="MATRICULA">Por supuesto, para eso existe el programa PIUNE.</li>
+							<li value="TRAMITE">Lo mejor es que preguntes en secretaria por el programa PIUNE, ellos te explicrán mejor.</li>
+							<li value="DEBENHACER">Pues estudiar mucho.</li>
+							<li>Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>
+						</condition>
+					</li>	
 				</condition>
 			</li>
 			
@@ -248,7 +271,12 @@
 		
 			<li value="RECURSOS">
 				<condition name ="Lugar">
-							<li value="ESEI">La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
+							<li value="ESEI">
+							<condition name="TemaEspecifico">
+								<li value="SALON">Cuenta con dos salones de actos: El Aula Magna y el salon Marie Curie.</li>
+								<li value="SEMINARIO">La ESEI cuenta con más de 10 seminarios a disposición de los alumnos.</li>
+								<li>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
+							</condition></li>
 							<li><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li> 
@@ -383,7 +411,12 @@
 							<li value="UVIGO">No se que decirte sobre la Uvigo</li>
 							
 							<!-- Otro-->
-							<li><think><set name="Solucion">false</set></think></li>	
+							<li>
+								<condition name="TemaEspecifico">
+									<li value="MATRICULA">De lunes a viernes, de 9:00 a 14:00 h.</li>
+									<li><think><set name="Solucion">false</set></think></li>
+								</condition>
+							</li>	
 						</condition>
 	
 					</li>
