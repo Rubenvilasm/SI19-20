@@ -79,7 +79,12 @@
 		
 			<li value="CAFETERIA">
 				<condition name ="Lugar">
-							<li value="ESEI">Si, en la planta baja del edificio politécnico.</li>
+							<li value="ESEI">
+								<condition name ="Pregunta">
+									<li value="DONDE">en la planta baja del edificio politécnico.</li>
+									<li>Si, <srai>DONDE PUEDO COMER CALIENTE EN LA ESEI</srai></li>
+								</condition>
+							</li>
 							<li><think><set name="PosiblePregunta">Tiene cafetería la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>	

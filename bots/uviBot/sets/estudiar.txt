@@ -6,3 +6,7 @@ ingenierias
 matricular
 estudias
 estudios
+titulaciones
+titulos
+carreras
+carrera
