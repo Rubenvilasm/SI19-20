@@ -223,7 +223,7 @@
 
 <!-- CURSO -->
 <category>
-	<pattern>^ <set>curso</set> ^</pattern>
+	<pattern>_ <set>curso</set> ^</pattern>
 	<template>
 		<think><set name="Tema">CURSO</set></think>
 		<srai><star/> <star index= "3"/></srai>
@@ -404,8 +404,7 @@
 <category>
 	<pattern>^ <set>matricula</set> ^ </pattern>
 	<template>
-		<think><set name="TemaEspecifico">MATRICULA</set></think>
-		<think><set name="Tema">HORARIO</set></think>
+		<think><set name="Tema">MATRICULA</set></think>
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
@@ -417,16 +416,6 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
-
-<category>
-	<pattern>^ deben hacer ^ </pattern>
-	<template>
-		<think><set name="TemaEspecifico">DEBENHACER</set></think>
-		<srai><star/> <star index= "2"/></srai>
-	</template>
-</category>
-
-
 
 <category>
 	<pattern>^ salon de actos ^ </pattern>
