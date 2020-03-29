@@ -5,3 +5,4 @@ delegadas
 delegada
 delegacion de alumnos
 eseida
+delegaciones de alumnos

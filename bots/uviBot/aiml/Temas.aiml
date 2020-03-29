@@ -59,8 +59,6 @@
 	</template>
 </category>
 
-
-
 <category>
 	<pattern>^ horario ^</pattern>
 	<template>
@@ -315,6 +313,24 @@
 		<think><set name="TemaEspecifico">BECA</set></think>
 		<think><set name="Tema">ESTUDIOS</set></think>
 		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ diferencia ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">DIFERENCIA</set></think>
+
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ normativa ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">NORMATIVA</set></think>
+
+		<srai><star/> <star index= "2"/></srai>
 	</template>
 </category>
 

@@ -59,7 +59,7 @@
 							</li>
 							<li value="POR QUE">
 								<condition name ="Lugar">
-									<li value="ESEI">Porque los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
+									<li value="ESEI">Uno de los principales motivos es que los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
 									<li><think><set name="PosiblePregunta">Por qué estudiar en la ESEI</set><set name="Solucion">false</set></think></li>	
 								</condition>
 							</li>
@@ -263,7 +263,14 @@
 							<li>Me encataria hacer el TFG sobre una aplicacion educativa de Redes Neuronales Artificiales.</li>
 						</condition>
 					</li>
-					<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>	
+					<li>
+						<condition name="TemaEspecifico">
+							<li value="DIFERENCIA">El TFG se hace al terminar el grado y el TFM al terminar el master. Este último requiere debería tener una mayor especialización y profundidad</li>
+							<li value="NORMATIVA">Si, puedes encontrar información detallada en este link:https://esei.uvigo.es/docencia/traballos-fin-de-carreira/traballo-fin-de-grao/</li>
+							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>
+						</condition>
+					
+					</li>	
 				</condition>
 			</li> 
 			
@@ -273,7 +280,7 @@
 					<li value="TRUE">Si, es mi sitio preferido para estudiar.</li>
 					<li>
 						<condition name ="VerboEspecifico">
-							<li value="ACCESO">Puedes accceder a la sección de la biblioteca en la web de la ESEI o introduciendo "Biblioteca uVigo" en el buscador.</li>
+							<li value="ACCESO">Puedes accceder a la sección de la biblioteca en la web de la ESEI pero para realizar prestamos necesitaras una tarjeta de estudiante</li>
 							<li><think><set name="PosiblePregunta">Como puedo acceder a la Biblioteca</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
@@ -360,6 +367,12 @@
 						<condition name ="Lugar">
 							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
 							<li><think><set name="PosiblePregunta">Que es la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
+						</condition>
+					</li>
+					<li value="DONDE">
+						<condition name ="Lugar">
+							<li value="SECRETARIA"><srai>DONDE ESTA LA SECRETARIA</srai></li>
+							<li><think><set name="PosiblePregunta">donde esta la secretaria</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
 				<!-- Otro -->

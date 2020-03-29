@@ -28,10 +28,10 @@
 
 
 <category>
-	<pattern>^ secretaria ^</pattern>
+	<pattern>^ <set>secretaria</set> ^</pattern>
 	<template>
 		<think><set name="Lugar">SECRETARIA</set></think>
-		<srai><star/> <star index= "2"/></srai>
+		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
 
