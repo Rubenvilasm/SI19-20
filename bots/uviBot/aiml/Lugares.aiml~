@@ -35,4 +35,12 @@
 	</template>
 </category>
 
+<category>
+	<pattern>^ biblioteca ^</pattern>
+	<template>
+		<think><set name="Lugar">BIBLIOTECA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
 </aiml>

@@ -10,15 +10,12 @@
 </category>
 
 <category>
-	<pattern>modo aprendizaje *</pattern>
+	<pattern>$modo aprendizaje *</pattern>
 	<template>Tomo nota
 		<learnf>
 			<category>
-				<pattern><eval><get name="UltimaPregunta"/></eval></pattern>
-				<template>
-					<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
-					<eval><star/></eval>
-				</template>
+				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<template><eval><star/></eval></template>
 			</category>
 		</learnf>
 		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
@@ -30,11 +27,8 @@
 	<template>Tomo nota
 		<learnf>
 			<category>
-				<pattern><eval><get name="UltimaPregunta"/></eval></pattern>
-				<template>
-					<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
-					<srai><eval><star/></eval></srai>
-				</template>
+				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<template><srai><eval><star/></eval></srai></template>
 			</category>
 		</learnf>
 		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
@@ -56,6 +50,8 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
+
+
 
 <category>
 	<pattern>^ horario ^</pattern>
@@ -90,7 +86,7 @@
 </category>
 
 <category>
-	<pattern>^ <set>estudiar</set> ^</pattern>
+	<pattern>_ <set>estudiar</set> ^</pattern>
 	<template>
 		<think><set name="Tema">ESTUDIOS</set></think>
 		<srai><star/> <star index= "3"/></srai>
@@ -128,7 +124,6 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>                   
 </category>
-
 <category>
 	<pattern>^ <set>acceso</set> ^</pattern>
 	<template>
@@ -286,6 +281,112 @@
 		<srai><star/> <star index= "3"/></srai>
 	</template>
 </category>
+
+<category>
+	<pattern>^ <set>vivir</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">VIVIR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ erasmus ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">ERASMUS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>beca</set> ^</pattern>
+	<template>
+		<think><set name="Tema">BECA</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Perteneces * delegacion ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">DELEGACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>ocio</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">OCIO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>terminar</set> ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">TERMINAR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>retribucion</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">RETRIBUCION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ has ido ^ </pattern>
+	<template>
+		<think><set name="Tema">BIBLIOTECA</set></think>
+		<think><set name="VerboEspecifico">IR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+
+<category>
+	<pattern>^ revisar ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">REVISAR</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>calificacion</set> ^ </pattern>
+	<template>
+		<think><set name="Tema">CALIFICACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>amigos</set> ^ </pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">AMIGOS</set></think>
+
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+
+
+<!--
+-->
+
+
 
 </aiml>
 

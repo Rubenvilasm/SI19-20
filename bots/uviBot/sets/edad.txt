@@ -1,4 +1,3 @@
-ano
 anos
 edad
 cumpleanos

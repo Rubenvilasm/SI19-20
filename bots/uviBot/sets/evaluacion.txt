@@ -1,8 +1,6 @@
-actividad
-actividades
 revision
 revisiones
-clases
-clase
 evaluacion
+evaluaciones
 correccion
+correciones

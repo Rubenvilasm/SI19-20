@@ -15,7 +15,7 @@
 	<pattern>* *</pattern>
 	<template>	
 		Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-			  PosiblePregunta: <get name="PosiblePregunta"/> UltimaPregunta: <get name="UltimaPregunta"/> Afirmacion: <get name="Afirmacion"/> Primera vez: <get name="PrimeraVez"/>
+		Personal: <get name="Personal"/>
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
@@ -47,7 +47,8 @@
 								<set name="Lugar">unknown</set>
 								<set name="Tema">unknown</set>
 								<set name="Pregunta">unknown</set>
-								<set name="verboEspecifico">unknown</set>
+								<set name="VerboEspecifico">unknown</set>
+								<set name="Personal">unknown</set>
 								<set name="TemaEspecifico">unknown</set>
 								<set name="Resultado">unknown</set>
 								<set name="Lista">unknown</set>
@@ -84,7 +85,7 @@
 						<li value="UnknownFinal">
 							<condition name ="PosiblePregunta">
 								<li value="unknown">Mis respuestas son limitadas.</li>
-								<li>quieres saber <get name="PosiblePregunta"/>?</li>
+								<li>Tu pregunta es: "<get name="PosiblePregunta"/>?" ?</li>
 								<li></li>
 							</condition>
 							<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
@@ -102,7 +103,8 @@
 				<set name="Lugar">unknown</set>
 				<set name="Tema">unknown</set>
 				<set name="Pregunta">unknown</set>
-				<set name="verboEspecifico">unknown</set>
+				<set name="VerboEspecifico">unknown</set>
+				<set name="Personal">unknown</set>
 				<set name="TemaEspecifico">unknown</set>
 				<set name="Resultado">unknown</set>
 				<set name="Lista">unknown</set>

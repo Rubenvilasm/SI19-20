@@ -2,60 +2,8 @@
 <aiml version="2.0">
 
 <category>
-	<pattern>*</pattern>
-	<template><srai><star/> UnknownFinal</srai></template>
-</category>
-
-<category>
-	<pattern>* *</pattern>
-	<template>				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-			  PosiblePregunta: <get name="PosiblePregunta"/> UltimaPregunta: <get name="UltimaPregunta"/> Pregunta Actual: <get name="PreguntaActual"/> Afirmacion: <get name="Afirmacion"/> Primera vez: <get name="PrimeraVez"/>
-		<think>
-			<set var="Fin"><star index= "2"/></set>
-				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-			  PosiblePregunta: <get name="PosiblePregunta"/> UltimaPregunta: <get name="UltimaPregunta"/> Afirmacion: <get name="Afirmacion"/> Primera vez: <get name="PrimeraVez"/>
-		</think>
-		<condition name ="PrimeraVez">
-			<li value="unknown">
-				<think>
-					<set name="PrimeraVez">false</set>
-					<set name="PreguntaActual"><get name="Lugar"/><get name="Tema"/><get name="Pregunta"/><get name="VerboEspecifico"/><get name="TemaEspecifico"/><star/><star index="2"/></set>
-				</think>
-				<srai><get name="PreguntaActual"/></srai>
-			</li>
-		<li>	
-		<condition name ="PosiblePregunta">
-			<li value="unknown"></li>
-			<li>
-				<think>
-					<set name="Lugar">unknown</set>
-					<set name="Tema">unknown</set>
-					<set name="Pregunta">unknown</set>
-					<set name="verboEspecifico">unknown</set>
-					<set name="TemaEspecifico">unknown</set>
-					<set name="Resultado">unknown</set>
-					<set name="Lista">unknown</set>
-					<set var="Fin">UnknownFinalSinRespuesta</set>
-					<set var="PosiblePregunta"><get name="PosiblePregunta"/></set>
-					<set name="PosiblePregunta">unknown</set>
-				</think>
-				<condition name ="Afirmacion">
-					<li value="SI">
-						<learnf>
-							<category>
-								<pattern>$<eval><get name="UltimaPregunta"/></eval></pattern>
-								<template><srai><eval><get var="PosiblePregunta"/></eval></srai></template>
-							</category>
-						</learnf>
-						<think><set name="Afirmacion">unknown</set></think>
-						Ah vale. <srai><get var="PosiblePregunta"/></srai>
-
-					</li>
-					<li>Pues no se que decirte entonces.</li>
-				</condition>
-			</li>
-		</condition>
-
+	<pattern>$FUNCIONELECCIONRESPUESTA * *</pattern>
+	<template>
 		<condition name ="Tema">
 		
 		<!-- PAT-->
@@ -63,16 +11,21 @@
 			<li value="PAT">
 				<condition name ="Pregunta">
 					<li value="QUE">El Plan de Acción Titorial es un programa de atención personalizada dirigido a los alumnos de nuevo ingreso.</li>
-					<li>quieres saber <set name="PosiblePregunta">que es el pat</set>?</li>
+					<li><think><set name="PosiblePregunta">que es el pat</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			
 		<!-- Horarios-->
 			
 			<li value="HORARIO">
-				<condition name ="Lugar">
-					<li value="SECRETARIA">De lunes a viernes, de 9:00 a 14:00 h.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+				<condition name ="TemaEspecifico">
+					<li value="INTERESES">Tengo clase de lunes a jueves de 9:30 a 15:00.</li>
+					<li>
+						<condition name ="Lugar">
+							<li value="SECRETARIA">De lunes a viernes, de 9:00 a 14:00 h.</li>
+							<li><think><set name="PosiblePregunta">Cual es el horario de la secretaria</set><set name="Solucion">false</set></think></li>
+						</condition>
+					</li>
 				</condition>
 			</li>
 
@@ -82,28 +35,38 @@
 				<condition name ="Lugar">
 							<li value="SECRETARIA">En la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
 							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
-							<li>Yo me alojo en el <bot name="campus"/> de la <bot name="universidad"/>. Mas concretamente en <bot name="ubicacion"/></li>	
+							<li><think><set name="PosiblePregunta">donde se encuentra la ESEI</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
 			<!-- Estudios-->
 		
 			<li value="ESTUDIOS">
-				<condition name ="Pregunta">
-					<li value="QUE">
-						<condition name ="Lugar">
-							<li value="ESEI">Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
-						</condition>					
-					</li>
-					<li value="POR QUE">
-						<condition name ="Lugar">
-							<li value="ESEI">Porque los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+				<condition name ="TemaEspecifico">
+					<li value="INTERESES">
+						<condition name="VerboEspecifico">
+							<li value="TERMINAR">Aún no lo tengo claro, solo se que quiero seguir aprendiendo.</li>
 						</condition>
 					</li>
-					<li><think><set var="Solucion">false</set></think></li>	
+					<li>
+						<condition name ="Pregunta">
+							<li value="QUE">
+								<condition name ="Lugar">
+									<li value="ESEI">Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
+									<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
+								</condition>					
+							</li>
+							<li value="POR QUE">
+								<condition name ="Lugar">
+									<li value="ESEI">Porque los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
+									<li><think><set name="PosiblePregunta">Por qué estudiar en la ESEI</set><set name="Solucion">false</set></think></li>	
+								</condition>
+							</li>
+							<li><think><set name="PosiblePregunta">si me han concedido</set><set name="Solucion">false</set></think></li>	
+						</condition>	
+					</li>
 				</condition>
+				
 			</li>
 			
 			<!-- Cafeteria-->
@@ -111,13 +74,18 @@
 			<li value="CAFETERIA">
 				<condition name ="Lugar">
 							<li value="ESEI">Si, en la planta baja del edificio politécnico.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Tiene cafetería la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>	
 			
 			<!-- PIUNE-->
 		
-			<li value="PIUNE">Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>	
+			<li value="PIUNE">
+				<condition name ="TemaEspecifico">
+					<li value="INTERESES"><bot name="necesidadesEspeciales"/> tengo necesidades educativas especiales</li>
+					<li>Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>	
+				</condition>
+			</li>
 			
 			
 			<!-- Delegacion -->
@@ -130,7 +98,7 @@
 									<li>Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>	
 								</condition>
 							</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">donde esta la delegación de alumnos de la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>
 			
@@ -141,7 +109,7 @@
 					<li value="CUAL">Tengo <bot name="age"/> años.</li>
 					<li value="CUANTOS">Tengo <bot name="age"/> años.</li>
 					<li value="CUANDO">Nací el <bot name="birthday"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Cuantos año tienes</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			<!-- nombre-->
@@ -150,7 +118,7 @@
 					<li value="COMO">Me llamo <bot name="name"/>, un placer.</li>
 					<li value="CUAL">Me llamo <bot name="name"/>, un placer.</li>
 					<li value="QUIEN">Soy <bot name="name"/>, un placer.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Como te llamas</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -159,7 +127,7 @@
 				<condition name ="Pregunta">
 					<li value="COMO">Puedes escribirme un correo a <bot name="email"/> o llamarme al <bot name="contacto"/>.</li>
 					<li value="CUAL">Puedes escribirme un correo a <bot name="email"/> o llamarme al <bot name="contacto"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Como puedo contactar con la secretaria de la ESEI</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -174,16 +142,16 @@
 			<li value="BOTMASTER">
 				<condition name ="Pregunta">
 					<li value="QUIEN">Mis creadores son <bot name="botmasters"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Quien gestiona el bot</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
-			<!--Institucion-->
+			<!--Organización-->
 			<li value="ORGANIZACION">
 				<condition name ="Pregunta">
 					<li value="QUE">Nuestra organizacion es <bot name="organizacion"/>.</li>
 					<li value="CUAL">Nuestra organizacion es <bot name="organizacion"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Cual es el nombre de la organización de la ESEI</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -192,7 +160,7 @@
 				<condition name ="Pregunta">
 					<li value="QUE">Actualmente estamos en la version <bot name="version"/>.</li>
 					<li value="CUAL">Actualmente estamos en la version <bot name="version"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">En que versión se encuentra el bot</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -202,7 +170,7 @@
 				<condition name ="Pregunta">
 					<li value="QUE">En estos momentos soy <bot name="job"/>.</li>
 					<li value="CUAL">En estos momentos soy <bot name="job"/>.</li>
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">De que trabajas</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -214,16 +182,22 @@
 					<li value="CUAL">Estoy en el <bot name="curso"/> año de <bot name="grado"/></li>
 					<li value="COMO">Estoy en el <bot name="curso"/> año de <bot name="grado"/></li>
 
-					<li><think><set var="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">En que curso estas</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			<!-- Hablar -->
 		
 			<li value="HABLAR">
-				<condition name ="Lugar">
-							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+				<condition name ="TemaEspecifico">
+							<li value="INTERESES">Somos tres estudiantes de Ingeniería Informática en la ESEI con muchas ganas de aprender.</li>
+							<li>
+								<condition name ="Lugar">
+									<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
+									<li><think><set name="PosiblePregunta">Que me puedes contar sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
+								</condition>
+							</li>	
 				</condition>
+				
 			</li>                                     
 			
 			<!-- SET -->
@@ -231,7 +205,7 @@
 			<li value="SET">
 				<condition name ="Pregunta">
 							<li value="QUE">Es el documento que otorga validez comunitaria al currículum académico.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Que es el set</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>
 			
@@ -246,8 +220,8 @@
 									<li>Puedes realizar prácticas curriculares o, si lo prefieres, extracurriculares.</li>	
 								</condition>
 							</li>
-							<li value="DONDE">Esta todo actualizado en la web de la ESEI. Puedes acceder directamente a través de este link: https://esei.uvigo.es/docencia/practicas-en-empresa/</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li value="DONDE">Esta todo actualizado en la web de la ESEI. Puedes acceder directamente a través de este link:https://esei.uvigo.es/docencia/practicas-en-empresa/</li>
+							<li><think><set name="PosiblePregunta">Donde puedo realizar las practicas</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>    
 			
@@ -256,7 +230,7 @@
 			<li value="RECURSOS">
 				<condition name ="Lugar">
 							<li value="ESEI">La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li> 
 		
@@ -265,63 +239,95 @@
 			<li value="TFG">
 				<condition name ="TemaEspecifico">
 							<li value="INTERESES">Me encataria hacer el TFG sobre una aplicacion educativa de Redes Neuronales Artificiales.</li>
+							<li value="RETRIBUCION">Claro que me gustaría, pero puede ser complicado.</li>
 							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>	
 				</condition>
 			</li> 
 			
 			<!-- Acceso -->
-		
+			<li value="BIBLIOTECA">
+				<condition name="VerboEspecifico">
+					<li value="IR">Si, es mi sitio preferido para estudiar.</li>
+				</condition>
+			</li>
+
+			<li value="CALIFICACION">
+				<condition name="VerboEspecifico">
+					<li value="REVISAR">Si, iré a ver al profesor en su horario de tutorias.</li>
+				</condition>
+			</li>
 			<li value="ACCESO">
 				<condition name ="Lugar">
 							<li value="BIBLIOTECA">Puedes accceder a la sección de la biblioteca en la web de la ESEI o introduciendo "Biblioteca uVigo" en el buscador.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Como puedo acceder a la Biblioteca</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li> 
 			
 						
 			<!-- Evalucion -->
 		
-			<li value="EVALUCION">Deberás entregarle al profesor correspondiente el formulario que encuentras en https://esei.uvigo.es/a-esei/formularios/formularios-xerais/ para que te lo firme. </li>
+			<li value="EVALUCION">Deberás entregarle al profesor correspondiente el formulario que encuentras en  https://esei.uvigo.es/a-esei/formularios/formularios-xerais/para que te lo firme. </li>
 			
 						
 			<!-- Deporte -->
 		
 			<li value="DEPORTE">
-				<condition name ="Lugar">
-							<li value="ESEI">Hay un monton de actividades deportivas a las que puedes apuntarte: gimnasio, voleyball, futbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+				<condition name ="TemaEspecifico">
+							<li value="INTERESES">La verdad es que no, pero me encantaría jugar al baloncesto.</li>
+							<li>
+								<condition name ="Lugar">
+									<li value="ESEI">Hay un monton de actividades deportivas a las que puedes apuntarte: gimnasio, voleyball, futbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
+									<li><think><set name="PosiblePregunta">Que deportes ofrece la ESEI</set><set name="Solucion">false</set></think></li>	
+								</condition>
+							</li>	
 				</condition>
-			</li> 
+			</li>
 			
+			<!--Personal-->
+			<li value="PERSONAL">
+				<condition name="VerboEspecifico">
+					<li value="VIVIR">Yo me alojo en el <bot name="campus"/> de la <bot name="universidad"/>. Mas concretamente en <bot name="ubicacion"/></li>
+					<li value="ERASMUS"><bot name="erasmus"/> soy alumno erasmus.</li>
+					<li value="DELEGACION"><bot name="delegado"/> pertenezco a la delegación de alumnos.</li>
+					<li value="OCIO">Lo que mas me gusta hacer es <bot name="ocio"/></li>
+					<li value="AMIGOS">Tengo un montón de amigos dentro de la ESEI, ¡Es muy fácil socializar!</li>
+					<li><set name="Solucion">false</set></li>
+				</condition>
+			</li>
+
+			<!--Beca-->
+			
+			<li value="BECA"><bot name="becado"/> tengo beca en el curso <bot name="cursoEscolar"/></li>		
+
 			<!-- Asignatura -->
 			
 			<li value="ASIGNATURA">
 				<condition name ="TemaEspecifico">
-							<li value="MATRICULADO">
-								<condition name ="Pregunta">
-									<li value="QUE">
-										<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
-									</li>
-									<li value="CUANTO">
-										<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
-									</li>
-									<li>
-										<think><set var="asignatura"><map name="asignatura"><star/></map></set></think>
-										<condition var ="asignatura">
-											<li value="ASIGNATURA">Si, me encanta <map name="asignaturaSinMarca"><star/></map>.</li>
-											<li><think><set var="Solucion">false</set></think></li>	
-										</condition>
-									</li>	
+					<li value="MATRICULADO">
+						<condition name ="Pregunta">
+							<li value="QUE">
+								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
+							</li>
+							<li value="CUANTO">
+								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
+							</li>
+							<li>
+								<think><set var="asignatura"><map name="asignatura"><star/></map></set></think>
+								<condition var ="asignatura">
+									<li value="ASIGNATURA">Si, me encanta <map name="asignaturaSinMarca"><star/></map>.</li>
+									<li><think><set name="PosiblePregunta">En que asignaturas estas matriculado</set><set name="Solucion">false</set></think></li>	
 								</condition>
 							</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+						</condition>
+					</li>
+					<li><think><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>
 			
 			<li value="CREDITOS">
 				<condition name ="Pregunta">
 							<li value="CUANTO">Me faltan 90, realmente ya me queda poco</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Cuantos créditos te faltan</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li> 			
 			
@@ -335,75 +341,22 @@
 					<li value="QUE">
 						<condition name ="Lugar">
 							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Que es la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
-					
 				<!-- Otro -->
 					<li>
 						<condition name ="Lugar">
 						
 							<!-- UVIGO-->
-							
 							<li value="UVIGO">No se que decirte sobre la Uvigo</li>
 							
 							<!-- Otro-->
-							<li><think><set var="Solucion">false</set></think></li>	
+							<li><think><set name="Solucion">false</set></think></li>	
 						</condition>
 	
 					</li>
 				</condition>
-			</li>
-		</condition>
-		
-		<!-- Shifteo (Se elimina la primera palabra y se vuelven a buscar palabras clave)-->
-		
-		<condition var ="Solucion">
-			<li value="false">
-				<condition var ="Fin">
-					<li value="UnknownFinal"><think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>Mis respuestas son limitadas.</li>
-					<li value="UnknownFinalSinRespuesta"><think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think></li>
-					<li><srai><star index= "2"/></srai></li>
-				</condition>
-			</li>
-			<li><think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think></li>
-		</condition>
-		
-		<!-- Reset-->
-		<think>
-			<set name="Lugar">unknown</set>
-			<set name="Tema">unknown</set>
-			<set name="Pregunta">unknown</set>
-			<set name="verboEspecifico">unknown</set>
-			<set name="TemaEspecifico">unknown</set>
-			<set name="Resultado">unknown</set>
-			<set name="Lista">unknown</set>
-			<set name="Afirmacion">unknown</set>
-		</think>
-		</li>
-		</condition>
-	</template>
-</category>
-
-<category>
-	<pattern>$GETLISTA *</pattern>
-	<template>
-		<think><set var="PrimerElem"><star/></set></think>
-		<condition name ="Resultado">
-			<li value="unknown"><think><set name="Resultado">0</set></think></li>
-		</condition>
-
-		<condition var ="PrimerElem">
-			<li value="unknown"></li>
-			<li>
-				<think>
-					<set name="Resultado"><map name="sucessor"><get name="Resultado"/></map></set>
-					<condition name ="Lista">
-						<li value="unknown"><set name="Lista"><get var="PrimerElem"/></set></li>
-						<li><set name="Lista"><get name="Lista"/>, <get var="PrimerElem"/></set></li>
-					</condition>
-				</think>
-				<srai>GETLISTA <map name="listarAsignaturas"><star/></map></srai>
 			</li>
 		</condition>
 	</template>
