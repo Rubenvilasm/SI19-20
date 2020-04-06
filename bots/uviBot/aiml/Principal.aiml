@@ -55,12 +55,12 @@
 					<li value="TRUE">
 						<condition name="VerboEspecifico">
 							<li value="TERMINAR">Aún no lo tengo claro, solo se que quiero seguir aprendiendo.</li>
-							<li><set name="Solucion">false</set></li>
+							<li>Porque me encanta programar.</li>
 						</condition>
 					</li>
 					<li>
 						<condition name ="TemaEspecifico">
-							<li value="SUPERIOR">Uno de los principales motivos es que los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
+							<li value="SUPERIOR">Uno de los principales motivos para querer estudiar en la ESEI es que los estudios en ingenieria informatica están muy demandados en el mercado laboral.</li>
 							<li value="BECA"><bot name="becado"/> tengo beca en el curso <bot name="cursoEscolar"/></li>
 							<li>
 								<condition name ="Pregunta">
@@ -70,7 +70,6 @@
 											<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
 										</condition>
 									</li>
-									<li value="POR QUE">Porque me encanta programar.</li>
 									<li value="CUANTO">Ofrece 4 titulos: <srai>QUE ESTUDIAR ESEI</srai></li>
 									<li value="CUAL"><srai>QUE ESTUDIAR ESEI</srai></li>
 									<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
@@ -319,11 +318,11 @@
 		
 			<li value="DEPORTE">
 				<condition name ="Personal">
-							<li value="TRUE">La verdad es que no, pero me encantaría jugar al volleyball.</li>
+							<li value="TRUE">La verdad es que no, pero me encantaría jugar al voleibol.</li>
 							<li>
-								<condition name ="Lugar">
-									<li value="ESEI">Hay un monton de actividades deportivas a las que puedes apuntarte: gimnasio, voleyball, futbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
-									<li><think><set name="PosiblePregunta">Que deportes ofrece la ESEI</set><set name="Solucion">false</set></think></li>	
+								<condition name ="TemaEspecifico">
+									<li value="EQUIPO">Si no me falla la memoria, como mínimo hay equipos de fútbol y baloncesto.</li>
+									<li>Hay un montón de actividades deportivas a las que puedes apuntarte: gimnasio, voleibol, fútbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>	
 								</condition>
 							</li>	
 				</condition>

@@ -4,7 +4,6 @@ grado
 ingenieria
 ingenierias
 matricular
-estudias
 estudios
 titulaciones
 titulos
