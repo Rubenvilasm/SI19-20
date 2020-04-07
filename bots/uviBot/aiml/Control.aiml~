@@ -10,10 +10,35 @@
 	<pattern>PATRONAPRENDIDO *</pattern>
 	<template><think><set name="Patron">false</set></think></template>
 </category>
+<category>
+	<pattern>$modo aprendizaje *</pattern>
+	<template>Tomo nota
+		<learnf>
+			<category>
+				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<template><eval><star/></eval></template>
+			</category>
+		</learnf>
+		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
+	</template>
+</category>
+
+<category>
+	<pattern>$modo asociacion *</pattern>
+	<template>Tomo nota
+		<learnf>
+			<category>
+				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<template><srai><eval><star/></eval></srai></template>
+			</category>
+		</learnf>
+		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
+	</template>
+</category>
 
 <category>
 	<pattern>* *</pattern>
-	<template>Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>	
+	<template>
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>

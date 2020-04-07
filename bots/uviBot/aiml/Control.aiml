@@ -1,162 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml version="2.0">
 
-<category>
-	<pattern>*</pattern>
-	<template><srai><star/> UnknownFinal</srai></template>
-</category>
-
-<category>
-	<pattern>PATRONAPRENDIDO *</pattern>
-	<template><think><set name="Patron">false</set></think></template>
-</category>
+<!--Categoria especial que permite aprender una respuesta nueva a la ultima pregunta pero solo si eres admin -->
 <category>
 	<pattern>$modo aprendizaje *</pattern>
 	<template>Tomo nota
 		<learnf>
 			<category>
-				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<pattern>$<eval><request/></eval></pattern>
 				<template><eval><star/></eval></template>
 			</category>
 		</learnf>
-		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
 	</template>
 </category>
 
+<!--Categoria especial que permite aprender a responder a la ultima pregunta del mismo modo que respondería la pregunta que le indicas -->
 <category>
 	<pattern>$modo asociacion *</pattern>
 	<template>Tomo nota
 		<learnf>
 			<category>
-				<pattern>PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
+				<pattern>$<eval><request/></eval></pattern>
 				<template><srai><eval><star/></eval></srai></template>
 			</category>
 		</learnf>
-		<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
 	</template>
 </category>
 
+<!--Categoria que indica que no quedan mas palabras que revisar y añade una marca al final -->
+<category>
+	<pattern>*</pattern>
+	<template><srai><star/> UnknownFinal</srai></template>
+</category>
+
+<!--Categoria de control central -->
 <category>
 	<pattern>* *</pattern>
-	<template>Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>	
+	<template>
+		<!--Se inicializan variables -->
 		<think>
 			<set var="Fin"><star index= "2"/></set>
-				Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-			  PosiblePregunta: <get name="PosiblePregunta"/> UltimaPregunta: <get name="UltimaPregunta"/> Afirmacion: <get name="Afirmacion"/> Primera vez: <get name="PrimeraVez"/>
+			<set name="Solucion">true</set>
+			<set name="UltimaRespuesta"><response/></set>
+			
+			Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
+			PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> 
 		</think>
-		<condition name ="PrimeraVez">
-			<li value="unknown">
-				<think>
-					<set name="PrimeraVez">false</set>	
-					<set name="PreguntaActual"><get name="Lugar"/><get name="Tema"/><get name="Pregunta"/><get name="VerboEspecifico"/><get name="TemaEspecifico"/><star/><star index="2"/></set>
-				</think>
-				
-
+		<!--Se comprueba si debe aprender comprobando si el bot a ofrecido una posible pregunta. -->
+		<condition name ="UltimaRespuesta">
+			<li><value><get name="PosibleRespuesta"/></value>
+				<!--Se comprueba si debe aprender o no -->
+				<condition name ="Afirmacion">
+					<li value="SI">
+						<learnf>
+							<category>
+								<pattern>$<eval><request/></eval></pattern>
+								<template><srai><eval><get name="PosiblePregunta"/></eval></srai></template>
+							</category>
+						</learnf>
+						<think>
+							<set var="PosiblePregunta"><get name="PosiblePregunta"/></set>
+							<set name="PosiblePregunta">unknown</set>
+							<set var="Aprendido">true</set>
+						</think>
+					</li>
+					<li><think><set name="PosiblePregunta">unknown</set></think></li>
+				</condition>
 			</li>
 		</condition>
-		<condition name ="PosiblePregunta">
-				<li value="unknown"></li>
-				<li>
-					<condition name ="Afirmacion">
-						<li value="SI">
-							<learnf>
-								<category>
-									<pattern>$PATRONAPRENDIDO <eval><get name="UltimaPregunta"/></eval></pattern>
-									<template><srai><eval><get name="PosiblePregunta"/></eval></srai></template>
-								</category>
-							</learnf>
+		<!--En caso de que no haya aprendido se intenta dar respuesta -->
+		<condition var ="Aprendido">
+			<li value="unknown"><srai>FUNCIONELECCIONRESPUESTA <star/> <star index="2"/></srai></li>
+		</condition>
 							
-							<think>
-								<set name="Lugar">unknown</set>
-								<set name="Tema">unknown</set>
-								<set name="Pregunta">unknown</set>
-								<set name="VerboEspecifico">unknown</set>
-								<set name="Personal">unknown</set>
-								<set name="TemaEspecifico">unknown</set>
-								<set name="Resultado">unknown</set>
-								<set name="Lista">unknown</set>
-								<set var="Fin">UnknownFinalSinRespuesta</set>
-								<set var="PosiblePregunta"><get name="PosiblePregunta"/></set>
-								<set name="PosiblePregunta">unknown</set>
-							</think>
-							
-							<think><set name="Afirmacion">unknown</set></think>
-							Ah vale. <srai><get var="PosiblePregunta"/></srai>
-	
-						</li>
-						<li><think><set name="PosiblePregunta">unknown</set></think></li>
-					</condition>
-				</li>
-			</condition>
-			<think><set name="PrimeraVez">unknown</set></think>	
-			<srai>PATRONAPRENDIDO <get name="PreguntaActual"/></srai>
-			<think><set name="PrimeraVez">false</set></think>
-			<condition name ="Patron">
-				<li value="false">
-					<think><set name="Patron">unknown</set></think>
-					<think><set name="Solucion">unknown</set></think>
-					<srai>FUNCIONELECCIONRESPUESTA <star/> <star index="2"/></srai>
-				</li>
-			</condition>
-
-
-			<!-- Shifteo (Se elimina la primera palabra y se vuelven a buscar palabras clave)-->
-
-			<condition name ="Solucion">
-				<li value="false">
-					<condition var ="Fin">
-						<li value="UnknownFinal">
-							<condition name ="PosiblePregunta">
-								<li value="unknown">Mis respuestas son limitadas.</li>
-								<li>Tu pregunta es: "<get name="PosiblePregunta"/>?" ?</li>
-								<li></li>
-							</condition>
-							<think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think>
-						</li>
-						<li value="UnknownFinalSinRespuesta"><think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think></li>
-						<li><srai><star index= "2"/></srai></li>
-					</condition>
-				</li>
-				<li><think><set name="PrimeraVez">unknown</set><set name="UltimaPregunta"><get name="PreguntaActual"/></set></think></li>
-			</condition>
+			
+		<!-- Se elige si dar respuesta o si volver a buscar quitando la primera palabra del input -->
+		<condition name ="Solucion">
+			<li value="false">
+				<condition var ="Fin">
+					<li value="UnknownFinal">
+						<condition name ="PosiblePregunta">
+							<li value="unknown">Mis respuestas son limitadas.</li>
+							<li><set name="PosibleRespuesta">Tu pregunta es: "<get name="PosiblePregunta"/>?" ?</set></li>
+							<li></li>
+						</condition>
+					</li>
+					<li><srai><star index= "2"/></srai></li>
+				</condition>
+			</li>
+		</condition>
 		
-			<!-- Reset-->
-			<think>
-				<set name="Solucion">unknown</set>
-				<set name="Lugar">unknown</set>
-				<set name="Tema">unknown</set>
-				<set name="Pregunta">unknown</set>
-				<set name="VerboEspecifico">unknown</set>
-				<set name="Personal">unknown</set>
-				<set name="TemaEspecifico">unknown</set>
-				<set name="Resultado">unknown</set>
-				<set name="Lista">unknown</set>
-				<set name="Afirmacion">unknown</set>
-			</think>
-	</template>
-</category>
-
-<category>
-	<pattern>$GETLISTA *</pattern>
-	<template>
-		<think><set var="PrimerElem"><star/></set></think>
-		<condition name ="Resultado">
-			<li value="unknown"><think><set name="Resultado">0</set></think></li>
-		</condition>
-
-		<condition var ="PrimerElem">
-			<li value="unknown"></li>
-			<li>
-				<think>
-					<set name="Resultado"><map name="sucessor"><get name="Resultado"/></map></set>
-					<condition name ="Lista">
-						<li value="unknown"><set name="Lista"><get var="PrimerElem"/></set></li>
-						<li><set name="Lista"><get name="Lista"/>, <get var="PrimerElem"/></set></li>
-					</condition>
-				</think>
-				<srai>GETLISTA <map name="listarAsignaturas"><star/></map></srai>
-			</li>
-		</condition>
+		<!-- Se resetea el valor de las variables globales -->
+		<think>
+			<set name="Lugar">unknown</set>
+			<set name="Tema">unknown</set>
+			<set name="Pregunta">unknown</set>
+			<set name="VerboEspecifico">unknown</set>
+			<set name="Personal">unknown</set>
+			<set name="TemaEspecifico">unknown</set>
+			<set name="Afirmacion">unknown</set>
+		</think>
+		
+		<!-- En caso de haber aprendido se da la respuesta esperada -->
+		<condition var ="Aprendido">
+			<li value="true">Ah vale. <srai><get var="PosiblePregunta"/></srai></li>
+		</condition>	
+			
 	</template>
 </category>
 

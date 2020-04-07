@@ -1,4 +1,4 @@
-estas:esta
+estas:estar
 querrias:querer
 quieres:querer
 tienes:tener

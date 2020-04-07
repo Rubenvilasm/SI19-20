@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+	<pattern>^ si ^</pattern>
+	<template>
+		<think><set name="Afirmacion">SI</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ <set>acceder</set> ^</pattern>
+	<template>
+		<think><set name="VerboEspecifico">ACCESO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+
+
+<!-- INTERESES -->
+
+<category>
+	<pattern>^ <set>intereses</set> ^</pattern>
+	<template>
+		<think><set name="Personal">TRUE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>verbosintereses</set> ^</pattern>
+	<template>
+		<think><set name="Personal">TRUE</set></think>
+		<srai><star/> <map name="verbosintereses"><star index= "2"/></map> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ matriculado ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">MATRICULADO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<!-- verboEspecifico (tiene que ser un verbo muy clave con una unica forma, funciona un poco diferente este patron, devuelve el verbo en si)-->
+
+<category>
+	<pattern>^ <set>verboEspecifico</set> ^</pattern>
+	<template>
+		<think><set name="VerboEspecifico"><star index= "2"/></set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>vivir</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">VIVIR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ erasmus ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">ERASMUS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>beca</set> ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">BECA</set></think>
+		<think><set name="Tema">ESTUDIOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ diferencia ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">DIFERENCIA</set></think>
+
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ normativa ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">NORMATIVA</set></think>
+
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>ocio</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">OCIO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>terminar</set> ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">TERMINAR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>retribucion</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">RETRIBUCION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ revisar ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">REVISAR</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>amigos</set> ^ </pattern>
+	<template>
+		<think><set name="Tema">PERSONAL</set></think>
+		<think><set name="VerboEspecifico">AMIGOS</set></think>
+
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ tipo ^ </pattern>
+	<template>
+		<think><set name="VerboEspecifico">TIPO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>superior</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">SUPERIOR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ <set>tramite</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">TRAMITE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ salon de actos ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">SALON</set></think>
+		<think><set name="Tema">RECURSOS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>seminario</set> ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">SEMINARIO</set></think>
+		<think><set name="Tema">RECURSOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ equipo ^ </pattern>
+	<template>
+		<think><set name="TemaEspecifico">EQUIPO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+</aiml>
+

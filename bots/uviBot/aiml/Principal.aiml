@@ -345,19 +345,9 @@
 				<condition name ="TemaEspecifico">
 					<li value="MATRICULADO">
 						<condition name ="Pregunta">
-							<li value="QUE">
-								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
-							</li>
-							<li value="CUANTO">
-								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
-							</li>
-							<li>
-								<think><set var="asignatura"><map name="asignatura"><star/></map></set></think>
-								<condition var ="asignatura">
-									<li value="ASIGNATURA">Si, me encanta <map name="asignaturaSinMarca"><star/></map>.</li>
-									<li><think><set name="PosiblePregunta">En que asignaturas estas matriculado</set><set name="Solucion">false</set></think></li>	
-								</condition>
-							</li>
+							<li value="QUE">Estoy matriculado en SI, CDI, DGP, HAE, TALF, BDII, CDA, IU, LC, RCII y... Creo que no me olvido de ninguna.</li>
+							<li value="CUANTO">Estoy matriculado en 10 asignaturas.</li>
+							<li><think><set name="PosiblePregunta">En que asignaturas estas matriculado</set><set name="Solucion">false</set></think></li>
 						</condition>
 					</li>
 					<li><think><set name="Solucion">false</set></think></li>	
@@ -405,7 +395,6 @@
 								</condition>
 							</li>	
 						</condition>
-	
 					</li>
 				</condition>
 			</li>
