@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 1 -->
+<category>
+<pattern>Hola *</pattern>
+<template>Hola, ¿qué tal?</template>
+</category>
+
+<!-- Regla 2 -->
+<category>
+<!-- <pattern>Yo bien que tal tú</pattern> -->
+<pattern># que tal tu</pattern>
+<template>Estoy genial!!!</template>
+</category>
+
+<!-- Reglas 3.3 -->
+<category>
+<pattern>MINOMBRE</pattern>
+<template>Mi nombre es <bot name="name"/></template>
+</category>
+
+<category>
+<pattern>^ Como ^ te llamas</pattern>
+<template><srai>MINOMBRE</srai></template>
+</category>
+
+<category>
+<pattern> ^ me llamo * </pattern>
+<template>Que casualidad <set name="name"><star index="2"/></set>, yo también tengo nombre. <srai>MINOMBRE</srai></template> 
+<!-- <template>Que casualidad <star index="2"/>, yo también tengo nombre; me llamo <bot name="name"/> </template> -->
+</category>
+
+<category>
+<pattern> _ mi nombre es _ </pattern>
+<template>Que casualidad <set><name><star index="2"/></name></set>, yo también tengo nombre. <srai>MINOMBRE</srai></template> 
+<!-- <template>Que casualidad <star index="2"/>, yo también tengo nombre; me llamo <bot name="name"/> </template> -->
+</category>
+
+<!-- Regla 4 -->
+<category>
+<pattern> $Hola </pattern>
+<template>Hola de nuevo, ¿Como te vá?</template>
+</category>
+
+<!-- Regla 5 -->
+<category>
+<pattern> EDAD </pattern>
+<template>Aunque esta pregunta es impertinente, te contestaré; tengo 
+<bot name="age"/> años, y vivo en <bot name="address"/> </template>
+</category>
+
+<category>
+<pattern> ADDRESS </pattern>
+<template>Vivo en <bot name="address"/> </template>
+</category>
+
+<category>
+<pattern> $donde ^ vives </pattern>
+<template> <srai>ADDRESS</srai> </template>
+</category>
+
+<category>
+<pattern> ^ cual es tu edad </pattern>
+<template> <srai>EDAD</srai> </template>
+</category>
+
+<category>
+<pattern> ^ agnos tienes </pattern>
+<template> <srai>EDAD</srai> </template>
+</category>
+
+<!-- Regla 6 -->
+<category>
+<pattern>SUNOMBRE</pattern>
+<template>
+<random>
+<li>Te llamas <get name="name"/></li>
+<li>Tu nombre es <get name="name"/></li>
+</random>
+</template>
+</category>
+
+<category>
+<pattern> * $Como me llamo</pattern>
+<template><srai>SUNOMBRE</srai></template>
+</category>
+
+<category>
+<pattern> ^ mi nombre</pattern>
+<template><srai>SUNOMBRE</srai></template>
+</category>
+
+<!-- Regla 7 -->
+<category>
+<pattern> Mi color favorito es el <set>color</set> </pattern>
+<template>
+El <star/> es un color que no va con tu personalidad.
+</template>
+</category>
+
+<category>
+<pattern> Mi color favorito es el * </pattern>
+<template>
+<star/>, definitivamente no es un color.
+</template>
+</category>
+
+<!-- Regla 12 -->
+<category>
+<pattern> * capital de <set>pais</set> </pattern>
+<template>
+	<think>
+		<set var="capital"><map name="capital"><star index="2"/></map></set>
+	</think>
+	<condition var="capital">
+<!--		<li value="unknown"> No tengo ni idea que capital tiene <star index="3"/> </li> -->
+		<li value="unknown">NO LO SE</li>
+		<li><star index="2"/> tiene como capital <get var="capital"/>. </li>
+	</condition>
+</template>
+</category>
+
+
+<category>
+	<pattern> * capital de * </pattern>
+	<template>
+		No tengo ni idea de cual es la capital <star index="2"/>; de hecho no sé si es un país.
+	</template>
+</category>
+
+
+<!-- -->
+
+<category>
+	<pattern>$La capital de * es *</pattern> 
+	<template>
+		<think>
+			<set var="cap"><srai>CUAL ES LA CAPITAL DE <star/></srai></set> 
+		</think>
+		<condition var="cap">
+		<li> <value>NO LO SE</value> 
+			<learn>
+				<category>
+					<pattern>^ $CUAL ES LA CAPITAL DE <eval><star/></eval></pattern> 
+					<template>La capital de <eval><star/></eval> es <eval><star index="2"/></eval></template>
+				</category>
+			</learn>
+			A partir de ahora, recordaré que la capital de <star/> es <star index="2"/>. 
+		</li>
+		<li> Ya sabia que <get var="cap"/> </li>
+		</condition>
+	</template>
+</category>
+
+<!-- -->
+
+<!-- Regla 16 -->
+<category>
+<pattern> Cuenta hasta <set>number</set> </pattern>
+<template>
+	<think>
+		<set var="cont">1</set>
+		<set var="out">1</set>
+	</think>
+	<condition var="cont">
+		<li><value><star/></value><get var="out"/></li>
+		<li>
+			<think>
+			<set var="cont">
+				<map name="successor"><get var="cont"/></map>
+			</set>
+			<set var="out"><get var="out"/>, <get var="cont"/></set>
+			</think>
+			<loop/>
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Reglas de prueba -->
+<category>
+<pattern>Amigo me llamo *</pattern>
+<template>Un placer conocerte <star/> </template>
+</category>
+
+<category>
+<pattern>DONDESI</pattern>
+<template>Puedes ver el siguiente video: 
+<video> http://http://ssia.esei.uvigo.es:8080/media/Teaching/IntroduccionSI.m4v </video> 
+</template>
+</category>
+
+<category>
+<pattern>* presentacion ^ sistemas inteligentes</pattern>
+<template> <srai>DONDESI</srai> </template>
+</category>
+
+<category>
+<pattern>* web * esei</pattern>
+<template>La web de la ESEI se encuentra en <src> http://esei.uvigo.es </src> </template>
+</category>
+
+<category>
+<pattern>*</pattern>
+<template>¿Me puedes preguntar en otro momento? En estos momentos estoy ocupado pensando sobre un tema delicado</template>
+</category>
+
+</aiml>
