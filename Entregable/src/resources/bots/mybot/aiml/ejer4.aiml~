@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+<pattern>de que color tiene los ojos <set>compi</set></pattern>
+<template><star/> tiene los ojos de color <map name="ojos"><star/></map>.</template>
+</category>
+
+<category>
+<pattern>de que color tiene los ojos *</pattern>
+<template>No se quien es.</template>
+</category>
+
+<category>
+<pattern>de que color tiene el pelo <set>compi</set></pattern>
+<template><star/> tiene el pelo <map name="pelo"><star/></map>.</template>
+</category>
+
+<category>
+<pattern>de que color tiene el pelo *</pattern>
+<template>No se quien es.</template>
+</category>
+
+<category>
+	<pattern>Que compis tienen los ojos de color *</pattern>
+	<template>                                  
+		<think>
+			<set var="contador">0</set>
+			<set var="color"><star/></set>
+			<set var="compi"><map name="compiSiguiente">1</map></set>
+			<set var="salida">Los compañeros con los ojos de color <star/> son: </set>
+		</think>
+		<condition var= "compi">
+			<li value="unknown">
+				<condition var= "contador">
+					<li value="0">No tengo ningun compañero con ese color de ojos</li>
+					<li><get var="salida"/></li>
+				</condition>
+			</li>
+			<li>
+				<condition var= "color">
+					<li><value><map name="ojos"><get var="compi"/></map></value>
+						<think>
+							<set var="salida"><get var="salida"/><get var="compi"/>, </set>
+							<set var="contador"><get var="contador"/>1</set>
+							<set var="compi"><map name="compiSiguiente"><get var="compi"/></map></set>
+						</think>
+					</li>
+					<li>
+						<think>
+							<set var="compi"><map name="compiSiguiente"><get var="compi"/></map></set>
+						</think>
+					</li>
+				</condition>
+				<loop/>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>Que compis tienen el pelo de color *</pattern>
+	<template>                                  
+		<think>
+			<set var="contador">0</set>
+			<set var="color"><star/></set>
+			<set var="compi"><map name="compiSiguiente">1</map></set>
+			<set var="salida">Los compañeros con el pelo <star/> son: </set>
+		</think>
+		<condition var= "compi">
+			<li value="unknown">
+				<condition var= "contador">
+					<li value="0">No tengo ningun compañero con ese color de pelo</li>
+					<li><get var="salida"/></li>
+				</condition>
+			</li>
+			<li>
+				<condition var= "color">
+					<li><value><map name="pelo"><get var="compi"/></map></value>
+						<think>
+							<set var="salida"><get var="salida"/><get var="compi"/>, </set>
+							<set var="contador"><get var="contador"/>1</set>
+							<set var="compi"><map name="compiSiguiente"><get var="compi"/></map></set>
+						</think>
+					</li>
+					<li>
+						<think>
+							<set var="compi"><map name="compiSiguiente"><get var="compi"/></map></set>
+						</think>
+					</li>
+				</condition>
+				<loop/>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>* tiene los ojos de color * y el pelo *</pattern>
+	<template>
+		<think>
+			<set var="ojosPelo"><srai>DE QUE COLOR TIENE LOS OJOS <star/></srai> <srai>DE QUE COLOR TIENE EL PELO <star/></srai></set>
+		</think>
+		<condition var="ojosPelo">
+			<li value="No se quien es. No se quien es.">
+				<learn>
+					<category>
+						<pattern>DE QUE COLOR TIENE LOS OJOS <eval><star/></eval></pattern>
+						<template>
+							<eval><star/></eval> tiene los ojos de color <eval><star index="2"/></eval>.
+						</template>
+					</category>
+					
+					<category>
+						<pattern>DE QUE COLOR TIENE EL PELO <eval><star/></eval></pattern>
+						<template>
+							<eval><star/></eval> tiene el pelo <eval><star index="3"/></eval>.
+						</template>
+					</category>
+				</learn>
+				Perfecto, recordare esta informacion.
+			</li>
+			<li><value><star/> tiene los ojos de color <star index="2"/>. <star/> tiene el pelo de color <star index="3"/>.</value>Ya lo sabia.</li>
+			<li>Eso no es lo que tenia entendido.</li>
+		</condition >
+	</template>
+</category>
+
+<category>
+	<pattern>Puedes repetirme el dialogo de las ultimas * interpelaciones</pattern>
+	<template>
+		<think>
+			<set var="Interpelacion">1</set>
+			<set var="Respuesta"></set>
+		</think>
+		<condition var="Interpelacion">
+			<li><value><map name="successor"><star/></map></value>
+Por supuesto lo ultimo que hemos tratado ha sido: 
+<get var="Respuesta"/></li>
+			<li>
+				<think>
+				<set var="Respuesta">	
+Human: <request><index><get var="Interpelacion"/></index></request>
+<bot name="name"/>: <response><index><get var="Interpelacion"/></index></response>
+			<get var="Respuesta"/></set>
+				<set var="Interpelacion"><map name="successor"><get var="Interpelacion"/></map></set>
+				</think>
+				<loop/>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>Puedes recordarme que te he preguntado hace * interpelaciones</pattern>
+	<template>Encantado de poder ser util, hace <star/> interpelaciones me dijiste: <request><index><star/></index></request></template>
+</category>
+
+</aiml>

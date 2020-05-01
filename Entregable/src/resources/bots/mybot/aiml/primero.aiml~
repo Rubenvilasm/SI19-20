@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Regla 12 -->
+
+<category>
+	<pattern>Cual es la capital de <set>pais</set></pattern>
+	<template>La capital de <star/> es <map name="capital"><star/></map>.</template>
+</category>
+
+<!-- Regla 13 -->
+
+<category>
+	<pattern>Cual es la capital de *</pattern>
+	<template>No lo se</template>
+</category>
+
+<!-- Regla 17 -->
+
+<category>
+	<pattern>la capital de * es *</pattern>
+	<template>
+		<think>
+			<set var="cap"><srai>CUAL ES LA CAPITAL DE <star/></srai></set>
+		</think>
+		<condition var="cap">
+			<li value="No lo se">
+				<learn>
+					<category>
+						<pattern>CUAL ES LA CAPITAL DE <eval><star/></eval></pattern>
+						<template>
+							La capital de <eval><star/></eval> es <eval><star index="2"/></eval>.
+						</template>
+					</category>
+				</learn>
+				Recordare que la capital de <star/> es <star index="2"/>.
+			</li>
+			<li><value>La capital de <star/> es <star index="2"/>.</value>Ya lo sabia.</li>
+			<li>Eso no es lo que tenia entendido.</li>
+		</condition >
+	</template>
+</category>
+
+</aiml>

@@ -1,0 +1,17 @@
+0,HOLA *,*,*,Hola#Comma qué tal?,primero.aiml
+0,^ QUE TAL TU,*,*,Estoy genial!!!,primero.aiml
+0,^ ME LLAMO *,*,*,Vale <set name="nombre"><star index="2"/></set>. <get name="nombre"/> es un bonito nombre.,primero.aiml
+0,HOLA,*,*,Hola de nuevo#Comma qué tal?,primero.aiml
+0,CUAL ES TU EDAD,*,*,Tengo <bot name="age"/> años,primero.aiml
+0,CUAL ES MI NOMBRE,*,*,<condition name="nombre">#Newline			<li value="unknown"> Aun no me has dicho tu nombre.</li>#Newline			<li>Tu nombre es <get name="nombre"/></li>#Newline		</condition>,primero.aiml
+0,MI COLOR FAVORITO ES EL *,*,*,<think><set var="color"><star/></set></think>#Newline		El <get var="color"/> es un color que no me gusta.,primero.aiml
+0,* MI NOMBRE,*,*,<srai>CUAL ES MI NOMBRE</srai>,primero.aiml
+0,^ COMO ME LLAMO,*,*,<srai>CUAL ES MI NOMBRE</srai>,primero.aiml
+0,ES <SET>COLOR</SET> UN COLOR,*,*,Si#Comma <star/> es un color,primero.aiml
+0,ES * UN COLOR,*,*,No#Comma <star/> no es un color,primero.aiml
+0,CUAL ES LA CAPITAL DE <SET>PAIS</SET>,*,*,La capital de <star/> es <map name="capital"><star/></map>.,primero.aiml
+0,CUAL ES LA CAPITAL DE *,*,*,No lo se,primero.aiml
+0,^ CAFE ^,*,*,Te gusta el cafe,primero.aiml
+0,SI,TE GUSTA EL CAFE,*,Lo prefieres solo o con leche.,primero.aiml
+0,CUENTA HASTA <SET>NUMBER</SET>,*,*,<think>#Newline			<set var="contador">1</set>#Newline			<set var="salida">1</set>#Newline		</think>#Newline		<condition var="contador">#Newline			<li><value><star/></value><get var="salida"/></li>#Newline			<li>#Newline				<think>#Newline					<set var="contador"><map name="successor"><get var="contador"/></map></set>#Newline					<set var="salida"><get var="salida"/> <get var="contador"/></set>#Newline				</think>#Newline				<loop/>#Newline			</li>#Newline		</condition>,primero.aiml
+0,LA CAPITAL DE * ES *,*,*,<think>#Newline			<set var="cap"><srai>CUAL ES LA CAPITAL DE <star/></srai></set>#Newline		</think>#Newline		<condition var="cap">#Newline			<li value="No lo se">#Newline				<learn>#Newline					<category>#Newline						<pattern>CUAL ES LA CAPITAL DE <eval><star/></eval></pattern>#Newline						<template>#Newline							La capital de <eval><star/></eval> es <eval><star index="2"/></eval>.#Newline						</template>#Newline					</category>#Newline				</learn>#Newline				Recordare que la capital de <star/> es <star index="2"/>.#Newline			</li>#Newline			<li><value>La capital de <star/> es <star index="2"/>.</value>Ya lo sabia.</li>#Newline			<li>Eso no es lo que tenia entendido.</li>#Newline		</condition>,primero.aiml
