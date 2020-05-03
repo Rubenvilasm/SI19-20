@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="SERVICIO">
+
+<category>
+	<pattern>^ alta ^ </pattern>
+	<template>
+		<think><set name="Servicio">ALTA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ grupo reducido ^ </pattern>
+	<template>
+		<think><set name="Servicio">GRUPOREDUCIDO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ seminario ^ </pattern>
+	<template>
+		<think><set name="Servicio">SEMINARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ asignacion de un TFG ^ </pattern>
+	<template>
+		<think><set name="Servicio">ASIGNACIONTFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ defensa de un TFG ^ </pattern>
+	<template>
+		<think><set name="Servicio">DEFENSATFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ evalucion por compensacion ^ </pattern>
+	<template>
+		<think><set name="Servicio">DEFENSATFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ soy * ^</pattern>
+	<template>
+		<think><set name="Nombre"><star index= "2"/></set></think>
+		<star/> <star index= "2"/> <star index= "3"/>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ contrasena * ^</pattern>
+	<template>
+		<think><set name="Contrasena"><star index= "2"/></set></think>
+		<star/> <star index= "2"/> <star index= "3"/>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern> * * </pattern>
+	<template>
+		<condition name ="Nombre">
+			<li value="unknown">En primer lugar necesito que te identiques.(Soy "tu nombre")</li>
+			<li>
+				<condition name ="Contrasena">
+					<li value="unknown"> Cual es tu contraseña?</li>
+					<li>
+					Logueao
+					
+					</li>
+				</condition>
+			</li>
+		</condition>
+		<get name="Servicio"/>
+		
+	</template>
+</category>
+
+
+</topic>
+
+</aiml>
+
