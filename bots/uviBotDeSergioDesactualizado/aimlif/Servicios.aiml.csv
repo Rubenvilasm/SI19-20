@@ -1,0 +1,9 @@
+0,^ ALTA ^,*,SERVICIO,<think><set name="Servicio">ALTA</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ GRUPO REDUCIDO ^,*,SERVICIO,<think><set name="Servicio">GRUPOREDUCIDO</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ SEMINARIO ^,*,SERVICIO,<think><set name="Servicio">SEMINARIO</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ ASIGNACION DE UN TFG ^,*,SERVICIO,<think><set name="Servicio">ASIGNACIONTFG</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ DEFENSA DE UN TFG ^,*,SERVICIO,<think><set name="Servicio">DEFENSATFG</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ EVALUCION POR COMPENSACION ^,*,SERVICIO,<think><set name="Servicio">DEFENSATFG</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Servicios.aiml
+0,^ SOY * ^,*,SERVICIO,<think><set name="Nombre"><star index="2"/></set></think>#Newline		<star/> <star index="2"/> <star index="3"/>#Newline		<srai><star/> <star index="3"/></srai>,Servicios.aiml
+0,^ CONTRASENA * ^,*,SERVICIO,<think><set name="Contrasena"><star index="2"/></set></think>#Newline		<star/> <star index="2"/> <star index="3"/>#Newline		<srai><star/> <star index="3"/></srai>,Servicios.aiml
+0,* *,*,SERVICIO,<condition name="Nombre">#Newline			<li value="unknown">En primer lugar necesito que te identiques.(Soy "tu nombre")</li>#Newline			<li>#Newline				<condition name="Contrasena">#Newline					<li value="unknown"> Cual es tu contraseña?</li>#Newline					<li>#Newline					Logueao#Newline					#Newline					</li>#Newline				</condition>#Newline			</li>#Newline		</condition>#Newline		<get name="Servicio"/>,Servicios.aiml

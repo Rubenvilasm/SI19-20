@@ -1,0 +1,11 @@
+numero
+telefono
+email
+correo
+e-mail
+número
+contacto
+mail
+gmail
+hotmail
+outlook

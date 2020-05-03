@@ -1,0 +1,8 @@
+0,$DONDE *,*,*,<think><set name="Pregunta">DONDE</set></think>#Newline		<srai><star/></srai>,Preguntas.aiml
+0,$QUE *,*,*,<think><set name="Pregunta">QUE</set></think>#Newline		<srai><star/></srai>,Preguntas.aiml
+0,$CUANDO *,*,*,<think><set name="Pregunta">CUANDO</set></think>#Newline		<srai><star/></srai>,Preguntas.aiml
+0,$COMO *,*,*,<think><set name="Pregunta">COMO</set></think>#Newline		<srai><star/></srai>,Preguntas.aiml
+0,$POR QUE *,*,*,<think><set name="Pregunta">POR QUE</set></think>#Newline		<srai><star/></srai>,Preguntas.aiml
+0,<SET>CUAL</SET> *,*,*,<think><set name="Pregunta">CUAL</set></think>#Newline		<srai><star index="2"/></srai>,Preguntas.aiml
+0,<SET>CUANTO</SET> *,*,*,<think><set name="Pregunta">CUANTO</set></think>#Newline		<srai><star index="2"/></srai>,Preguntas.aiml
+0,<SET>QUIEN</SET> *,*,*,<think><set name="Pregunta">QUIEN</set></think>#Newline		<srai><star index="2"/></srai>,Preguntas.aiml

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<topic name="SERVICIO">
+
+<category>
+	<pattern>^ alta ^ </pattern>
+	<template>
+		<think><set name="Servicio">ALTA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ grupo reducido ^ </pattern>
+	<template>
+		<think><set name="Servicio">GRUPOREDUCIDO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ seminario ^ </pattern>
+	<template>
+		<think><set name="Servicio">SEMINARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ asignacion de un TFG ^ </pattern>
+	<template>
+		<think><set name="Servicio">ASIGNACIONTFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ defensa de un TFG ^ </pattern>
+	<template>
+		<think><set name="Servicio">DEFENSATFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ evalucion por compensacion ^ </pattern>
+	<template>
+		<think><set name="Servicio">DEFENSATFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ soy <set>nombre</set> ^</pattern>
+	<template>
+		<think><set name="Nombre"><star index= "2"/></set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ soy * ^</pattern>
+	<template>
+		<think>
+			<set name="Nombre"><star index= "2"/></set>
+			<set name="Nuevo"><star index= "true"/></set>
+		</think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ contrasena * ^</pattern>
+	<template>
+		<condition name ="nuevo">
+			<li value="true">
+				<addset><new><get name="Nombre"/></new>nombre</addset>
+				<addmap><new><get name="Nombre"/>:<star index= "2"/></new>contrasena</addmap>
+				<think><set name="Contrasena"><star index= "2"/></set></think>
+			</li>
+			<li>
+				<think><set name="Contrasena"><star index= "2"/></set></think>
+				<condition name ="Contrasena">
+					<li><value><map name="Contrasena"><star index= "2"/></map></value></li>
+					<li>
+						<think><set name="Contrasena">unknown</set></think>
+						<think><set name="Nombre">unknown</set></think>
+					</li>
+			</li>
+	
+		
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern> * * </pattern>
+	<template>
+		<condition name ="Nombre">
+			<li value="unknown">En primer lugar necesito que te identiques.(Soy "tu nombre")</li>
+			<li>
+				<condition name ="Contrasena">
+					<li value="unknown">Introduce tu contraseña, pon la que quieras si eres nuevo(Contrasena "tu contraseña")</li>
+					<li>
+					Logueao
+					
+					</li>
+				</condition>
+			</li>
+		</condition>
+		<get name="Servicio"/>
+		
+	</template>
+</category>
+
+
+</topic>
+
+</aiml>
+
