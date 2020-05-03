@@ -38,17 +38,17 @@
 	<pattern>* *</pattern>
 	<template>
 		<!--Se inicializan variables -->
+Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
+		 PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> Servicios: <get name="SERVICIO"/> Personal: <get name="Personal"/> Propuesto: <get name="Propuesto"/> Topic: <get name="topic"/>
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 			<set name="Solucion">true</set>
 			<set name="UltimaRespuesta"><response/></set>
+					
 			
-			Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-			PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> 
 		</think>
 		<!--Se comprueba si debe aprender comprobando si el bot a ofrecido una posible pregunta. -->
 		<condition name ="UltimaRespuesta">
-			<li value="unknown"></li>
 			<li><value><get name="PosibleRespuesta"/></value>
 				<!--Se comprueba si debe aprender o no -->
 				<condition name ="Afirmacion">
@@ -82,7 +82,7 @@
 					<li value="UnknownFinal">
 						<condition name ="PosiblePregunta">
 							<li value="unknown">Mis respuestas son limitadas.</li>
-							<li><set name="PosibleRespuesta">Tu pregunta es: <get name="PosiblePregunta"/>?</set></li>
+							<li><set name="PosibleRespuesta">Tu pregunta es: "<get name="PosiblePregunta"/>?" ?</set></li>
 							<li></li>
 						</condition>
 					</li>
@@ -100,6 +100,10 @@
 			<set name="Personal">unknown</set>
 			<set name="TemaEspecifico">unknown</set>
 			<set name="Afirmacion">unknown</set>
+			<set name="Servicios">unknown</set>
+			<set name="SERVICIO">unknown</set>
+			<set name="Propuesto">Unknown</set>
+			
 		</think>
 		
 		<!-- En caso de haber aprendido se da la respuesta esperada -->
