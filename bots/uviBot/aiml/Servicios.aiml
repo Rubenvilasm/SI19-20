@@ -67,11 +67,6 @@
 	</template>
 </category>
 
-<category>
-	<pattern>patron</pattern>
-	<template>template</template>
-</category>
-
 <topic name="ALTAMATERIA">
 	<category>
 		<pattern>SI</pattern><that>Quieres solicitar el alta de una materia</that>
@@ -84,34 +79,32 @@
 		<template>
 			<think><set name="nombreUsuario"><star/></set></think>
 			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
-            
 		</template>
 	</category>
 
     <category>
         <pattern>^ DNI es *</pattern>
         <template>
-        <think><set name="DNI"><star/></set></think>
+        <think><set name="DNI"><star index="2"/></set></think>
         De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), en que asignatura quieres matricularte? P.E: En [Sistemas inteligentes]</template>
     </category>
 
 	<category>
 		<pattern>^ en *</pattern>
 		<template>
-			<think><set name="matricularAsignatura"><star/></set></think>
-			Muy bien <get name="nombreUsuario"/>, procedo a matricularte en <star/>
-			<srai>BOTENVIAALTAMATRICULA</srai>
+			<think><set name="asignatura"><star index="2"/></set></think>
+			<srai>BOTENVIAALTAMATERIA</srai>
 		</template>
 	</category>
 
 	<category>
-		<pattern>BOTENVIAALTAMATRICULA</pattern>
+		<pattern>BOTENVIAALTAMATERIA</pattern>
 		<template>
 			<mail>
 				<subject>Solicitar alta matricula</subject>
 				<to><bot name="correoFormularios"/></to>
 				<msg>
-					Buenos días, soy <get name="nombreUsuario"/> y me gustaría darme de alta en <get name="matricularAsignatura"/>. 
+					Buenos días, soy <get name="nombreUsuario"/> y me gustaría darme de alta en <get name="asignatura"/>. 
 				</msg>
 			</mail>
 			<think><set name="topic">Unknown</set></think>
@@ -134,7 +127,7 @@
     <category>
         <pattern>^ DNI es *</pattern>
         <template>
-        <think><set name="DNI"><star/></set></think>
+        <think><set name="DNI"><star index="2"/></set></think>
         De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), en que asignatura quieres hacer el cambio de grupo?[P.E:En sistemas inteligentes].</template>
     </category>
 
@@ -196,7 +189,7 @@
 
     <category>
         <pattern>^ el *</pattern>
-        <template>Entiendo,Quieres reservar el seminario <star index="2"/>.
+        <template>
             <think><set name="numeroSeminario"><star index="2"/></set></think>
             <srai>BOTENVIACORREO</srai>
         </template>

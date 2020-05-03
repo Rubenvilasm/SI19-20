@@ -38,13 +38,13 @@
 	<pattern>* *</pattern>
 	<template>
 		<!--Se inicializan variables -->
-
+Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
+		 PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> Servicios: <get name="SERVICIO"/> Personal: <get name="Personal"/> Propuesto: <get name="Propuesto"/> Topic: <get name="topic"/>
 		<think>
 			<set var="Fin"><star index= "2"/></set>
 			<set name="Solucion">true</set>
 			<set name="UltimaRespuesta"><response/></set>
-					Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
-		 PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> Servicios: <get name="SERVICIO"/> Personal: <get name="Personal"/> Propuesto: <get name="Propuesto"/> Topic: <get name="topic"/>
+					
 			
 		</think>
 		<!--Se comprueba si debe aprender comprobando si el bot a ofrecido una posible pregunta. -->
