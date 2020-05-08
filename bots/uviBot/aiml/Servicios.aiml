@@ -625,7 +625,7 @@
 		<pattern>BOTENVIACORREO</pattern>
 		<template>
 			<think>
-				<set name="Subject">Solicitar defensa TFG</set>
+				<set name="Subject">Solicitar evaluacion por compensacion</set>
 				<set name="To"><bot name="correoFormularios"/></set>
 				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar la defensa del TFG <get name="TFGdefensa"/> con id <get name="IDTFGDefensa"/>.</set>
 				<set name="topic">CONFIRMACION</set>

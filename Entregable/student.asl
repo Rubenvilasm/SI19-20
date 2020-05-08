@@ -110,29 +110,38 @@ aq(16, " Has ido alguna vez a la Biblioteca ").
 aq(17, " Quieres revisar alguna nota de la materia de Sistemas Inteligentes ").
 aq(18, " Que actividades ocio te gustan mas ").
 
-ser(1," Envia el siguiente mensaje sobre el tema contratacion urgente a felipe: en relacion con la entrevista de trabajo realizada me complace informarle que hemos decidido contratar sus servicios, por lo que le rogamos que pase por nuestras oficinas el proximo lunes ").
-ser(2,"").
-ser(3,"").
-ser(4,"").
-ser(5,"").
-ser(6,"").
-ser(7,"").
-ser(8,"").
+ser(1,"Solicitar el alta en una materia en FAITIC"). 
+ser(2,"Solicitar un cambio de grupo reducido en una materia de la ESEI").
+ser(3,"Realizar la reserva de un seminario de la ESEI").
+ser(4,"Solicitar la asignacion de practicas en empresas").
+ser(5,"Solicitar la asignacion de un TFG de entre los propuestos").
+ser(6,"Solicitar la asignacion de un TFG no propuesto").
+ser(7,"Solicitar la defensa de un TFG").
+ser(8,"Solicitar la evaluacion por compensacion de una materia").
 
+respuesta(1).
 
-service(Answer, mailing):- //true.
+service(Answer, "mailing"):- //true.
 	.substring("<mail>",Answer).
+	
+service(Answer, "addset"):- //true.
+	.substring("<addset>",Answer).
+	
+service(Answer, "addmap"):- //true.
+	.substring("<addmap>",Answer).
 
 aprender(Answer, Tq) :-
 	.substring("Tu pregunta es:", Answer, Inicio, Fin)&
 	.length(Answer,N)&
 	.substring(Answer,Tqsinespacios,Inicio+16,N-1)&
 	.concat(" ",Tqsinespacios," ",Tq).
+
+identificarse(Answer,Credencial) :- 
+	(.substring("Cual es tu nombre", Answer) & 
+	Credencial="Nombre") | (.substring("Cual es tu DNI", Answer) &
+	Credencial="DNI").
 	
-
 !start.
-
-
 
 +!select(N,Answer) : dotq(N,_) <- ?tq(New,Answer); -tq(New,Answer); +dotq(New,Answer).
 +!select(N,Answer) : not dotq(N,_) & tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
@@ -159,68 +168,152 @@ aprender(Answer, Tq) :-
 
 
 +!fase1 <-
-	for (.range(I,1,5)) {
+	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	for (.range(I,1,18)) {
+		//Seleccion de TQ
 		Sel =math.round(math.random(17))+1;
-		.println;
-		.println("La regla del ANEXO I elegida es la: ", Sel," <===============================");
-		.println;
 		!select(Sel,Ans);
-		.println;
-		.println("%%%%%%%%%%%%%%%%%%%%%% TRAZA DEL BOT %%%%%%%%%%%%%%%%%%%%%%%%");
-		.println;
-		chat(Ans);
 		.wait(1000);
+		!chat(Ans,Sel,"FORMULO UNA TQ");
 		
-		.println;
-		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
-		.println;
+		//Seleccion de NTQ
 		New =(Sel * 3) - math.round(math.random(2));
-		.println("La nueva formulacion de la pregunta es ===========================> ", New);
 		!selectb(New,NewAns);
-		chat(NewAns);
-		.wait(2000);
+		.wait(1000);
+		!chat(NewAns,New,"FORMULO UNA NTQ");
 		!repreguntar(Sel);
-		.wait(4000);
+		.wait(1000);
 	}.
 
 +!fase2 <-
+	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 	for (.range(I,1,5)) {
 		Sel = math.round(math.random(17))+1;
-		//.println("La regla elegida es la: ", Sel);
 		!choose(Sel,Ans);
-		chat(Ans);
-		.wait(2000);
+		!chat(Ans,Sel,"FORMULO UNA AQ");
 	}.
 	
 +!servicios <-
-
-	for (.range(I,1,3)) {
-		Sel =1;// math.round(math.random(7))+1;
-
+	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE SERVICIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	for (.range(I,1,8)) {
+		Sel = math.round(math.random(7))+1;
 		!chooseser(Sel,Ans);
-		chat(Ans);
+		?doser(N,Ans)
+		!conversar(N,Ans,"INTRODUZCO LOS DATOS");
 		.wait(10000);
 	}.
+	
++!chat(Ans,Sel,Titulo)<-
+	.println;
+	.println;
+	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ",Titulo, " %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	.println;
+	.println;
+	.println("La pregunta/respuesta elegida es ===========================> ", Sel,": ", Ans);
+	.println;
+	.println;
+	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+	chat(Ans);
+	.wait(2000).
+
+
++!conversar(N,"Solicitar el alta en una materia en FAITIC", Tit)<-
+	!chat("Solicitar el alta en una materia en FAITIC",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("En Sistemas Inteligentes",N,Tit);
+	!chat("Si",N,Tit).
+
+		
++!conversar(N,"Solicitar un cambio de grupo reducido en una materia de la ESEI", Tit)<-
+	!chat("Solicitar un cambio de grupo reducido en una materia de la ESEI",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("En Redes de computadoras I",N,Tit);
+	!chat("No",N,Tit);
+	!chat("En Redes de computadoras II",N,Tit);
+	!chat("En el grupo Q",N,Tit);
+	!chat("En el grupo 1",N,Tit);
+	!chat("3",N,Tit);
+	!chat("Si",N,Tit).
+		
++!conversar(N,"Realizar la reserva de un seminario de la ESEI", Tit)<-
+	!chat("Realizar la reserva de un seminario de la ESEI",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("El 38",N,Tit);
+	!chat("No",N,Tit);
+	!chat("Realizar la reserva de un seminario de la ESEI",N,"SOLICITO UN SERVICIO");
+	!chat("El 37",N,Tit);
+	!chat("Si",N,Tit).
+
++!conversar(N,"Solicitar la asignacion de practicas en empresas", Tit)<-
+	!chat("Solicitar la asignacion de practicas en empresas",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("En Amazon",N,Tit);
+	!chat("De 6",N,Tit);
+	!chat("Si",N,Tit).
+
++!conversar(N,"Solicitar la asignacion de un TFG de entre los propuestos", Tit)<-
+	!chat("Solicitar la asignacion de un TFG de entre los propuestos",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("La ID es 1234",N,Tit);
+	!chat("1111",N,Tit);
+	!chat("Si",N,Tit).
+
++!conversar(N,"Solicitar la asignacion de un TFG no propuesto", Tit)<-
+	!chat("Solicitar la asignacion de un TFG no propuesto",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("Quiero solicitar el TFG: Almacen de videos",N,Tit);
+	!chat("El objetivo del TFG es implementar una base de datos para almacenar videos.",N,Tit);
+	!chat("Si",N,Tit).
+	
++!conversar(N,"Solicitar la defensa de un TFG", Tit)<-
+	!chat("Solicitar la defensa de un TFG",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("La ID es 3333",N,Tit);
+	!chat("5555",N,Tit);
+	!chat("Creo que si",N,Tit).
+	
++!conversar(N,"Solicitar la evaluacion por compensacion de una materia", Tit)<-
+	!chat("Solicitar la evaluacion por compensacion de una materia",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("En SI",N,Tit);
+	!chat("Si",N,Tit);
+	!chat("Si",N,Tit).
 	
 +!repreguntar(Sel) : pregunta(Tq) & dotq(Sel, Tq) <-
 	-pregunta(Tq);
 	chat(" si ").
 +!repreguntar(Sel) <- -pregunta(Tq).
 
-+answer(N,Answer) :not service(Answer, Service)<- 
++answer(Answer) :not service(Answer, Service)<-
+	-answer(Answer)[source(percept)];
+	-answer(Answer)[source(master)];
+	?respuesta(N);
+	-+respuesta(N+1);
+	+resposta(N,Answer);
 	
-	.println("===============================================");
+	.println("==============================================================================================");
 	.println;
 	.println("Acabo de recibir del bot la contestacion ", N, " : ", Answer);
-	.wait(1000);
 	.println;
-	.println("===============================================");
-	.wait(500);
-	?aprender(Answer, Tq);
-	+pregunta(Tq);
-	.wait(1000).
+	.println("==============================================================================================");
+
+	!aprender(Answer);
+	!identificarse(Answer).
+
+
++!aprender(Answer): aprender(Answer,Tq)	<- +pregunta(Tq).
++!aprender(Answer).
+
++!identificarse(Answer): identificarse(Answer, "Nombre") <-
+	!chat("Student",0,"ME IDENTIFICO").
+
+
++!identificarse(Answer): identificarse(Answer, "DNI") <-
+	!chat("31111111D",0,"ME IDENTIFICO").
 
 	
-+answer(N,Answer): service(Answer, Service)<-
-	-answer(N,Answer)[source(percept)].
++!identificarse(Answer).
+
++answer(Answer): service(Answer, Service)<-
+	-answer(Answer)[source(percept)].
 	

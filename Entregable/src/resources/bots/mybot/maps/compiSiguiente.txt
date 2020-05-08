@@ -1,5 +1,0 @@
-1:Lucia
-Lucia:Laura
-Laura:Pedro
-Pedro:Ramon
-Ramon:Pablo

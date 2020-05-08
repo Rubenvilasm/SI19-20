@@ -6,7 +6,7 @@ ntq(1, " Que me dices de la Universidad de Vigo ").
 ntq(2, " Puedes hablarme de la Universidad de Vigo ").
 ntq(3, " Que sabes sobre la Universidad de Vigo ").
 
-tq(290, " Donde se encuentra la ESEI ").
+tq(2, " Donde se encuentra la ESEI ").
 ntq(4, " Sabes la direccion de la ESEI ").
 ntq(5, " En que zona del Campus de Ourense se encuentra la ESEI ").
 ntq(6, " Me indicas donde esta la ESEI ").
@@ -149,7 +149,7 @@ respuesta(1).
 
 +!level0 <-
 	for (.range(I,1,5)) {
-		Sel =1; //math.round(math.random(17))+1;
+		Sel = math.round(math.random(17))+1;
 		.println;
 		.println("La regla del ANEXO I elegida es la: ", Sel," <===============================");
 		.println;
@@ -163,7 +163,7 @@ respuesta(1).
 		.println;
 		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
 		.println;
-		New =1; //(Sel * 3) - math.round(math.random(2));
+		New = (Sel * 3) - math.round(math.random(2));
 		.println("La nueva formulacion de la pregunta es ===========================> ", New);
 		!selectb(New,NewAns);
 		chat(NewAns);

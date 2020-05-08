@@ -248,6 +248,10 @@
 					<li>
 						<condition name ="Personal">
 							<li value="TRUE">La verdad es que no me interesa ninguna empresa en concreto. Hasta que no pruebe no sabre que me gusta.</li>
+							<li value="NO">
+								Para solicitar prácticas en empresas, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+								<think><set name="topic">PRACTICAEMPRESAS</set></think>
+							</li>
 							<li>Está todo actualizado en la web de la ESEI. Puedes acceder directamente a través de este link:https://esei.uvigo.es/docencia/practicas-en-empresa/</li>	
 						</condition>
 					</li>	
@@ -257,17 +261,41 @@
 			<!-- Recursos -->
 		
 			<li value="RECURSOS">
-				<condition name ="Lugar">
+				<condition name="SERVICIO">
+					<li value="SEMINARIO">
+							Para reservar un seminario, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+							<think><set name="topic">RESERVARSEMINARIO</set></think>
+					</li>
+					<li>
+						<condition name ="Lugar">
 							<li value="ESEI">
-							<condition name="TemaEspecifico">
-								<li value="SALON">Cuenta con dos salones de actos: El Aula Magna y el salon Marie Curie.</li>
-								<li value="SEMINARIO">La ESEI cuenta con más de 10 seminarios a disposición de los alumnos.</li>
-								<li>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
-							</condition></li>
+								<condition name="TemaEspecifico">
+									<li value="SALON">Cuenta con dos salones de actos: El Aula Magna y el salon Marie Curie.</li>
+									<li value="SEMINARIO">La ESEI cuenta con más de 10 seminarios a disposición de los alumnos.</li>
+									<li>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
+								</condition>
+							</li>
 							<li><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>	
+						</condition>
+					</li>
+
 				</condition>
+				
 			</li> 
-		
+
+			<li value="SERVICIOS">
+				<condition name="SERVICIO">
+					<li value="ALTAMATERIA">
+						Para solicitar el alta de una materia primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+						<think><set name="topic">ALTAMATERIA</set></think>
+					</li>
+					<li value="CAMBIOGRUPO">
+						Para solicitar el cambio de un grupo reducido, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+						<think><set name="topic">CAMBIOGRUPO</set></think>
+					</li>
+				</condition>
+			</li>
+
 			<!-- TFG -->
 		
 			<li value="TFG">
@@ -278,15 +306,37 @@
 							<li>Me encataria hacer el TFG sobre una aplicacion educativa de Redes Neuronales Artificiales.</li>
 						</condition>
 					</li>
+					<li value="NO">
+						<condition name="SERVICIO">
+							<li value="DEFENSA">
+								Para realizar la solicitud de defensa de un TFG, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+								<think><set name="topic">DEFENSATFG</set></think>
+							</li>
+							<li value="ASIGNACION">
+								<condition name="Propuesto">
+									<li value="NO">
+									Para mandar una solicitud de asignacion de un TFG no propuesto, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+									<think><set name="topic">TFGNOPROPUESTO</set></think>
+									</li>
+									<li>
+									Para mandar una solicitud de asignacion de un TFG propuesto, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+									<think><set name="topic">TFGPROPUESTO</set></think>
+									</li>
+								</condition>
+							</li>
+						</condition>
+					</li>
 					<li>
 						<condition name="TemaEspecifico">
 							<li value="DIFERENCIA">El TFG se hace al terminar el grado y el TFM al terminar el master. Este último requiere debería tener una mayor especialización y profundidad</li>
 							<li value="NORMATIVA">Si, puedes encontrar información detallada en este link:https://esei.uvigo.es/docencia/traballos-fin-de-carreira/traballo-fin-de-grao/</li>
-							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.</li>
+							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.
+							</li>
 						</condition>
 					
 					</li>	
 				</condition>
+				
 			</li> 
 			
 			<!-- Acceso -->
@@ -309,10 +359,18 @@
 				</condition>
 			</li>
 						
-			<!-- Evalucion -->
+			<!-- Evaluacion -->
 		
-			<li value="EVALUCION">Deberás entregarle al profesor correspondiente el formulario que encuentras en  https://esei.uvigo.es/a-esei/formularios/formularios-xerais/para que te lo firme. </li>
+			<li value="EVALUACION">
+				<condition name="SERVICIO">
+					<li value="COMPENSACION">
+						Para mandar una solicitud de evaluacion por compensación de una materia, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
+						<think><set name="topic">COMPENSACIONMATERIA</set></think>
+					</li>
+					<li>Deberás entregarle al profesor correspondiente el formulario que encuentras en  https://esei.uvigo.es/a-esei/formularios/formularios-xerais/para que te lo firme. </li>
+				</condition>
 			
+			</li>
 						
 			<!-- Deporte -->
 		
@@ -345,19 +403,9 @@
 				<condition name ="TemaEspecifico">
 					<li value="MATRICULADO">
 						<condition name ="Pregunta">
-							<li value="QUE">
-								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Lista"/> y... Creo que no me olvido de ninguna.
-							</li>
-							<li value="CUANTO">
-								<srai>GETLISTA <map name="listarAsignaturas">lista</map></srai>Estoy matriculado en <get name="Resultado"/> asignaturas.
-							</li>
-							<li>
-								<think><set var="asignatura"><map name="asignatura"><star/></map></set></think>
-								<condition var ="asignatura">
-									<li value="ASIGNATURA">Si, me encanta <map name="asignaturaSinMarca"><star/></map>.</li>
-									<li><think><set name="PosiblePregunta">En que asignaturas estas matriculado</set><set name="Solucion">false</set></think></li>	
-								</condition>
-							</li>
+							<li value="QUE">Estoy matriculado en SI, CDI, DGP, HAE, TALF, BDII, CDA, IU, LC, RCII y... Creo que no me olvido de ninguna.</li>
+							<li value="CUANTO">Estoy matriculado en 10 asignaturas.</li>
+							<li><think><set name="PosiblePregunta">En que asignaturas estas matriculado</set><set name="Solucion">false</set></think></li>
 						</condition>
 					</li>
 					<li><think><set name="Solucion">false</set></think></li>	

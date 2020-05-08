@@ -1,5 +1,0 @@
-Lucia:verde
-Laura:azul
-Pedro:marron
-Ramon:marron
-Pablo:verde

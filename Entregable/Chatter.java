@@ -28,7 +28,6 @@ public class Chatter extends Environment {
 	private Bot bot= new Bot(botName, resourcesPath);
 	private Chat chatSession = new Chat(bot);
 	private String response = "No tengo nada que decir";
-	private int i=1;
 
     /** Called before the MAS execution with the args informed in .mas2j */
     @Override
@@ -44,6 +43,7 @@ public class Chatter extends Environment {
    @Override
     public boolean executeAction(String ag, Structure action) {
         logger.info(ag+" doing: "+ action);
+        clearPercepts(); //Se había borrado esta invocación disculpad
         try {
             if (action.getFunctor().equals("chat")) {
                 String request = ((StringTerm)action.getTerm(0)).getString();
@@ -56,8 +56,7 @@ public class Chatter extends Environment {
 				while (response.contains("&lt;")) response = response.replace("&lt;", "<");
 				while (response.contains("&gt;")) response = response.replace("&gt;", ">");
 
-				//addPercept(new LiteralImpl("answer").addTerms(i, new StringTermImpl(i+++response)));
-				addPercept(Literal.parseLiteral("answer("+i+++","+ new StringTermImpl(response)+ ")"));
+				addPercept(new LiteralImpl("answer").addTerms(new StringTermImpl(response)));
 				
 				//addPercept(Literal.parseLiteral("answer('"+response+"')"));
 

@@ -22,7 +22,7 @@ public class Chatter extends Environment {
 
     private Logger logger = Logger.getLogger("prueba.mas2j."+Chat.class.getName());
 	private static final boolean TRACE_MODE = true;
-	static String botName = "mybot";
+	static String botName = "grupo46";
 	private String resourcesPath = getResourcesPath();
 
 	private Bot bot= new Bot(botName, resourcesPath);
@@ -43,6 +43,7 @@ public class Chatter extends Environment {
    @Override
     public boolean executeAction(String ag, Structure action) {
         logger.info(ag+" doing: "+ action);
+        clearPercepts(); //Se había borrado esta invocación disculpad
         try {
             if (action.getFunctor().equals("chat")) {
                 String request = ((StringTerm)action.getTerm(0)).getString();

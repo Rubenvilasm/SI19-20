@@ -27,7 +27,6 @@ getValTag(Tag,String,Val) :-
 	.concat("</",RestTag,EndTag) &
 	.substring(EndTag,String,End) &
 	.substring(String,Val,Fst+N,End).
-
 	
 /*
 filter(Answer, translating("es",To,Msg), "La traducción que me pediste es: "):- //true.
@@ -36,7 +35,6 @@ filter(Answer, translating("es",To,Msg), "La traducción que me pediste es: "):-
 	getValTag("<msg>",Answer,Msg) &
 	.string(Msg).
 */
-
 filter(Answer, translating, Answered):- //true.
 	getValTag("<to>", Answer, To) &
 	.string(To) &
@@ -58,8 +56,7 @@ filter(Answer, mailing, "Ya he enviado el mensaje como me pediste."):- //true.
 /* Plans */
 
 +!start <- 
-	
-	/*chat("Traduce al frances la frase Me llamo Juan Carlos y vivo en Ourense");
+	chat("Traduce al frances la frase Me llamo Juan Carlos y vivo en Ourense");
 	.wait(1000);
 	chat("Traduce al ingles la frase Por que debo estudiar en la Escuela Superior de Ingeniería Informática?");
 	.wait(1000);
@@ -69,10 +66,10 @@ filter(Answer, mailing, "Ya he enviado el mensaje como me pediste."):- //true.
 	.wait(1500);
 	chat("No sabras tambien, por casualidad, cual es el color de pelo de Marc");
 	.wait(1500);
-	chat("BEFORE 4"); */
+	chat("BEFORE 4");
 	.wait(1000).
 
-+answer(Answer) : service(Answer, mailing) & filter(Answer, mailing, Answered) & numAnswer(N) <- 
++answer(Answer) : service(Answer, translating) & filter(Answer, translating, Answered) & numAnswer(N) <- 
 	-+numAnswer(N+1);
 	//gui.translating(From, To, Msg, Translation);
 	+respuesta(N, Answered);

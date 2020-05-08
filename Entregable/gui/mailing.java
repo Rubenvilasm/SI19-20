@@ -60,7 +60,7 @@ public class mailing extends DefaultInternalAction {
 
         try {
 				MimeMessage message = new MimeMessage(session);
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to+"@gmail.com"));
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 				message.setSubject(sub);
 				message.setText(msg);    
            

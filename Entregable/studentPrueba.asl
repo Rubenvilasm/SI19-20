@@ -1,4 +1,3 @@
-// Agent juan in project prueba.mas2j
 
 /* Initial beliefs and rules */
 tq(1, " Hablame un poco sobre la Universidad de Vigo ").
@@ -11,7 +10,7 @@ ntq(4, " Sabes la direccion de la ESEI ").
 ntq(5, " En que zona del Campus de Ourense se encuentra la ESEI ").
 ntq(6, " Me indicas donde esta la ESEI ").
 
-tq(3, " Que puedo estudiar en la ESEI ").
+tq(3, " que puedo estudiar en la esei ").
 ntq(7, " Que titulaciones oferta la ESEI actualmente ").
 ntq(8, " Cuantos titulos ofrece la ESEI ").
 ntq(9, " Cuales son las carreras vinculadas a la ESEI ").
@@ -111,45 +110,59 @@ aq(16, " Has ido alguna vez a la Biblioteca ").
 aq(17, " Quieres revisar alguna nota de la materia de Sistemas Inteligentes ").
 aq(18, " Que actividades ocio te gustan mas ").
 
-respuesta(1).
+ser(1," Envia el siguiente mensaje sobre el tema contratacion urgente a felipe: en relacion con la entrevista de trabajo realizada me complace informarle que hemos decidido contratar sus servicios, por lo que le rogamos que pase por nuestras oficinas el proximo lunes ").
+ser(2,"").
+ser(3,"").
+ser(4,"").
+ser(5,"").
+ser(6,"").
+ser(7,"").
+ser(8,"").
 
-/* Initial goals */
+respuesta(0).
+
+service(Answer, mailing):- //true.
+	.substring("<mail>",Answer).
+
+aprender(Answer, Tq) :-
+	.substring("Tu pregunta es:", Answer, Inicio, Fin)&
+	.length(Answer,N)&
+	.substring(Answer,Tqsinespacios,Inicio+16,N-1)&
+	.concat(" ",Tqsinespacios," ",Tq).
+	
 
 !start.
 
-/* Plans */
 
-+!start : bot(created) <- 
-	!tqreset;
-	!aqreset;
-	!level0;
-	.wait(10000);
-	!level1;
-	.wait(2000);
-	gui.mailing("masterssia@gmail.com","Test Terminado","Este es un mensaje de prueba de envío de mail.").
-//gui.talking("Carlos","hola");chat("Hola").
-
-+!tqreset : dotq(N,Str) <- -dotq(N,Str); +tq(N,Str); !tqreset.
-+!tqreset.
-
-+!aqreset : doaq(N,Str) <- -doaq(N,Str); +aq(N,Str); !tqreset.
-+!aqreset.
 
 +!select(N,Answer) : dotq(N,_) <- ?tq(New,Answer); -tq(New,Answer); +dotq(New,Answer).
 +!select(N,Answer) : not dotq(N,_) & tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
-+!select(0,Answer) : tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
+//+!select(0,Answer) : tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
 
 +!selectb(N,Answer) : dontq(N,_) <- ?ntq(New,Answer); -ntq(New,Answer); +dontq(New,Answer).
 +!selectb(N,Answer) : not dontq(N,_) & ntq(N,Answer) <- -ntq(N,Answer); +dontq(N,Answer).
-+!selectb(0,Answer) : ntq(N,Answer) <- -ntq(N,Answer); +dontq(N,Answer).
+//+!selectb(0,Answer) : ntq(N,Answer) <- -ntq(N,Answer); +dontq(N,Answer).
 
 +!choose(N,Answer) : doaq(N,_) <- ?aq(New,Answer); -aq(New,Answer); +doaq(New,Answer).
 +!choose(N,Answer) : not doaq(N,_) & aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
-+!choose(0,Answer) : aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
+//+!choose(0,Answer) : aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
 
-+!level0 <-
-	for (.range(I,1,5)) {
-		Sel = math.round(math.random(17))+1;
++!chooseser(N,Answer) : doser(N,_) <- ?ser(New,Answer); -ser(New,Answer); +doser(New,Answer).
++!chooseser(N,Answer) : not doser(N,_) & ser(N,Answer) <- -ser(N,Answer); +doser(N,Answer).
+
++!start <- 
+
+!fase1;
+!fase2.
+//!servicios.
+
+
+
+
++!fase1 <-
+	
+	for (.range(I,1,18)) {
+		Sel =I;
 		.println;
 		.println("La regla del ANEXO I elegida es la: ", Sel," <===============================");
 		.println;
@@ -157,72 +170,99 @@ respuesta(1).
 		.println;
 		.println("%%%%%%%%%%%%%%%%%%%%%% TRAZA DEL BOT %%%%%%%%%%%%%%%%%%%%%%%%");
 		.println;
+
+		+preguntas("A",Sel,Ans);
+		.wait(2000);
 		chat(Ans);
+		
 		.wait(1000);
 		
 		.println;
 		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
 		.println;
-		New = (Sel * 3) - math.round(math.random(2));
+		New =(I * 3);
 		.println("La nueva formulacion de la pregunta es ===========================> ", New);
 		!selectb(New,NewAns);
+
+		+preguntas("B",New,NewAns);
+		.wait(2000);
 		chat(NewAns);
 		.wait(1000);
+		!repreguntar(Sel);
+		.wait(1000);
 		
-	}./*;
-	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	.println("%                Reevaluar preguntas Level 0              %");
-	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	//chat(" Que puedo estudiar en la ESEI ");
-	//.println("···························································");	
-	chat(" Hay alguna delegacion de alumnos en la ESEI ");
-	.println("···························································");
-	chat(" Existe un local en la ESEI donde pueda tomar un refresco ");
-	.println("···························································");
-	chat(" Trabajo, y necesito justificar mi asistencia a las evaluaciones y revisiones ").*/
+		.println;
+		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
+		.println;
+		New2 =(I * 3)-1;
+		.println("La nueva formulacion de la pregunta es ===========================> ", New2);
+		!selectb(New2,NewAns2);
 
-+!level1 <-
-	for (.range(I,1,5)) {
-		Sel = math.round(math.random(17))+1;
+		+preguntas("B",New2,NewAns2);
+		.wait(2000);
+		chat(NewAns2);
+		.wait(1000);
+		!repreguntar(Sel);
+		.wait(1000);
+		
+		.println;
+		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
+		.println;
+		New3 =(I * 3)-2;
+		.println("La nueva formulacion de la pregunta es ===========================> ", New3);
+		!selectb(New3,NewAns3);
+
+		+preguntas("B",New3,NewAns3);
+		.wait(2000);
+		chat(NewAns3);
+		.wait(1000);
+		!repreguntar(Sel);
+		.wait(1000);
+	}.
+
++!fase2 <-
+	for (.range(I,1,18)) {
+		Sel = I
 		//.println("La regla elegida es la: ", Sel);
-		!choose(Sel,Ans);
+		!choose(Sel,Ans);		
+		.wait(1000);
 		chat(Ans);
 		.wait(2000);
-	}./*;
-	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	.println("%                Reevaluar preguntas Level 1              %");
-	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	chat(" Te gustaria obtener una retribucion por hacer tu TFG ");
-	.println("···························································");
-	chat(" Perteneces a la delegacion de alumnos ");
-	.println("···························································");
-	chat(" Por que estudias en la ESEI ").*/
+	}.
+	
++!servicios <-
 
+	for (.range(I,1,3)) {
+		Sel =1;// math.round(math.random(7))+1;
 
-/*
-+answer(Answer) : .literal(Answer) & .term2string(Answer,String) & ("I have no answer for that." == String)  <- 
-	.println("Tengo una respuesta inutil del bot: ",String);
-	.abolish(answer(Answer)).
-*/	
-//+answer(Answer) : .atom(Answer) <- .println("es un atom-------------------------------------", Answer).
-//+answer(Answer) : .structure(Answer) <- .println("es una estructura -------------------------------------", Answer).
+		!chooseser(Sel,Ans);
+		chat(Ans);
+		.wait(10000);
+	}.
+	
++!repreguntar(Sel) : pregunta(Tq) & dotq(Sel, Tq) <-
+	-pregunta(Tq);
+	chat(" si ").
++!repreguntar(Sel) <- -pregunta(Tq).
 
-+answer(Answer) <- 
++answer(Answer) :not service(Answer, Service)<- 
 	?respuesta(N);
 	-+respuesta(N+1);
-	//.term2string(Answer,AnswerStr);
 	+resposta(N,Answer);
-	//+answer2(AnswerStr);
-	.println("===============================================");
+	
+	.println("===============================================&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 	.println;
-	.println("Acabo de recibir del bot la contestación ", N, " : ", Answer);
+	.println("Acabo de recibir del bot la contestacion ", N, " : ", Answer);
 	.wait(1000);
 	.println;
-	.println("===============================================").
-	/*
-	gui.talking("Soledad",Answer);
-	.wait(12000);
-	gui.talking("Carlos","Puedes decirme que puedo estudiar en la ESEI?");
-	.wait(10000);
-	chat("Puedes decirme que puedo estudiar en la ESEI?");.wait(10000).
-	*/
+	.println("===============================================");
+	.wait(500);
+	!aprender(Answer);
+	.wait(1000).
+
++!aprender(Answer): aprender(Answer,Tq)	<- +pregunta(Tq).
++!aprender(Answer).
+	
++answer(Answer): service(Answer, Service)<-
+	-answer(N,Answer)[source(percept)].
+	
