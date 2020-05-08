@@ -166,7 +166,7 @@
 	<pattern> * * </pattern>
 	<template>
 		<condition name ="Dni">
-			<li value="unknown">En primer lugar necesito que te identifiques, Cual es tu DNI?.(Mi DNI es 11111111A)<think><set name="Accion">Dni</set></think></li>
+			<li value="unknown">En primer lugar necesito que te identifiques. Cual es tu DNI?.(Mi DNI es 11111111A)<think><set name="Accion">Dni</set></think></li>
 			<li>
 				<condition name ="Nombre">
 					<li value="unknown">Cual es tu nombre?<think><set name="Accion">Nombre</set></think></li>
@@ -188,7 +188,7 @@
 								</think>
 							</li>
 							<li value="SEMINARIO">
-								<get var="toret"/> Para reservar un seminario tan solo necesito que me digas qué seminario quieres reservar.P.E: El [L35].
+								<get var="toret"/> Para reservar un seminario tan solo necesito que me digas qué seminario quieres reservar.P.E: El [37].
 								<think>	
 									<set name="topic">RESERVARSEMINARIO</set>
 									<set name="Accion">Seminario</set>
@@ -209,7 +209,7 @@
 								</think>
 							</li>
 							<li value="TFGNOPROPUESTO">
-								<get var="toret"/> Para solicitar la asignacion de un TFG no propuesto necesito que me digas cual es el TFG. P.E.: Quiero solicitar el TFG:[Teclados musicais microtonais].
+								<get var="toret"/> Para solicitar la asignacion de un TFG no propuesto necesito que me digas cual es el TFG. P.E.: Quiero solicitar el TFG:[Teclados musicales microtonales].
 								<think>	
 									<set name="topic">TFGNOPROPUESTO</set>
 									<set name="Accion">TfgTitulo</set>
@@ -291,7 +291,7 @@
 	
 	<category>
 		<pattern>^ No ^</pattern>
-		<template>Cual es la asignatura correcta?</template>
+		<template>En que asignatura entonces?</template>
 	</category>
 	
 	<category>
@@ -435,7 +435,7 @@
     <category>
         <pattern>De <set>numeros</set> ^</pattern>
         <template>
-            <think><set name="numHoras"><star index="2"/></set></think>
+            <think><set name="numHoras"><star/></set></think>
 			<srai>BOTENVIACORREO</srai>
         </template>
     </category>
@@ -451,7 +451,7 @@
 			<think>
 				<set name="Subject">Solicitud practica en empresa</set>
 				<set name="To"><bot name="correoFormularios"/></set>
-				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="DNI"/>, me gustaria solicitar prácticas en la empresa <get name="empresaPracticas"/>. Dispongo de <get name="numHoras"/> horas diarias.</set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaria solicitar prácticas en la empresa <get name="empresaPracticas"/>. Dispongo de <get name="numHoras"/> horas diarias.</set>
 				<set name="topic">CONFIRMACION</set>
 				<set name="empresaPracticas">unknown</set>
 				<set name="numHoras">unknown</set>
