@@ -30,17 +30,46 @@
 <!--Categoria que indica que no quedan mas palabras que revisar y añade una marca al final -->
 <category>
 	<pattern>*</pattern>
-	<template><srai><star/> UnknownFinal</srai></template>
+	<template>
+		<condition name ="topic">
+			<li value="unknown"><srai><star/> UnknownFinal</srai></li>
+			<li value="ELECCIONSERVICIO"><srai><star/> UnknownFinal</srai></li>
+			<li>
+				<think><set name="Input"><star/></set></think>
+				<condition name ="Input">
+					<li value="NORESP"><srai><star/> <star/></srai></li>		
+					<li>
+						<condition name ="Accion">
+							<li value="Nombre"><srai>MI NOMBRE ES <star/></srai></li>
+							<li value="Dni"><srai>MI DNI ES <star/></srai></li>
+							<li value="Materia"><srai>En <star/></srai></li>
+							<li value="EnElGrupo"><srai>En el grupo <star/></srai></li>
+							<li value="AlGrupo"><srai>Al grupo <star/></srai></li>
+							<li value="Seminario"><srai>el <star/></srai></li>
+							<li value="Empresa"><srai>En <star/></srai></li>
+							<li value="Horas"><srai>De <star/></srai></li>
+							<li value="IdPropuesto"><srai>La ID es <star/></srai></li>
+							<li value="TfgTitulo"><srai>Quiero solicitar el tfg: <star/></srai></li>
+							<li value="IdDefensa"><srai>La ID es <star/></srai></li>
+							<li>sgdfhdfhdhOJO CUIDAO</li>
+						</condition>
+					</li>
+				</condition>
+			</li>
+		</condition>
+	</template>
 </category>
 
 <!--Categoria de control central -->
 <category>
 	<pattern>* *</pattern>
 	<template>
-		<!--Se inicializan variables -->
+
+	<!--Se inicializan variables -->
+		<think>
 Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunta"/> VerboEspecifico: <get name="VerboEspecifico"/> TemaEspecifico:<get name="TemaEspecifico"/> Primera: <star/> Segundo: <star index= "2"/>
 		 PosiblePregunta: <get name="PosiblePregunta"/>  Afirmacion: <get name="Afirmacion"/> Servicios: <get name="SERVICIO"/> Personal: <get name="Personal"/> Propuesto: <get name="Propuesto"/> Topic: <get name="topic"/>
-		<think>
+		 	<set name="topic">unknown</set>	
 			<set var="Fin"><star index= "2"/></set>
 			<set name="Solucion">true</set>
 			<set name="UltimaRespuesta"><response/></set>
@@ -99,11 +128,7 @@ Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunt
 			<set name="VerboEspecifico">unknown</set>
 			<set name="Personal">unknown</set>
 			<set name="TemaEspecifico">unknown</set>
-			<set name="Afirmacion">unknown</set>
-			<set name="Servicios">unknown</set>
-			<set name="SERVICIO">unknown</set>
-			<set name="Propuesto">Unknown</set>
-			
+			<set name="Afirmacion">unknown</set>	
 		</think>
 		
 		<!-- En caso de haber aprendido se da la respuesta esperada -->

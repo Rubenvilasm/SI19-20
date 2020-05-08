@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+
+<category>
+	<pattern>^ alta ^</pattern>
+	<template>
+		<think><set name="TEMA">SERVICIOS</set></think>
+		<think><set name="SERVICIO">ALTAMATERIA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ compensacion ^</pattern>
+	<template><think><set name="SERVICIO">COMPENSACION</set></think>
+		<srai><star/> <star index= "2"/></srai></template>
+</category>
+<category>
+	<pattern>^ cambio ^</pattern>
+	<template>
+        <think><set name="Tema">SERVICIOS</set></think>
+		<think><set name="SERVICIO">CAMBIOGRUPO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+<category>
+	<pattern>^ no propuesto ^</pattern>
+	<template>
+		<think><set name="Propuesto">NO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+		</template>
+</category>
+<category>
+	<pattern>^ <set>servicios</set> ^</pattern>
+	<template>
+	<think><set name="Personal">NO</set></think>
+	<think><set name="Tema">SERVICIOS</set></think>
+	<think><set name="Personal">NO</set></think>
+	<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ reserva ^</pattern>
+	<template>
+
+		<think><set name="SERVICIO">SEMINARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>asignacion</set> ^</pattern>
+	<template>
+		<think><set name="SERVICIO">ASIGNACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+ 
+<category>
+	<pattern>^ defensa ^</pattern>
+	<template>
+		<think><set name="Personal">NO</set></think>
+		<think><set name="SERVICIO">DEFENSA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<topic name="ALTAMATERIA">
+	<category>
+		<pattern>SI</pattern><that>Quieres solicitar el alta de una materia</that>
+		<template>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), en que asignatura quieres matricularte? P.E: En [Sistemas inteligentes]</template>
+    </category>
+
+	<category>
+		<pattern>^ en *</pattern>
+		<template>
+			<think><set name="asignatura"><star index="2"/></set></think>
+			<srai>BOTENVIAALTAMATERIA</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>BOTENVIAALTAMATERIA</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar alta matricula</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> y me gustaría darme de alta en <get name="asignatura"/>. 
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+<topic name="CAMBIOGRUPO">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), en que asignatura quieres hacer el cambio de grupo?[P.E:En sistemas inteligentes].</template>
+    </category>
+
+    <category>
+        <pattern>En *</pattern>
+        <template>Entiendo, en la asignatura de <star/>. En que grupo estas actualmente?[P.E:En el grupo 6]
+            <think><set name="asignaturaCambio"><star/></set></think>
+        </template>
+    </category>
+    <category>
+        <pattern>En el grupo *</pattern>
+        <template>De acuerdo, estas en el grupo <star/>. A cual te quieres cambiar?[P.E: Al grupo 3]
+            <think><set name="grupoActual"><star/></set></think>
+        </template>
+    </category>
+    <category>
+        <pattern>Al grupo *</pattern>
+        <template>De acuerdo, quieres cambiarte del grupo <get name="grupoActual"/> al grupo <star/>.
+        <think><set name="grupoAlternativo"><star/></set></think>
+        <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar cambio de grupo reducido</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/>, me gustaría cambiarme del grupo reducido <get name="grupoActual"/> al grupo reducido <get name="grupoAlternativo"/> de la asignatura <get name="asignaturaCambio"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+
+</topic>
+
+
+<topic name="RESERVARSEMINARIO">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), que seminario quieres reservar?[P.E:El L31B]</template>
+    </category>
+
+    <category>
+        <pattern>^ el *</pattern>
+        <template>
+            <think><set name="numeroSeminario"><star index="2"/></set></think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Reservar seminario</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaría reservar el seminario <get name="numeroSeminario"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+
+<topic name="PRACTICAEMPRESAS">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>),  en que empresa quieres realizar las practicas?][P.E:En telecable].</template>
+    </category>
+
+    <category>
+        <pattern>En *</pattern>
+        <template>Entiendo, quieres solicitar prácticas en <star/>.
+        De acuerdo, mandaré tu solicitud.
+            <think><set name="empresaPracticas"><star/></set></think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitud practica en empresa</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaria solicitar prácticas en la empresa <get name="empresaPracticas"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+<topic name="TFGPROPUESTO">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), que TFG quieres solicitar? Recuerda que debe estar entre los propuestos. P.E:Quiero solicitar el tfg [Filtos MAC] con ID [7748D]</template>
+    </category> 
+
+
+    <category>
+        <pattern>^ el tfg * con id *</pattern>
+        <template>Entiendo, quieres solicitar el tfg <star index="2"/> con id <star index="3"/>.
+        De acuerdo, mandaré tu solicitud.
+            <think><set name="asignacionTFG"><star index="2"/></set></think>
+            <set name="IDTFG"><star index="3"/></set>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar TFG propuesto</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaría solicitar el TFG propuesto <get name="asignacionTFG"/> con id <get name="IDTFG"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+<topic name="TFGNOPROPUESTO">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), que TFG quieres solicitar? P.E:Quiero solicitar el tfg [Mejorar faitic] con id [7733x]</template>
+    </category> 
+
+    <category>
+        <pattern>Quiero solicitar el tfg * con id *</pattern>
+        <template>Entiendo, quieres solicitar el tfg <star/> con id <star index="2"/>
+        De acuerdo, mandaré tu solicitud.
+            <think><set name="asignacionTFG"><star/></set>
+            <set name="IDTFG"><star index="2"/></set>
+            </think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar TFG no propuesto</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaría solicitar el TFG no propuesto <get name="asignacionTFG"/> con ID <get name="IDTFG"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+            <think><set name="DNI">Unknown</set></think>
+            <think><set name="nombreUsuario">Unknown</set></think>
+            <think><set name="asignacionTFG">Unknown</set></think>
+            <think><set name="IDTFG">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+
+<topic name="DEFENSATFG">
+
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), que TFG quieres defender? P.E:Quiero solicitar la defensa del tfg [Filtos MAC] con ID [7748D]</template>
+    </category> 
+
+    <category>
+        <pattern>Quiero solicitar la defensa del tfg * con id *</pattern>
+        <template>Entiendo, quieres solicitar la defensa del tfg <star/> con id <star index="2"/>.
+        De acuerdo, mandaré tu solicitud.
+            <think><set name="asignacionTFG"><star/></set>
+            <set name="IDTFG"><star index="2"/></set>
+            </think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar defensa TFG</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+				    Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaría solicitar la defensa del TFG <get name="asignacionTFG"/> con id <get name="IDTFG"/>.
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+            <think><set name="DNI">Unknown</set></think>
+            <think><set name="nombreUsuario">Unknown</set></think>
+            <think><set name="IDTFG">Unknown</set></think>
+            <think><set name="asignacionTFG">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+
+<topic name="COMPENSACIONMATERIA">
+    <category>
+		<pattern>Mi nombre es *</pattern>
+		<template>
+			<think><set name="nombreUsuario"><star/></set></think>
+			Hola <star/>, cual es tu DNI?P.E: Mi DNI es [11223344A]
+            
+		</template>
+	</category>
+
+    <category>
+        <pattern>^ DNI es *</pattern>
+        <template>
+        <think><set name="DNI"><star index="2"/></set></think>
+        De acuerdo <get name="nombreUsuario"/>(<get name="DNI"/>), de que asignatura quieres pedir compensación? P.E: De [Sistemas inteligentes]</template>
+    </category> 
+
+    <category>
+        <pattern>De *</pattern>
+        <template>Entiendo, quieres pedir compensación de materia en <star/>
+        De acuerdo, mandaré tu solicitud.
+            <think><set name="asignatura"><star/></set>
+            </think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<mail>
+				<subject>Solicitar defensa TFG</subject>
+				<to><bot name="correoFormularios"/></to>
+				<msg>
+					Buenos días, soy <get name="nombreUsuario"/> con DNI <get name="DNI"/>, me gustaría solicitar la compensación de materia en <get name="asignatura"/> 
+				</msg>
+			</mail>
+			<think><set name="topic">Unknown</set></think>
+            <think><set name="DNI">Unknown</set></think>
+            <think><set name="nombreUsuario">Unknown</set></think>
+            <think><set name="asignatura">Unknown</set></think>
+			<think><set name="SERVICIO">Unknown</set></think>
+		</template>
+	</category>
+</topic>
+
+
+
+</aiml>

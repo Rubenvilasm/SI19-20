@@ -109,7 +109,7 @@
 <category>
 	<pattern>^ <set>evaluacion</set> ^</pattern>
 	<template>
-		<think><set name="Tema">EVALUCION</set></think>
+		<think><set name="Tema">EVALUACION</set></think>
 		<srai><star/> <star index= "3"/></srai>
 	</template>                   
 </category>
