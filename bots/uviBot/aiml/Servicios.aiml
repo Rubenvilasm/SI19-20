@@ -5,7 +5,7 @@
 	<pattern><set>servicios</set> ^</pattern>
 	<template>
 		<think><set name="topic">ELECCIONSERVICIO</set></think>
-		<srai><star/> <star index= "3"/></srai>
+		<srai><star index= "2"/></srai>
 	</template>
 </category>
 

@@ -111,7 +111,7 @@ Lugar: <get name="Lugar"/> Tema: <get name="Tema"/> Pregunta: <get name="Pregunt
 					<li value="UnknownFinal">
 						<condition name ="PosiblePregunta">
 							<li value="unknown">Mis respuestas son limitadas.</li>
-							<li><set name="PosibleRespuesta">Tu pregunta es: "<get name="PosiblePregunta"/>?" ?</set></li>
+							<li><set name="PosibleRespuesta">Tu pregunta es: <get name="PosiblePregunta"/> ?</set></li>
 							<li></li>
 						</condition>
 					</li>
