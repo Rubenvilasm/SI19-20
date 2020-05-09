@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+
+		<!-- Segmentacion-->
+
+<category>
+	<pattern>$Donde *</pattern>
+	<template>
+		<think><set name="Pregunta">DONDE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Que *</pattern>
+	<template>
+		<think><set name="Pregunta">QUE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Cuando *</pattern>
+	<template>
+		<think><set name="Pregunta">CUANDO</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Como *</pattern>
+	<template>
+		<think><set name="Pregunta">COMO</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Por que *</pattern>
+	<template>
+		<think><set name="Pregunta">POR QUE</set></think>
+		<srai><star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern><set>cual</set> * </pattern>
+	<template>
+		<think><set name="Pregunta">CUAL</set></think>
+		<srai><star index= "2"/></srai>
+</template>
+</category>
+
+<category>
+	<pattern><set>cuanto</set> *</pattern>
+	<template>
+		<think><set name="Pregunta">CUANTO</set></think>
+		<srai><star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern><set>quien</set> *</pattern>
+	<template>
+		<think><set name="Pregunta">QUIEN</set></think>
+		<srai><star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>_ <set>ESEI</set> ^</pattern>
+	<template>
+		<think><set name="Lugar">ESEI</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>_ <set>UVIGO</set> ^</pattern>
+	<template>
+		<think><set name="Lugar">UVIGO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ secretaria ^</pattern>
+	<template>
+		<think><set name="Lugar">SECRETARIA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ biblioteca ^</pattern>
+	<template>
+		<think><set name="Lugar">BIBLIOTECA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>pat</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PAT</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>piune</set> ^</pattern>
+	<template>
+		<think><set name="Tema">PIUNE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ horario ^</pattern>
+	<template>
+		<think><set name="Tema">HORARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>set</set> ^</pattern>
+	<template>
+		<think><set name="Tema">SET</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>delegacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">DELEGACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>ubicacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">UBICACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>estudiar</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ESTUDIOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>cafeteria</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CAFETERIA</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>verboshablar</set> ^</pattern>
+	<template>
+		<think><set name="Tema">HABLAR</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ practicas ^</pattern>
+	<template>
+		<think><set name="Tema">PRACTICAS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>recursos</set> ^</pattern>
+	<template>
+		<think><set name="Tema">RECURSOS</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ <set>TFG</set> ^</pattern>
+	<template>
+		<think><set name="Tema">TFG</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>acceso</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ACCESO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>deporte</set> ^</pattern>
+	<template>
+		<think><set name="Tema">DEPORTE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<category>
+	<pattern>^ <set>evaluacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">EVALUCION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>                   
+</category>
+
+<!-- BOTMASTER -->
+<category>
+	<pattern>^ <set>botmaster</set> ^</pattern>
+	<template>
+		<think><set name="Tema">BOTMASTER</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- JOB -->
+<category>
+	<pattern>^ <set>job</set> ^</pattern>
+	<template>
+		<think><set name="Tema">JOB</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- CONTACTO -->
+<category>
+	<pattern>^ <set>contacto</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CONTACTO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- GENERO -->
+<category>
+	<pattern>^ <set>genero</set> ^</pattern>
+	<template>
+		<think><set name="Tema">GENERO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- ORGANIZACION -->
+<category>
+	<pattern>^ <set>organizacion</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ORGANIZACION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+
+<!-- VERSION -->
+<category>
+	<pattern>^ <set>version</set> ^</pattern>
+	<template>
+		<think><set name="Tema">VERSION</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- CURSO -->
+<category>
+	<pattern>^ <set>curso</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CURSO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- EDAD -->
+<category>
+	<pattern>^ <set>edad</set> ^</pattern>
+	<template>
+		<think><set name="Tema">EDAD</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- NOMBRE -->
+
+<category>
+	<pattern>^ <set>nombre</set> ^</pattern>
+	<template>
+		<think><set name="Tema">NOMBRE</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<!-- ASIGNATURA -->
+
+<category>
+	<pattern>^ <set>asignatura</set> ^</pattern>
+	<template>
+		<think><set name="Tema">ASIGNATURA</set></think>
+		<srai><star/> MARCA<star index= "2"/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<!-- INTERESES -->
+
+<category>
+	<pattern>^ <set>intereses</set> ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">INTERESES</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ matriculado ^</pattern>
+	<template>
+		<think><set name="TemaEspecifico">MATRICULADO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<!-- verboEspecifico (tiene que ser un verbo muy clave con una unica forma, funciona un poco diferente este patron, devuelve el verbo en si)-->
+
+<category>
+	<pattern>^ <set>verboEspecifico</set> ^</pattern>
+	<template>
+		<think><set name="VerboEspecifico"><star index= "2"/></set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+</aiml>
+

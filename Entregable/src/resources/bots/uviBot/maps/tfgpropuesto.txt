@@ -1,4 +1,0 @@
-1111:Visor en 3D de informacion comercial con Unity
-2222:Domotización con ESP8266
-3333:Estratexias de posicionamento online
-4444:Realizacion de videoxogos para móviles

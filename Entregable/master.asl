@@ -13,7 +13,7 @@ service(Answer, "addset", Toret):- //true.
 	descomponer("<addset>",Answer,Addset,Toret) &
 	descomponer("<new>",Addset,New,Resto)&
 	.concat(Resto,".txt",RestoUtil)&
-	gui.addValueOnSetFileFor(New,RestoUtil,"uvibot").
+	gui.addValueOnSetFileFor(New,RestoUtil,"mybot").
 	
 service(Answer, "addmap", Toret):- //true.
 	.substring("<addmap>",Answer)&
@@ -24,34 +24,9 @@ service(Answer, "addmap", Toret):- //true.
 	.substring(":",New,Inicio)&
 	.substring(New,Prop,0,Inicio)&
 	.substring(New,Valor,Inicio+1,N)&
-	gui.addRelOnMapFileFor(Prop,Valor,RestoUtil,"uvibot").
+	gui.addRelOnMapFileFor(Prop,Valor,RestoUtil,"mybot").
 	
-tratar(Answer, "mailing", Toret) :-
-		.concat(Answer,"Servicio realizado correctamente",AnswerLarga)&
-		descomponer("<mail>",AnswerLarga,Mail,Toret) &
-		descomponer("<to>",Mail,To,Resto) &
-		descomponer("<subject>",Mail,Subject,Resto2)&
-		descomponer("<msg>",Mail, Message,Resto3)&
-		gui.mailing("uvibotesei@gmail.com",Subject,Message).
 
-
-tratar(Answer, "addset", Toret) :-
-		
-		descomponer("<addset>",Answer,Addset,Toret) &
-		descomponer("<new>",Addset,New,Resto)&
-		.concat(Resto,".txt",RestoUtil)&
-		gui.addValueOnSetFileFor(New,RestoUtil,"uvibot").
-	
-tratar(Answer, "addmap", Toret) :-
-		
-		descomponer("<addmap>",Answer,Addmap,Toret) &
-		descomponer("<new>",Addmap,New,Resto)&
-		.concat(Resto,".txt",RestoUtil)&
-		.length(New,N)&
-		.substring(":",New,Inicio)&
-		.substring(New,Prop,0,Inicio)&
-		.substring(New,Valor,Inicio+1,N)&
-		gui.addRelOnMapFileFor(Prop,Valor,RestoUtil,"uvibot").
 		
 descomponer(StringTag,Answer,TagContent,Resto) :-
 		.substring(StringTag, Answer, Ini) &

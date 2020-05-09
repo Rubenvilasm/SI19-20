@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    
+<category>
+	<pattern><set>servicios</set> ^</pattern>
+	<template>
+		<think><set name="topic">ELECCIONSERVICIO</set></think>
+		<srai><star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>$Cerrar sesion</pattern>
+	<template>
+		<think>
+			<set name="Nombre">unknown</set>
+			<set name="Dni">unknown</set>
+			<set name="Servicio">unknown</set>
+			<set name="topic">unknown</set>
+		</think>
+		Ya no está identificado.
+	</template>
+</category>
+
+<topic name="CONFIRMACION">
+<category>
+	<pattern>^ si ^</pattern>
+	<template>
+		<think>
+			<set name="Servicio">unknown</set>
+			<set name="topic">unknown</set>
+		</think>
+		<mail><subject><get name="Subject"/></subject><to><get name="To"/></to><msg><get name="Msg"/></msg></mail>
+	</template>
+</category>
+
+<category>
+	<pattern>^ no ^</pattern>
+	<template>
+		<think>
+			<set name="Servicio">unknown</set>
+			<set name="topic">unknown</set>
+		</think>
+		Servicio cancelado.
+	</template>
+</category>
+</topic>
+
+<topic name="ELECCIONSERVICIO">
+<category>
+	<pattern>^ alta ^ </pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">ALTA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ grupo reducido ^ </pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">GRUPOREDUCIDO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ seminario ^ </pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">SEMINARIO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ practicas en empresas ^</pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">PRACTICAEMPRESAS</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ TFG ^ propuestos ^</pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">TFGPROPUESTO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ TFG no propuesto ^</pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">TFGNOPROPUESTO</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ defensa de un TFG ^ </pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">DEFENSATFG</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ evaluacion por compensacion ^ </pattern>
+	<template>
+		<think><set name="topic">SERVICIO</set></think>
+		<think><set name="Servicio">COMPENSACION</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+</topic>
+
+
+<topic name="SERVICIO">
+
+<category>
+	<pattern>^ mi nombre es * ^</pattern>
+	<template>
+		<think><set name="Nombre"><star index= "2"/></set></think>
+		<condition name ="Dni">
+			<li value="unknown"><srai><star/> <star index= "3"/></srai></li>
+			<li>
+				<learn>
+					<category>
+						<pattern>^ Mi DNI es <eval><get name="Dni"/></eval> ^</pattern>
+						<template>
+							<think><set name="Dni"><eval><get name="Dni"/></eval></set><set name="Nombre"><eval><get name="Nombre"/></eval></set></think>
+							<srai><star/> <star/></srai>
+						</template>
+					</category>
+				</learn>
+				<addset><new><get name="Dni"/></new>dni</addset><addmap><new><get name="Dni"/>:<get name="Nombre"/></new>usuarios</addmap><srai><star/> <star index= "3"/></srai>
+			</li>
+		</condition>
+	</template>
+</category>
+
+<category>
+	<pattern>^ Mi DNI es <set>dni</set> ^</pattern>
+	<template>
+		<think><set name="Dni"><star index= "2"/></set><set name="Nombre"><map name="usuarios"><star index= "2"/></map></set></think>	
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ DNI es * ^</pattern>
+	<template>
+		<think><set name="Dni"><star index= "2"/></set></think>
+		<srai><star/> <star/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern> * * </pattern>
+	<template>
+		<condition name ="Dni">
+			<li value="unknown">En primer lugar necesito que te identifiques. Cual es tu DNI?.(Mi DNI es 11111111A)<think><set name="Accion">Dni</set></think></li>
+			<li>
+				<condition name ="Nombre">
+					<li value="unknown">Cual es tu nombre?<think><set name="Accion">Nombre</set></think></li>
+					<li>
+						<think><set var="toret">Hola <get name="Nombre"/>.</set></think>
+						<condition name ="Servicio">
+							<li value="ALTA">
+								<get var="toret"/> Para solicitar el alta de una materia necesito que me digas en que materia quieres darte de alta. P.E: En [Sistemas inteligentes].
+								<think>
+									<set name="topic">ASIGNATURA</set>
+									<set name="Accion">Materia</set>
+								</think>
+							</li>
+							<li value="GRUPOREDUCIDO">
+								<get var="toret"/> Para solicitar el cambio de un grupo reducido, necesito que me digas en que materia quieres cambiar de grupo. P.E: En [Sistemas inteligentes].
+								<think>
+									<set name="topic">ASIGNATURA</set>
+									<set name="Accion">Materia</set>
+								</think>
+							</li>
+							<li value="SEMINARIO">
+								<get var="toret"/> Para reservar un seminario tan solo necesito que me digas qué seminario quieres reservar.P.E: El [37].
+								<think>	
+									<set name="topic">RESERVARSEMINARIO</set>
+									<set name="Accion">Seminario</set>
+								</think>
+							</li>
+							<li value="PRACTICAEMPRESAS">
+								<get var="toret"/> Para solicitar prácticas en empresas, necesito que me digas en qué empresa quieres realizar las prácticas. P.E.: En [Synergy Didactic S. L.].
+								<think>	
+									<set name="topic">PRACTICAEMPRESAS</set>
+									<set name="Accion">Empresa</set>
+								</think>
+							</li>
+							<li value="TFGPROPUESTO">
+								<get var="toret"/> Para solicitar la asignación de un TFG necesito que me digas la ID del TFG que te interesa. P.E.: La ID es [1111].
+								<think>	
+									<set name="topic">TFGPROPUESTO</set>
+									<set name="Accion">IdPropuesto</set>
+								</think>
+							</li>
+							<li value="TFGNOPROPUESTO">
+								<get var="toret"/> Para solicitar la asignacion de un TFG no propuesto necesito que me digas cual es el TFG. P.E.: Quiero solicitar el TFG:[Teclados musicales microtonales].
+								<think>	
+									<set name="topic">TFGNOPROPUESTO</set>
+									<set name="Accion">TfgTitulo</set>
+								</think>
+							</li>
+							<li value="DEFENSATFG">
+								<get var="toret"/> Para solicitar la defensa de un TFG necesito que me digas la ID del TFG. P.E.: La ID es [5555]
+								<think>	
+									<set name="topic">DEFENSATFG</set>
+									<set name="Accion">IdDefensa</set>
+								</think>
+							</li>
+							<li value="COMPENSACION">
+								<get var="toret"/> Para mandar una solicitud de evaluacion por compensación de una materia, necesito que me digas en que materia estas interesado. P.E: En [Sistemas inteligentes].
+								<think>	
+									<set name="topic">ASIGNATURA</set>
+									<set name="Accion">Materia</set>
+								</think>
+							</li>
+							<li></li>
+						</condition>
+					</li>
+				</condition>
+			</li>
+		</condition>
+		<think>
+			<set name="Lugar">unknown</set>
+			<set name="Tema">unknown</set>
+			<set name="Pregunta">unknown</set>
+			<set name="VerboEspecifico">unknown</set>
+			<set name="Personal">unknown</set>
+			<set name="TemaEspecifico">unknown</set>
+			<set name="Afirmacion">unknown</set>	
+		</think>
+	</template>
+</category>
+</topic>
+
+<topic name="ASIGNATURA">
+
+	<category>
+		<pattern>^ en <set>asignaturas</set></pattern>
+		<template>
+			<think><set name="asignatura"><star index="2"/></set></think>
+			<srai>DESTINO</srai>
+		</template>
+	</category>
+	
+	<category>
+		<pattern>^ en *</pattern>
+		<template>
+			<think><set name="asignatura"><star index="2"/></set></think>
+			<star index="2"/> no esta registrada. Es correcta?
+		</template>
+	</category>
+
+	<category>
+		<pattern>^ Si ^</pattern>
+		<template>
+			<condition name ="asignatura">
+				<li value="unknown"><srai><star/><star index="2"/></srai></li>
+				<li>
+				<learn>
+					<category>
+						<pattern>En <eval><get name="asignatura"/></eval></pattern>
+						<template>
+							<condition name ="topic">
+								<li value="ASIGNATURA"><think><set name= "asignatura"><eval><get name="asignatura"/></eval></set></think><srai>DESTINO</srai></li>
+								<li>Mis respuestas son limitadas</li>
+							</condition>
+						</template>
+					</category>
+				</learn>
+				<addset><new><get name="Dni"/></new>dni</addset><srai>DESTINO</srai>
+				</li>
+			</condition>
+		</template>
+	</category>
+	
+	<category>
+		<pattern>^ No ^</pattern>
+		<template>En que asignatura entonces?</template>
+	</category>
+	
+	<category>
+		<pattern>DESTINO</pattern>
+		<template>
+			<condition name ="Servicio">
+				<li value="ALTA"><srai>BOTENVIAALTAMATERIA</srai></li>
+				<li value="COMPENSACION"><srai>BOTENVIACORREO</srai></li>
+				<li value="GRUPOREDUCIDO">
+					<think>
+						<set name="topic">CAMBIOGRUPO</set>
+						<set name="Accion">EnElGrupo</set>
+					</think>
+					Entiendo, en la asignatura de <get name="asignatura"/>. En que grupo estas actualmente?[P.E:En el grupo 6]	
+				</li>
+				<li>Jolimbo</li>
+			</condition>
+		</template>
+	</category>
+
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar defensa TFG</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="DNI"/>, me gustaría solicitar la evaluacion por compensación de <get name="asignatura"/></set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="asignatura">Unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+	
+		<category>
+		<pattern>BOTENVIAALTAMATERIA</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar alta matricula</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos dias, soy <get name="Nombre"/> y me gustaria darme de alta en <get name="asignatura"/>.</set>
+				<set name="asignatura">Unknown</set>
+				<set name="Accion">unknown</set>
+				<set name="topic">CONFIRMACION</set>
+			</think>
+			
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+	
+<topic name="CAMBIOGRUPO">
+
+    <category>
+        <pattern>En el grupo <set>numeros</set></pattern>
+        <template>De acuerdo, estas en el grupo <star/>. A cual te quieres cambiar?[P.E: Al grupo 3]
+            <think><set name="Accion">AlGrupo</set><set name="grupoActual"><star/></set></think>
+        </template>
+    </category>
+	
+    <category>
+        <pattern>En el grupo *</pattern>
+        <template>El grupo debe ser un numero entre 1 y 8.</template>
+    </category>
+	
+    <category>
+        <pattern>Al grupo <set>numeros</set></pattern>
+        <template>
+			<think><set name="grupoAlternativo"><star/></set></think>
+			<condition name ="grupoActual">
+				<li><value><get name="grupoAlternativo"/></value>No tiene sentido que te cambies al mismo grupo. En que grupo estas actualmente?</li>
+				<li><srai>BOTENVIACORREO</srai></li>
+			</condition>
+		</template>
+    </category>	
+	
+    <category>
+        <pattern>Al grupo *</pattern>
+        <template>El grupo debe ser un numero entre 1 y 8.
+        </template>
+    </category>
+
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar cambio de grupo reducido</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/>, me gustaría cambiarme del grupo reducido <get name="grupoActual"/> al grupo reducido <get name="grupoAlternativo"/> de la asignatura <get name="asignatura"/>.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="asignatura">Unknown</set>
+				<set name="grupoActual">Unknown</set>
+				<set name="grupoAlternativo">Unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+
+</topic>
+
+
+<topic name="RESERVARSEMINARIO">
+
+    <category>
+        <pattern>^ el *</pattern>
+        <template>
+            <think><set name="numeroSeminario"><star index="2"/></set></think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Reservar seminario</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría reservar el seminario <get name="numeroSeminario"/>.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="numeroSeminario">unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+
+
+<topic name="PRACTICAEMPRESAS">
+
+
+    <category>
+        <pattern>En *</pattern>
+        <template>De cuantas horas al dia dispondrías?
+            <think><set name="Accion">Horas</set><set name="empresaPracticas"><star/></set></think>
+        </template>
+    </category>
+	
+    <category>
+        <pattern>De <set>numeros</set> ^</pattern>
+        <template>
+            <think><set name="numHoras"><star/></set></think>
+			<srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+	
+    <category>
+        <pattern>De * ^</pattern>
+        <template>El numero de horas diarias debe ser un numero entre 1 y 8.</template>
+    </category>
+	
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitud practica en empresa</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaria solicitar prácticas en la empresa <get name="empresaPracticas"/>. Dispongo de <get name="numHoras"/> horas diarias.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="empresaPracticas">unknown</set>
+				<set name="numHoras">unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+
+<topic name="TFGPROPUESTO">
+			<condition name ="asignatura">
+				<li value="unknown"><srai><star/><star index="2"/></srai></li>
+				<li>
+				<learn>
+					<category>
+						<pattern>En <eval><get name="asignatura"/></eval></pattern>
+						<template>
+							<condition name ="topic">
+								<li value="ASIGNATURA"><think><set name= "asignatura"><eval><get name="asignatura"/></eval></set></think><srai>DESTINO</srai></li>
+								<li>Mis respuestas son limitadas</li>
+							</condition>
+						</template>
+					</category>
+				</learn>
+				<addset><new><get name="Dni"/></new>dni</addset><srai>DESTINO</srai>
+				</li>
+			</condition>
+	<category>
+        <pattern>Introducir TFG * con id *</pattern>
+        <template>
+            <condition name ="Dni">
+				<li value="admin">
+					<learn>
+						<category>
+							<pattern>^ la id es <eval><star index="2"/></eval> ^</pattern>
+							<template>
+								<think>
+									<set name="IDTFG"><star index="2"/></set>
+									<set name="asignacionTFG"><star/></set>
+								</think>
+								<srai>BOTENVIACORREO</srai>
+							</template>
+						</category>
+					</learn>
+					<addset><new><star index="2"/></new>tfgpropuesto</addset>
+					<addmap><new><star index="2"/>:<star/></new>tfgpropuesto</addmap>
+					TFG añadido.
+				</li>
+				<li>Solo el administrador puede añadir TFG</li>
+			</condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ la id es <set>tfgpropuesto</set> ^</pattern>
+        <template>
+            <think>
+				<set name="IDTFG"><star index="2"/></set>
+				<set name="asignacionTFG"><map name="tfgpropuesto"><star index= "2"/></map></set>
+			</think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ la id es * ^</pattern>
+        <template>No hay un TFG propuesto con esa ID. Introduce una ID correcta o solicita un TFG no propuesto.Solo el admin puede añadir TFG</template>
+    </category>
+	
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar TFG propuesto</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar el TFG propuesto <get name="asignacionTFG"/> con id <get name="IDTFG"/>.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="asignacionTFG">unknown</set>
+				<set name="IDTFG">unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+
+<topic name="TFGNOPROPUESTO">
+
+
+    <category>
+        <pattern>Quiero solicitar el tfg *</pattern>
+        <template>Cual es el objetivo del TFG?. P.E.: El objetivo del TFG es [desarrollar una aplicación que monitorice las actividades un individuo]
+            <think>
+				<set name="asignacionTFG"><star/></set>
+				<set name="Accion">unknown</set>
+            </think>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>El objetivo del TFG es *</pattern>
+        <template>
+            <think><set name="descripcionTFG"><star index="2"/></set></think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+	
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar TFG no propuesto</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar el TFG no propuesto <get name="asignacionTFG"/>. El objetivo de este TFG es <get name="descripcionTFG"/>.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="asignacionTFG">unknown</set>
+				<set name="descripcionTFG">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+
+
+<topic name="DEFENSATFG">
+
+	<category>
+        <pattern>Introducir TFG * con id *</pattern>
+        <template>
+            <condition name ="Dni">
+				<li value="admin">
+					<learn>
+						<category>
+							<pattern>^ la id es <eval><star index="2"/></eval> ^</pattern>
+							<template>
+								<think>
+									<set name="IDTFGDefensa"><star index="2"/></set>
+									<set name="TFGdefensa"><star/></set>
+								</think>
+								<srai>BOTENVIACORREO</srai>
+							</template>
+						</category>
+					</learn>
+					<addset><new><star index="2"/></new>tfgdefensa</addset>
+					<addmap><new><star index="2"/>:<star/></new>tfgdefensa</addmap>
+					TFG añadido.
+				</li>
+				<li>Solo el administrador puede añadir TFG</li>
+			</condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ la id es <set>tfgdefensa</set> ^</pattern>
+        <template>
+            <think>
+				<set name="IDTFGDefensa"><star index="2"/></set>
+				<set name="TFGdefensa"><map name="tfgdefensa"><star index= "2"/></map></set>
+			</think>
+            <srai>BOTENVIACORREO</srai>
+        </template>
+    </category>
+    
+    <category>
+        <pattern>^ la id es * ^</pattern>
+        <template>No hay ningún TFG registrado con esa ID. Introduce una ID correcta, solo si eres admin puedes añadir nuevos TFG.</template>
+    </category>
+
+    <category>
+		<pattern>BOTENVIACORREO</pattern>
+		<template>
+			<think>
+				<set name="Subject">Solicitar evaluacion por compensacion</set>
+				<set name="To"><bot name="correoFormularios"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar la defensa del TFG <get name="TFGdefensa"/> con id <get name="IDTFGDefensa"/>.</set>
+				<set name="topic">CONFIRMACION</set>
+				<set name="TFGdefensa">unknown</set>
+				<set name="IDTFGDefensa">unknown</set>
+				<set name="Accion">unknown</set>
+			</think>
+			El correo que se enviara contiene el siguiente mensaje: <get name="Msg"/> Es correcto?
+		</template>
+	</category>
+</topic>
+
+</aiml>

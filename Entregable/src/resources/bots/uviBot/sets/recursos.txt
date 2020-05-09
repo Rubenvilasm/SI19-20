@@ -1,4 +1,0 @@
-recursos
-materiales
-servicios
-instalaciones

@@ -1,8 +1,0 @@
-estas:estar
-querrias:querer
-quieres:querer
-tienes:tener
-realizas:realizar
-has:haber
-perteneces:pertenecer
-estudias:estudiar

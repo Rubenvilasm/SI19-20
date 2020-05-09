@@ -1,2 +1,0 @@
-5555:Interpolacion con Maxima
-6666:Fractais con Maxima

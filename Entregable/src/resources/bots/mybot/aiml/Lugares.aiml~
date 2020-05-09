@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+	<pattern>_ <set>ESEI</set> ^</pattern>
+	<template>
+		<think><set name="Lugar">ESEI</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>_ <set>UVIGO</set> ^</pattern>
+	<template>
+		<think><set name="Lugar">UVIGO</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ <set>cafeteria</set> ^</pattern>
+	<template>
+		<think><set name="Tema">CAFETERIA</set></think>
+		<srai><star/> <star index= "3"/></srai>
+	</template>
+</category>
+
+
+<category>
+	<pattern>^ secretaria ^</pattern>
+	<template>
+		<think><set name="Lugar">SECRETARIA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+<category>
+	<pattern>^ biblioteca ^</pattern>
+	<template>
+		<think><set name="Lugar">BIBLIOTECA</set></think>
+		<srai><star/> <star index= "2"/></srai>
+	</template>
+</category>
+
+</aiml>

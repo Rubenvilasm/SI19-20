@@ -10,7 +10,7 @@ ntq(4, " Sabes la direccion de la ESEI ").
 ntq(5, " En que zona del Campus de Ourense se encuentra la ESEI ").
 ntq(6, " Me indicas donde esta la ESEI ").
 
-tq(3, " que puedo estudiar en la esei ").
+tq(3, " Que puedo estudiar en la ESEI ").
 ntq(7, " Que titulaciones oferta la ESEI actualmente ").
 ntq(8, " Cuantos titulos ofrece la ESEI ").
 ntq(9, " Cuales son las carreras vinculadas a la ESEI ").
@@ -134,6 +134,7 @@ aprender(Answer, Tq) :-
 	.substring("Tu pregunta es:", Answer, Inicio, Fin)&
 	.length(Answer,N)&
 	.substring(Answer,Tqsinespacios,Inicio+16,N-1)&
+	.printf(Tqsinespacios)&
 	.concat(" ",Tqsinespacios," ",Tq).
 
 identificarse(Answer,Credencial) :- 
@@ -169,20 +170,20 @@ identificarse(Answer,Credencial) :-
 
 +!fase1 <-
 	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	for (.range(I,1,18)) {
+	for (.range(I,1,5)) {
 		//Seleccion de TQ
 		Sel =math.round(math.random(17))+1;
 		!select(Sel,Ans);
-		.wait(1000);
 		!chat(Ans,Sel,"FORMULO UNA TQ");
-		
+		.wait(2000);
 		//Seleccion de NTQ
 		New =(Sel * 3) - math.round(math.random(2));
 		!selectb(New,NewAns);
-		.wait(1000);
+		
 		!chat(NewAns,New,"FORMULO UNA NTQ");
+		.wait(2000);
 		!repreguntar(Sel);
-		.wait(1000);
+		.wait(4000);
 	}.
 
 +!fase2 <-
@@ -191,11 +192,12 @@ identificarse(Answer,Credencial) :-
 		Sel = math.round(math.random(17))+1;
 		!choose(Sel,Ans);
 		!chat(Ans,Sel,"FORMULO UNA AQ");
+		.wait(1000);
 	}.
 	
 +!servicios <-
 	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE SERVICIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-	for (.range(I,1,8)) {
+	for (.range(I,1,3)) {
 		Sel = math.round(math.random(7))+1;
 		!chooseser(Sel,Ans);
 		?doser(N,Ans)
@@ -256,7 +258,7 @@ identificarse(Answer,Credencial) :-
 	.wait(3000);
 	!chat("La ID es 1234",N,Tit);
 	!chat("1111",N,Tit);
-	!chat("Si",N,Tit).
+	!chat("Creo que si",N,Tit).
 
 +!conversar(N,"Solicitar la asignacion de un TFG no propuesto", Tit)<-
 	!chat("Solicitar la asignacion de un TFG no propuesto",N,"SOLICITO UN SERVICIO");
@@ -268,9 +270,18 @@ identificarse(Answer,Credencial) :-
 +!conversar(N,"Solicitar la defensa de un TFG", Tit)<-
 	!chat("Solicitar la defensa de un TFG",N,"SOLICITO UN SERVICIO");
 	.wait(3000);
-	!chat("La ID es 3333",N,Tit);
-	!chat("5555",N,Tit);
-	!chat("Creo que si",N,Tit).
+	!chat("La ID es 7777",N,Tit);
+	!chat("Cerrar sesion",N,Tit);
+	+admin
+	!chat("Solicitar la defensa de un TFG",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("Introducir TFG Mejorar Chrome con ID 7777",N,Tit);
+	!chat("Cerrar sesion",N,Tit);
+	-admin
+	!chat("Solicitar la defensa de un TFG",N,"SOLICITO UN SERVICIO");
+	.wait(3000);
+	!chat("La ID es 7777",N,Tit);
+	!chat("Si",N,Tit).
 	
 +!conversar(N,"Solicitar la evaluacion por compensacion de una materia", Tit)<-
 	!chat("Solicitar la evaluacion por compensacion de una materia",N,"SOLICITO UN SERVICIO");
@@ -304,12 +315,15 @@ identificarse(Answer,Credencial) :-
 +!aprender(Answer): aprender(Answer,Tq)	<- +pregunta(Tq).
 +!aprender(Answer).
 
-+!identificarse(Answer): identificarse(Answer, "Nombre") <-
++!identificarse(Answer): identificarse(Answer, "Nombre") & not admin <-
 	!chat("Student",0,"ME IDENTIFICO").
 
 
-+!identificarse(Answer): identificarse(Answer, "DNI") <-
++!identificarse(Answer): identificarse(Answer, "DNI") & not admin <-
 	!chat("31111111D",0,"ME IDENTIFICO").
+
++!identificarse(Answer): identificarse(Answer, "DNI") & admin <-
+	!chat("admin",0,"ME IDENTIFICO").
 
 	
 +!identificarse(Answer).

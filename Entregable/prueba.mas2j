@@ -21,8 +21,8 @@ MAS prueba {
 
        // tester;
 	   master;
-	   student;
-	  // studentPrueba;
+	   //student;
+	   studentPrueba;
 
 }
 

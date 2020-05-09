@@ -1,6 +1,0 @@
-cafeteria
-comer
-tomar un cafe
-tomar algo
-tomar un refresco
-desayunar

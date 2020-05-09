@@ -22,7 +22,7 @@ public class Chatter extends Environment {
 
     private Logger logger = Logger.getLogger("prueba.mas2j."+Chat.class.getName());
 	private static final boolean TRACE_MODE = true;
-	static String botName = "uvibot";
+	static String botName = "mybot";
 	private String resourcesPath = getResourcesPath();
 
 	private Bot bot= new Bot(botName, resourcesPath);

@@ -19,7 +19,10 @@ MAS prueba {
     agents:
         //juan;
 
-        tester;
+       // tester;
+	   master;
+	   student;
+	  // studentPrueba;
 
 }
 
