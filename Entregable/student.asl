@@ -172,16 +172,17 @@ identificarse(Answer,Credencial) :-
 		//Seleccion de TQ
 		Sel =math.round(math.random(17))+1;
 		!select(Sel,Ans);
-		!chat(Ans,Sel,"FORMULO UNA TQ");
+		?dotq(N,Ans)
+		!chat(Ans,N,"FORMULO UNA TQ");
 		.wait(2000);
 		//Seleccion de NTQ
-		New =(Sel * 3) - math.round(math.random(2));
+		New =(N * 3) - math.round(math.random(2));
 		!selectb(New,NewAns);
 		
 		!chat(NewAns,New,"FORMULO UNA NTQ");
-		.wait(2000);
-		!repreguntar(Sel);
-		.wait(5000);
+		.wait(6000);
+		!repreguntar(N);
+		.wait(3000);
 	}.
 
 +!fase2 <-
