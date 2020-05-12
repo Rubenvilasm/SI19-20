@@ -11,7 +11,7 @@
 			<li value="PAT">
 				<condition name ="Pregunta">
 					<li value="QUE">El Plan de Acción Titorial es un programa de atención personalizada dirigido a los alumnos de nuevo ingreso.</li>
-					<li><think><set name="PosiblePregunta">que es el pat</set><set name="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">En que consiste el PAT</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			
@@ -22,8 +22,8 @@
 					<li value="TRUE">Tengo clase de lunes a jueves de 9:30 a 15:00.</li>
 					<li>
 						<condition name ="Lugar">
-							<li value="SECRETARIA">De lunes a viernes, de 9:00 a 14:00 h.</li>
-							<li><think><set name="PosiblePregunta">"Cual es el horario de la secretaria?"</set><set name="Solucion">false</set></think></li>
+							<li value="SECRETARIA">El horario de la secretaria es de lunes a viernes, de 9:00 a 14:00 h.</li>
+							<li><think><set name="PosiblePregunta">Que horario de atencion al publico tiene la secretaria del centro</set><set name="Solucion">false</set></think></li>
 						</condition>
 					</li>
 				</condition>
@@ -33,8 +33,8 @@
 		
 			<li value="MATRICULA">
 				<condition name ="Pregunta">
-					<li value="CUANDO">No, el horario de la secretaria es: <srai>CUAL ES EL HORARIO DE LA SECRETARIA</srai></li>
-					<li>El horario de la secretaria es: <srai>CUAL ES EL HORARIO DE LA SECRETARIA</srai></li>
+					<li value="CUANDO"><think><set name="PosiblePregunta">Que horario de atencion al publico tiene la secretaria del centro</set><set name="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Que horario de atencion al publico tiene la secretaria del centro</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			
@@ -44,7 +44,7 @@
 				<condition name ="Lugar">
 							<li value="SECRETARIA">La secretaria esta en la planta baja del edificio politécnico. Puedes preguntar en consejería para mayor exactitud.</li>
 							<li value="ESEI">La ESEI está en el Edificio Politécnico s/n, 32004, Ourense.</li>
-							<li><think><set name="PosiblePregunta">donde se encuentra la ESEI</set><set name="Solucion">false</set></think></li>
+							<li><think><set name="PosiblePregunta">Donde se encuentra la ESEI</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 
@@ -67,12 +67,12 @@
 									<li value="QUE">
 										<condition name ="Lugar">
 											<li value="ESEI">Ingeniería informatica, entre otras cosas como el doble grado de ADE + EI o el máster en Ingenieria Informática.</li>
-											<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
+											<li><think><set name="PosiblePregunta">Que puedo estudiar en la ESEI</set><set name="Solucion">false</set></think></li>
 										</condition>
 									</li>
-									<li value="CUANTO">Ofrece 4 titulos: <srai>QUE ESTUDIAR ESEI</srai></li>
-									<li value="CUAL"><srai>QUE ESTUDIAR ESEI</srai></li>
-									<li><think><set name="PosiblePregunta">que puedo estudiar en la esei</set><set name="Solucion">false</set></think></li>
+									<li value="CUANTO"><think><set name="PosiblePregunta">Que puedo estudiar en la ESEI</set><set name="Solucion">false</set></think></li>
+									<li value="CUAL"><think><set name="PosiblePregunta">Que puedo estudiar en la ESEI</set><set name="Solucion">false</set></think></li>
+									<li><think><set name="PosiblePregunta">Que puedo estudiar en la ESEI</set><set name="Solucion">false</set></think></li>
 								</condition>
 							</li>
 						</condition>
@@ -86,11 +86,11 @@
 				<condition name ="Lugar">
 							<li value="ESEI">
 								<condition name ="Pregunta">
-									<li value="DONDE">en la planta baja del edificio politécnico.</li>
-									<li>Si, <srai>DONDE PUEDO COMER CALIENTE EN LA ESEI</srai></li>
+									<li value="DONDE"><think><set name="PosiblePregunta">Hay una cafeteria en la ESEI</set><set name="Solucion">false</set></think></li>
+									<li>Si, en la planta baja del edificio politécnico.</li>
 								</condition>
 							</li>
-							<li><think><set name="PosiblePregunta">Tiene cafetería la ESEI</set><set name="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Hay una cafeteria en la ESEI</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>	
 			
@@ -102,7 +102,7 @@
 					<li>
 						<condition name="Pregunta">
 							<li value="CUAL">Con el fin de facilitar la integración del alumnado con necesidades específicas de apoyo que participa en el PIUNE el centro creó un programa de acogida y detección</li>
-							<li>Para formar parte del PIUNE tan solo tienes que rellenar un formulario, pregunta en secretaria para mas información</li>
+							<li><think><set name="PosiblePregunta">Cual es el protocolo de acogida de alumnos con necesidades educativas especiales</set><set name="Solucion">false</set></think></li>
 						</condition>
 					</li>	
 				</condition>
@@ -122,7 +122,7 @@
 									<li>Se la conoce como ESEIDA. Para contactar con ellos puedes ir a su local en la primera planta,o traves del telefono 988387000 o del email eseida@esei.uvigo.es</li>	
 								</condition>
 							</li>
-							<li><think><set name="PosiblePregunta">donde esta la delegación de alumnos de la ESEI</set><set name="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Existe una delegacion de alumnos en la ESEI</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>	
 				</condition>
@@ -135,7 +135,7 @@
 					<li value="CUAL">Tengo <bot name="age"/> años.</li>
 					<li value="CUANTOS">Tengo <bot name="age"/> años.</li>
 					<li value="CUANDO">Nací el <bot name="birthday"/>.</li>
-					<li><think><set name="PosiblePregunta">Cuantos año tienes</set><set name="Solucion">false</set></think></li>
+					<li><think><set name="PosiblePregunta">Cual es tu edad</set><set name="Solucion">false</set></think></li>
 				</condition>
 			</li>
 			<!-- nombre-->
@@ -219,7 +219,7 @@
 							<li>
 								<condition name ="Lugar">
 									<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
-									<li><think><set name="PosiblePregunta">Que me puedes contar sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
+									<li><think><set name="PosiblePregunta">Hablame un poco sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
 								</condition>
 							</li>	
 				</condition>
@@ -231,7 +231,7 @@
 			<li value="SET">
 				<condition name ="Pregunta">
 					<li value="QUE">Es el documento que otorga validez comunitaria al currículum académico.</li>
-					<li>Es el documento que otorga validez comunitaria al currículum académico.</li>	
+					<li><think><set name="PosiblePregunta">Que es el suplemento europeo al titulo</set><set name="Solucion">false</set></think></li>	
 				</condition>
 			</li>
 			
@@ -248,10 +248,6 @@
 					<li>
 						<condition name ="Personal">
 							<li value="TRUE">La verdad es que no me interesa ninguna empresa en concreto. Hasta que no pruebe no sabre que me gusta.</li>
-							<li value="NO">
-								Para solicitar prácticas en empresas, primero necesito que me des tu nombre. P.E: Mi nombre es [Ruben Vilas Martinez].
-								<think><set name="topic">PRACTICAEMPRESAS</set></think>
-							</li>
 							<li>Está todo actualizado en la web de la ESEI. Puedes acceder directamente a través de este link:https://esei.uvigo.es/docencia/practicas-en-empresa/</li>	
 						</condition>
 					</li>	
@@ -264,9 +260,9 @@
 				<condition name ="Lugar">
 					<li value="ESEI">
 						<condition name="TemaEspecifico">
-							<li value="SALON">Cuenta con dos salones de actos: El Aula Magna y el salon Marie Curie.</li>
-							<li value="SEMINARIO">La ESEI cuenta con más de 10 seminarios a disposición de los alumnos.</li>
-							<li>La ESEI cuenta con diversas aulas, laboratorios, seminarios e despachos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
+							<li value="SALON"><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>
+							<li value="SEMINARIO"><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>
+							<li>La ESEI cuenta con diversas aulas, laboratorios, despachos, más de 10 seminarios y 2 salones de actos. Además los alumnos tendran un correo electrónico y acceso a la red Wireless de la universidad de Vigo</li>
 						</condition>
 					</li>
 					<li><think><set name="PosiblePregunta">Con que recursos materiales y servicios cuenta la ESEI</set><set name="Solucion">false</set></think></li>	
@@ -285,10 +281,9 @@
 					</li>
 					<li>
 						<condition name="TemaEspecifico">
-							<li value="DIFERENCIA">El TFG se hace al terminar el grado y el TFM al terminar el master. Este último requiere debería tener una mayor especialización y profundidad</li>
-							<li value="NORMATIVA">Si, puedes encontrar información detallada en este link:https://esei.uvigo.es/docencia/traballos-fin-de-carreira/traballo-fin-de-grao/</li>
-							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI.
-							</li>
+							<li value="DIFERENCIA"><think><set name="PosiblePregunta">Que son los Trabajos Fin de Grado o de Master</set><set name="Solucion">false</set></think></li>
+							<li value="NORMATIVA"><think><set name="PosiblePregunta">Que son los Trabajos Fin de Grado o de Master</set><set name="Solucion">false</set></think></li>
+							<li>Son los trabajos que los estudiantes deben realizar para obtener el grado de Ingenieria informatica o el MEI. Para mas información: https://esei.uvigo.es/docencia/traballos-fin-de-carreira/traballo-fin-de-grao/</li>
 						</condition>
 					
 					</li>	
@@ -296,14 +291,14 @@
 				
 			</li> 
 			
-			<!-- Acceso -->
+			<!-- Biblioteca -->
 			<li value="BIBLIOTECA">
 				<condition name="Personal">
 					<li value="TRUE">Si, es mi sitio preferido para estudiar.</li>
 					<li>
 						<condition name ="VerboEspecifico">
 							<li value="ACCESO">Puedes accceder a la sección de la biblioteca en la web de la ESEI pero para realizar prestamos necesitaras una tarjeta de estudiante</li>
-							<li><think><set name="PosiblePregunta">Como puedo acceder a la Biblioteca</set><set name="Solucion">false</set></think></li>	
+							<li><think><set name="PosiblePregunta">Como hago para acceder a la Biblioteca</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
 				</condition>
@@ -318,7 +313,12 @@
 						
 			<!-- Evaluacion -->
 		
-			<li value="EVALUACION">Deberás entregarle al profesor correspondiente el formulario que encuentras en  https://esei.uvigo.es/a-esei/formularios/formularios-xerais/para que te lo firme.</li>
+			<li value="EVALUACION">
+				<condition name="Pregunta">
+					<li value="COMO">Deberás entregarle al profesor correspondiente el formulario que encuentras en  https://esei.uvigo.es/a-esei/formularios/formularios-xerais/para que te lo firme.</li>
+					<li><think><set name="PosiblePregunta">Como puedo justificar mi asistencia a las actividades de evaluacion y a sus revisiones</set><set name="Solucion">false</set></think></li>
+				</condition>
+			</li>
 						
 			<!-- Deporte -->
 		
@@ -326,9 +326,9 @@
 				<condition name ="Personal">
 							<li value="TRUE">La verdad es que no, pero me encantaría jugar al voleibol.</li>
 							<li>
-								<condition name ="TemaEspecifico">
-									<li value="EQUIPO">Si no me falla la memoria, como mínimo hay equipos de fútbol y baloncesto.</li>
-									<li>Hay un montón de actividades deportivas a las que puedes apuntarte: gimnasio, voleibol, fútbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>	
+								<condition name ="Pregunta">
+									<li value="QUE">Hay un montón de actividades deportivas a las que puedes apuntarte: gimnasio, voleibol, fútbol... Tienes toda la información en la página https://campusactivo.uvigo.gal/</li>
+									<li><think><set name="PosiblePregunta">Que actividades deportivas ofrece la ESEI</set><set name="Solucion">false</set></think></li>	
 								</condition>
 							</li>	
 				</condition>
@@ -372,31 +372,31 @@
 			<li>
 				<condition name ="Pregunta">
 				
-				<!-- Donde-->
+				<!-- Pregunta-->
 				
 					<li value="QUE">
 						<condition name ="Lugar">
-							<li value="UVIGO">Es una de la tres universidades de Galicia. Tiene 3 campus, en Ourense, en Vigo y en Pontevedra.</li>
-							<li><think><set name="PosiblePregunta">Que es la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
+							<li value="UVIGO"><think><set name="PosiblePregunta">Hablame un poco sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>
+							<li><think><set name="PosiblePregunta">Hablame un poco sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
 					<li value="DONDE">
 						<condition name ="Lugar">
-							<li value="SECRETARIA"><srai>DONDE ESTA LA SECRETARIA</srai></li>
-							<li><think><set name="PosiblePregunta">donde esta la secretaria</set><set name="Solucion">false</set></think></li>	
+							<li value="SECRETARIA"><think><set name="PosiblePregunta">Donde se encuentra la Secretaria de la ESEI</set><set name="Solucion">false</set></think></li>
+							<li><think><set name="PosiblePregunta">Donde se encuentra la Secretaria de la ESEI</set><set name="Solucion">false</set></think></li>	
 						</condition>
 					</li>
-				<!-- Otro -->
+				<!-- Lugar -->
 					<li>
 						<condition name ="Lugar">
 						
 							<!-- UVIGO-->
-							<li value="UVIGO">No se que decirte sobre la Uvigo</li>
+							<li value="UVIGO"><think><set name="PosiblePregunta">Hablame un poco sobre la Universidad de Vigo</set><set name="Solucion">false</set></think></li>
 							
 							<!-- Otro-->
 							<li>
 								<condition name="TemaEspecifico">
-									<li value="MATRICULA">De lunes a viernes, de 9:00 a 14:00 h.</li>
+									<li value="MATRICULA"><think><set name="PosiblePregunta">Que horario de atencion al publico tiene la secretaria del centro</set><set name="Solucion">false</set></think></li>
 									<li><think><set name="Solucion">false</set></think></li>
 								</condition>
 							</li>	

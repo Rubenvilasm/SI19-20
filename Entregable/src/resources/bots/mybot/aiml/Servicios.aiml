@@ -283,7 +283,7 @@
 						</template>
 					</category>
 				</learn>
-				<addset><new><get name="Dni"/></new>dni</addset><srai>DESTINO</srai>
+				<addset><new><get name="asignatura"/></new>asignaturas</addset><srai>DESTINO</srai>
 				</li>
 			</condition>
 		</template>

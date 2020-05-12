@@ -1,0 +1,20 @@
+0,^ SI ^,*,*,<think><set name="Afirmacion">SI</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>ACCEDER</SET> ^,*,*,<think><set name="VerboEspecifico">ACCESO</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ <SET>INTERESES</SET> ^,*,*,<think><set name="Personal">TRUE</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ <SET>VERBOSINTERESES</SET> ^,*,*,<think><set name="Personal">TRUE</set></think>#Newline		<srai><star/> <map name="verbosintereses"><star index="2"/></map> <star index="3"/></srai>,Especifico.aiml
+0,^ MATRICULADO ^,*,*,<think><set name="TemaEspecifico">MATRICULADO</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>VERBOESPECIFICO</SET> ^,*,*,<think><set name="VerboEspecifico"><star index="2"/></set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ <SET>VIVIR</SET> ^,*,*,<think><set name="Tema">PERSONAL</set></think>#Newline		<think><set name="VerboEspecifico">VIVIR</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ ERASMUS ^,*,*,<think><set name="Tema">PERSONAL</set></think>#Newline		<think><set name="VerboEspecifico">ERASMUS</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>BECA</SET> ^,*,*,<think><set name="TemaEspecifico">BECA</set></think>#Newline		<think><set name="Tema">ESTUDIOS</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ DIFERENCIA ^,*,*,<think><set name="TemaEspecifico">DIFERENCIA</set></think>#Newline#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ NORMATIVA ^,*,*,<think><set name="TemaEspecifico">NORMATIVA</set></think>#Newline#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>OCIO</SET> ^,*,*,<think><set name="Tema">PERSONAL</set></think>#Newline		<think><set name="VerboEspecifico">OCIO</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ <SET>TERMINAR</SET> ^,*,*,<think><set name="VerboEspecifico">TERMINAR</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ <SET>RETRIBUCION</SET> ^,*,*,<think><set name="TemaEspecifico">RETRIBUCION</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ REVISAR ^,*,*,<think><set name="VerboEspecifico">REVISAR</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>AMIGOS</SET> ^,*,*,<think><set name="Tema">PERSONAL</set></think>#Newline		<think><set name="VerboEspecifico">AMIGOS</set></think>#Newline#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ TIPO ^,*,*,<think><set name="VerboEspecifico">TIPO</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>SUPERIOR</SET> ^,*,*,<think><set name="TemaEspecifico">SUPERIOR</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml
+0,^ SALON DE ACTOS ^,*,*,<think><set name="TemaEspecifico">SALON</set></think>#Newline		<think><set name="Tema">RECURSOS</set></think>#Newline		<srai><star/> <star index="2"/></srai>,Especifico.aiml
+0,^ <SET>SEMINARIO</SET> ^,*,*,<think><set name="TemaEspecifico">SEMINARIO</set></think>#Newline		<think><set name="Tema">RECURSOS</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Especifico.aiml

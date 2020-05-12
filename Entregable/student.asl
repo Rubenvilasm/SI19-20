@@ -134,7 +134,6 @@ aprender(Answer, Tq) :-
 	.substring("Tu pregunta es:", Answer, Inicio, Fin)&
 	.length(Answer,N)&
 	.substring(Answer,Tqsinespacios,Inicio+16,N-1)&
-	.printf(Tqsinespacios)&
 	.concat(" ",Tqsinespacios," ",Tq).
 
 identificarse(Answer,Credencial) :- 
@@ -143,6 +142,8 @@ identificarse(Answer,Credencial) :-
 	Credencial="DNI").
 	
 !start.
+
+//Se selecciona la del numero elegido si no salio antes. Se selecciona la siguiente en caso contrario.
 
 +!select(N,Answer) : dotq(N,_) <- ?tq(New,Answer); -tq(New,Answer); +dotq(New,Answer).
 +!select(N,Answer) : not dotq(N,_) & tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
@@ -161,12 +162,9 @@ identificarse(Answer,Credencial) :-
 
 +!start <- 
 
-//!fase1;
-//!fase2;
+!fase1;
+!fase2;
 !servicios.
-
-
-
 
 +!fase1 <-
 	.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO FASE 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
@@ -183,7 +181,7 @@ identificarse(Answer,Credencial) :-
 		!chat(NewAns,New,"FORMULO UNA NTQ");
 		.wait(2000);
 		!repreguntar(Sel);
-		.wait(4000);
+		.wait(5000);
 	}.
 
 +!fase2 <-
@@ -224,7 +222,6 @@ identificarse(Answer,Credencial) :-
 	.wait(3000);
 	!chat("En Sistemas Inteligentes",N,Tit);
 	!chat("Si",N,Tit).
-
 		
 +!conversar(N,"Solicitar un cambio de grupo reducido en una materia de la ESEI", Tit)<-
 	!chat("Solicitar un cambio de grupo reducido en una materia de la ESEI",N,"SOLICITO UN SERVICIO");
@@ -292,7 +289,7 @@ identificarse(Answer,Credencial) :-
 	
 +!repreguntar(Sel) : pregunta(Tq) & dotq(Sel, Tq) <-
 	-pregunta(Tq);
-	chat(" si ").
+	!chat("Si",0,"RESPONDO UNA NTQ").
 +!repreguntar(Sel) <- -pregunta(Tq).
 
 +answer(Answer) :not service(Answer, Service)<-
@@ -311,7 +308,10 @@ identificarse(Answer,Credencial) :-
 	!aprender(Answer);
 	!identificarse(Answer).
 
++answer(Answer): service(Answer, Service)<-
+	-answer(Answer)[source(percept)].
 
+	
 +!aprender(Answer): aprender(Answer,Tq)	<- +pregunta(Tq).
 +!aprender(Answer).
 
@@ -328,6 +328,3 @@ identificarse(Answer,Credencial) :-
 	
 +!identificarse(Answer).
 
-+answer(Answer): service(Answer, Service)<-
-	-answer(Answer)[source(percept)].
-	

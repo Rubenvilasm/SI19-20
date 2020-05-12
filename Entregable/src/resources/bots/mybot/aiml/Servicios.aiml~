@@ -57,7 +57,7 @@
 </category>
 
 <category>
-	<pattern>^ grupo reducido ^ </pattern>
+	<pattern>^ grupo ^</pattern>
 	<template>
 		<think><set name="topic">SERVICIO</set></think>
 		<think><set name="Servicio">GRUPOREDUCIDO</set></think>
@@ -84,7 +84,7 @@
 </category>
 
 <category>
-	<pattern>^ TFG ^ propuestos ^</pattern>
+	<pattern>^ TFG ^ <set>propuesto</set> ^</pattern>
 	<template>
 		<think><set name="topic">SERVICIO</set></think>
 		<think><set name="Servicio">TFGPROPUESTO</set></think>
@@ -93,7 +93,7 @@
 </category>
 
 <category>
-	<pattern>^ TFG no propuesto ^</pattern>
+	<pattern>^ TFG ^ no <set>propuesto</set> ^</pattern>
 	<template>
 		<think><set name="topic">SERVICIO</set></think>
 		<think><set name="Servicio">TFGNOPROPUESTO</set></think>
@@ -102,7 +102,7 @@
 </category>
 
 <category>
-	<pattern>^ defensa de un TFG ^ </pattern>
+	<pattern>^ defensa ^ TFG ^ </pattern>
 	<template>
 		<think><set name="topic">SERVICIO</set></think>
 		<think><set name="Servicio">DEFENSATFG</set></think>
@@ -111,7 +111,7 @@
 </category>
 
 <category>
-	<pattern>^ evaluacion por compensacion ^ </pattern>
+	<pattern>^ evaluacion ^ compensacion ^ </pattern>
 	<template>
 		<think><set name="topic">SERVICIO</set></think>
 		<think><set name="Servicio">COMPENSACION</set></think>
@@ -307,7 +307,6 @@
 					</think>
 					Entiendo, en la asignatura de <get name="asignatura"/>. En que grupo estas actualmente?[P.E:En el grupo 6]	
 				</li>
-				<li>Jolimbo</li>
 			</condition>
 		</template>
 	</category>
@@ -316,9 +315,9 @@
 		<pattern>BOTENVIACORREO</pattern>
 		<template>
 			<think>
-				<set name="Subject">Solicitar defensa TFG</set>
+				<set name="Subject">Solicitar evaluacion por compensacion</set>
 				<set name="To"><bot name="correoFormularios"/></set>
-				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="DNI"/>, me gustaría solicitar la evaluacion por compensación de <get name="asignatura"/></set>
+				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar la evaluacion por compensación de <get name="asignatura"/></set>
 				<set name="topic">CONFIRMACION</set>
 				<set name="asignatura">Unknown</set>
 				<set name="Accion">unknown</set>
@@ -331,7 +330,7 @@
 		<pattern>BOTENVIAALTAMATERIA</pattern>
 		<template>
 			<think>
-				<set name="Subject">Solicitar alta matricula</set>
+				<set name="Subject">Solicitar alta materia</set>
 				<set name="To"><bot name="correoFormularios"/></set>
 				<set name="Msg">Buenos dias, soy <get name="Nombre"/> y me gustaria darme de alta en <get name="asignatura"/>.</set>
 				<set name="asignatura">Unknown</set>
@@ -490,16 +489,14 @@
 							<pattern>^ la id es <eval><star index="2"/></eval> ^</pattern>
 							<template>
 								<think>
-									<set name="IDTFG"><star index="2"/></set>
-									<set name="asignacionTFG"><star/></set>
+									<set name="IDTFG"><eval><star index="2"/></eval></set>
+									<set name="asignacionTFG"><eval><star/></eval></set>
 								</think>
 								<srai>BOTENVIACORREO</srai>
 							</template>
 						</category>
 					</learn>
-					<addset><new><star index="2"/></new>tfgpropuesto</addset>
-					<addmap><new><star index="2"/>:<star/></new>tfgpropuesto</addmap>
-					TFG añadido.
+					<addset><new><star index="2"/></new>tfgpropuesto</addset><addmap><new><star index="2"/>:<star/></new>tfgpropuesto</addmap>TFG añadido.
 				</li>
 				<li>Solo el administrador puede añadir TFG</li>
 			</condition>
@@ -555,7 +552,7 @@
     <category>
         <pattern>El objetivo del TFG es *</pattern>
         <template>
-            <think><set name="descripcionTFG"><star index="2"/></set></think>
+            <think><set name="descripcionTFG"><star/></set></think>
             <srai>BOTENVIACORREO</srai>
         </template>
     </category>
@@ -589,16 +586,14 @@
 							<pattern>^ la id es <eval><star index="2"/></eval> ^</pattern>
 							<template>
 								<think>
-									<set name="IDTFGDefensa"><star index="2"/></set>
-									<set name="TFGdefensa"><star/></set>
+									<set name="IDTFGDefensa"><eval><star index="2"/></eval></set>
+									<set name="TFGdefensa"><eval><star/></eval></set>
 								</think>
 								<srai>BOTENVIACORREO</srai>
 							</template>
 						</category>
 					</learn>
-					<addset><new><star index="2"/></new>tfgdefensa</addset>
-					<addmap><new><star index="2"/>:<star/></new>tfgdefensa</addmap>
-					TFG añadido.
+					<addset><new><star index="2"/></new>tfgdefensa</addset><addmap><new><star index="2"/>:<star/></new>tfgdefensa</addmap>TFG añadido.
 				</li>
 				<li>Solo el administrador puede añadir TFG</li>
 			</condition>
@@ -625,7 +620,7 @@
 		<pattern>BOTENVIACORREO</pattern>
 		<template>
 			<think>
-				<set name="Subject">Solicitar evaluacion por compensacion</set>
+				<set name="Subject">Solicitar la defensa TFG</set>
 				<set name="To"><bot name="correoFormularios"/></set>
 				<set name="Msg">Buenos días, soy <get name="Nombre"/> con DNI <get name="Dni"/>, me gustaría solicitar la defensa del TFG <get name="TFGdefensa"/> con id <get name="IDTFGDefensa"/>.</set>
 				<set name="topic">CONFIRMACION</set>

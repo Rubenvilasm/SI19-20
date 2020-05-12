@@ -1,0 +1,4 @@
+0,_ <SET>ESEI</SET> ^,*,*,<think><set name="Lugar">ESEI</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Lugares.aiml
+0,_ <SET>UVIGO</SET> ^,*,*,<think><set name="Lugar">UVIGO</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Lugares.aiml
+0,^ <SET>CAFETERIA</SET> ^,*,*,<think><set name="Tema">CAFETERIA</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Lugares.aiml
+0,^ <SET>SECRETARIA</SET> ^,*,*,<think><set name="Lugar">SECRETARIA</set></think>#Newline		<srai><star/> <star index="3"/></srai>,Lugares.aiml
